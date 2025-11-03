@@ -1,0 +1,40 @@
+{
+    "hobbyMaxIndex": 1,
+    "blogMaxIndex": 1,
+    "projectMaxIndex": 1,
+    "contentFolderName":"Content",
+    "metadataJsonName":"metadata",
+    "thumbnail":"thumbnail.jpeg",
+    "folderCategoryName":["Blog","Hobby,Project"],
+    "filterNames": [
+        "Category",
+        "Lang",
+        "Type"
+    ],
+    "filters": [
+        {
+            "filter": [
+                "Coding",
+                "Electronics",
+                "3Dprinting",
+                "Other"
+            ]
+        },
+        {
+            "filter": [
+                "C#",
+                "Java",
+                "ASP.net"
+            ]
+        },
+        {
+            "filter": [
+                "Web",
+                "Desktop",
+                "Other"
+            ]
+        }
+    ],
+    "FilterChckBxClass": "FilterBtnMarker"
+}
+
