@@ -1,16 +1,31 @@
 
 let folderCategories= ["Blog","Hobby"];
 
-async function getContentMetadata(currLocSrc,folderIndex,folderCatName,contentFolderName){
+async function getContentMetadata(configJson,folderIndex,folderCatIndex){
 
     
     // setup path 
-    let folderPath;
+let folderPath;
+
 if(!currLocSrc){
     folderPath="../"
 }
-folderPath=contentFolderName+"/"+folderIndex+"/"+folderCatName;
 
 
+folderPath=configJson.contentFolderName+"/"+folderIndex+"/"+configJson.folderCategoryName[folderCatIndex];
+
+
+let metadataPath=folderPath+"/"+configJson.metadataJsonName+".json";
+try{
+let response =await fetch(metadataPath);
+
+if(!response.ok){
+return;
+}
+
+}catch(e) {
 
 }
+
+}
+
