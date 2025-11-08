@@ -1,7 +1,11 @@
+import * as contentLoader from "./contentLoader.js";
+
+
+
+
 document.addEventListener("DOMContentLoaded",
 main
 );
-
 
 function main(){
     console.log("script loaded!");
@@ -14,17 +18,15 @@ fetchConfig();
 }
 
 async function fetchConfig() {
-  try {
-  const response = await fetch('/Config/Config.json');
-  if(response.ok){
-  const data=await response.json();
-  console.log(data);
+ 
+  
+  const data=await contentLoader.getConfigJson(true);
+if(data==undefined){return;}
   loadLatestNews(data);
   }
-  }catch(e){
+  
     
-  }
-}
+  
 
 
 function loadLatestNews(data) {
@@ -41,6 +43,8 @@ function loadLatestNews(data) {
      if(i==(start-=2)){
       break;
      }
+
+     
   }
 
 

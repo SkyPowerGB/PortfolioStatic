@@ -2,9 +2,19 @@
     "hobbyMaxIndex": 1,
     "blogMaxIndex": 1,
     "projectMaxIndex": 1,
+
     "contentFolderName":"Content",
+
+
     "metadataJsonName":"metadata",
-    "thumbnail":"thumbnail.jpeg",
+    "metadataSummary":"summary",
+    "metadataTitle":"summaryTitle",
+    "datePublished":"publishDate",
+    "thumbnail":"thumbnail",
+
+
+    
+    "FilterChckBxClass": "FilterBtnMarker",
     "folderCategoryName":["Blog","Hobby,Project"],
     "filterNames": [
         "Category",
@@ -34,7 +44,6 @@
                 "Other"
             ]
         }
-    ],
-    "FilterChckBxClass": "FilterBtnMarker"
+    ]
 }
 
