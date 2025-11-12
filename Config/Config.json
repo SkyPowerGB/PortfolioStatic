@@ -1,21 +1,29 @@
 {
-    "hobbyMaxIndex": 1,
-    "blogMaxIndex": 1,
-    "projectMaxIndex": 1,
+    "noDataIndex":0,
+
+    "folderCategoryMaxIndex":[2,0,0],
+    "folderCategoryName":["Blog","Hobby","Project"],
+
+ 
 
     "contentFolderName":"Content",
 
 
     "metadataJsonName":"metadata",
-    "metadataSummary":"summary",
-    "metadataTitle":"summaryTitle",
-    "datePublished":"publishDate",
+
+    "publishDateTile":"dateUpload",
+    "summaryTitle":"title",
+    "summaryData":"summary",
     "thumbnail":"thumbnail",
+
+
+    "summaryContainerClass":"spg-feed-item",
+    
 
 
     
     "FilterChckBxClass": "FilterBtnMarker",
-    "folderCategoryName":["Blog","Hobby,Project"],
+    
     "filterNames": [
         "Category",
         "Lang",

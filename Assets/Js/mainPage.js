@@ -1,4 +1,4 @@
-import * as contentLoader from "./contentLoader.js";
+import * as contentLoader from "./modules/contentLoader.js";
 
 
 
@@ -10,42 +10,18 @@ main
 function main(){
     console.log("script loaded!");
 
-
-fetchConfig();
+loadLatestNewsB();
 
 
 
 }
-
-async function fetchConfig() {
- 
   
-  const data=await contentLoader.getConfigJson(true);
-if(data==undefined){return;}
-  loadLatestNews(data);
-  }
-  
-    
-  
+  function loadLatestNewsB(){
 
+      contentLoader.loadXlatestSummariesInto(2,0,"LatestProjectsFeedHolder");
 
-function loadLatestNews(data) {
-  
-
-   let start=data.projectMaxIndex;
-  for(let i=start;i>0;i--){
-
-
-
-
-    
-
-     if(i==(start-=2)){
-      break;
-     }
-
-     
   }
 
 
-}
+
+

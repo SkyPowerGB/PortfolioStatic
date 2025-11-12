@@ -14,11 +14,13 @@ function createSummaryItem(metadata,configJson,compFolderRelPth) {
     let dateElement = document.createElement("h4");
 
 
+    containerElement.classList.add(configJson.summaryContainerClass);
+
     linkElement.href=compFolderRelPth;
-    headerElement.innerHTML=metadata[configJson.metadataTitle]
+    headerElement.innerHTML=metadata[configJson.summaryTitle]
     thumbnailElement.src=compFolderRelPth+"/"+metadata[configJson.thumbnail];
-    descriptionElement.innerHTML=metadata[configJson.metadataSummary];
-    dateElement.innerHTML=metadata[configJson.datePublished];
+    descriptionElement.innerHTML=metadata[configJson.summaryData];
+    dateElement.innerHTML=metadata[configJson.publishDateTile];
 
 
 
@@ -32,5 +34,7 @@ function createSummaryItem(metadata,configJson,compFolderRelPth) {
 
 return containerElement;
 }
+
+
 
 export  {createSummaryItem}
