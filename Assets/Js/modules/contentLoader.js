@@ -7,7 +7,7 @@ async function getContentMetadataV2(configJson,folderPath){
     
 
       let metadataPath = folderPath + "/" + configJson.metadataJsonName + ".json";
-      console.log("getting metadata:"+metadataPath)
+    
    
     try {
         let response = await fetch(metadataPath);
@@ -28,9 +28,13 @@ async function getContentMetadataV2(configJson,folderPath){
 }
 
 
+
+let configJsonTemp;
+
 async function getConfigJsonV2(srcFolderRel){
     let targetPath ="";
     let configFolderPath=" Config/Config.json"
+    if(configJsonTemp!=undefined){return configJsonTemp}
     if (srcFolderRel!=undefined) {
         targetPath = srcFolderRel + configFolderPath;
 
@@ -39,7 +43,8 @@ async function getConfigJsonV2(srcFolderRel){
     }
     let response = await fetch(targetPath);
     if (response.ok) {
-        return response.json();
+        configJsonTemp=response.json();
+        return configJsonTemp;
     } else {
         return undefined;
     }
@@ -48,13 +53,13 @@ async function getConfigJsonV2(srcFolderRel){
 
 }
 
+
+
 // src folder Rel : korisitit ..   ili ../..  za pomicanje u glavni folder
 function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFolderRel) {
 
 
-    console.log("category index: "+folderCatIndex);
-    console.log("config json" + configJson.contentFolderName);
-    console.log("src folder"+srcFolderRel)
+
     let folderPath="";
     if(srcFolderRel==undefined){
      folderPath=configJson.contentFolderName+"/"+configJson.folderCategoryName[folderCatIndex]+"/"+folderIndex;
@@ -62,12 +67,10 @@ function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFold
              folderPath=srcFolderRel+"/"+configJson.contentFolderName+"/"+configJson.folderCategoryName[folderCatIndex]+"/"+folderIndex;
     }
 
-    
-    console.log("content folder path: "+folderPath);
+
     return folderPath;
 
 }
-
 
 
 // summary load helper
@@ -104,6 +107,8 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
 
 // IMPROVED ACCES POINTS
 
+
+
 async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFolderRel){
 
     let configJson=await getConfigJsonV2(srcFolderRel);
@@ -125,15 +130,35 @@ async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFo
 
 }
 
-let pageNum=0;
-async function loadPageSummaries(pageNum,itemsPerPage,folderCatIndex,targetId,srcFolderRel){}
+
+async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel){
+
+    let configJson=await getConfigJsonV2(srcFolderRel);
+    if(configJson==undefined){ console.log("failed to load configJson"); return;}
+    
+    let currIndex=configJson.folderCategoryMaxIndex[folderCatIndex];
+    let noDataIndex=configJson.noDataIndex;
+
+     for(let i=currIndex-(configJson.itemsPerPage*pageNum);i>=noDataIndex;i--){
+        loadSummaryInto(configJson,i,folderCatIndex,targetId,srcFolderRel);
+     }
 
 
+
+}
+
+
+
+async function loadPageFilters(targetId,srcFolderRel){
+    const configJson=getConfigJsonV2(srcFolderRel);
+    
+}
 
 
 
 
 export {
   
-    loadXlatestSummariesInto
+    loadXlatestSummariesInto,
+    loadPageSummaries
 }

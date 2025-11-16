@@ -1,3 +1,4 @@
+import { createElement } from "react";
 
 
 function createSummaryItem(metadata,configJson,compFolderRelPth) {
@@ -16,7 +17,10 @@ function createSummaryItem(metadata,configJson,compFolderRelPth) {
 
     containerElement.classList.add(configJson.summaryContainerClass);
 
-    linkElement.href=compFolderRelPth;
+    if(metadata[configJson.hasSite]){
+    linkElement.href=compFolderRelPth;}else{
+      
+    }
     headerElement.innerHTML=metadata[configJson.summaryTitle]
     thumbnailElement.src=compFolderRelPth+"/"+metadata[configJson.thumbnail];
     descriptionElement.innerHTML=metadata[configJson.summaryData];
@@ -24,10 +28,10 @@ function createSummaryItem(metadata,configJson,compFolderRelPth) {
 
 
 
-    linkElement.append(thumbnailElement);
-    linkElement.append(headerElement);
-    linkElement.append(dateElement);
-    linkElement.append(descriptionElement);
+    linkElement.appendChild(thumbnailElement);
+    linkElement.appendChild(headerElement);
+    linkElement.appendChild(dateElement);
+    linkElement.appendChild(descriptionElement);
     containerElement.appendChild(linkElement);
 
 
@@ -35,6 +39,52 @@ function createSummaryItem(metadata,configJson,compFolderRelPth) {
 return containerElement;
 }
 
+function createFilterListElement(configJson,filterIndex){
+
+    let filterContainer=document.createElement("div");
+    let filterHeader=document.createElement("h3");
+    
+    let filterHeaderName=configJson.filterNames[filterIndex];
+
+    let filterGroupList=configJson.filters[filterHeaderName];
+
+    
+    filterHeader.innerHTML=filterHeaderName+":";
+    filterHeader.classList.add(configJson.filterHeaderCssClass);
+ 
 
 
-export  {createSummaryItem}
+    filterContainer.appendChild(filterHeader);
+
+    filterGroupList.forEach(element => {
+
+
+        let checkbox=document.createElement("input");
+        let label=document.createElement("label");
+        let filterItemContainter=createElement("div");
+
+        filterItemContainter.classList.add(configJson.filterCssClass);
+        checkbox.type="checkbox";
+        label.innerHTML=element;
+
+        checkbox.value=element;
+
+        filterItemContainter.appendChild(checkbox);
+        filterItemContainter.appendChild(label);
+
+
+        filterContainer.appendChild(filterItemContainter);
+        
+    });
+
+
+
+
+    return filterContainer;
+
+}
+
+
+
+
+export  {createSummaryItem,createFilterListElement}

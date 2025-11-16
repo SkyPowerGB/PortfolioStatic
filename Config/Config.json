@@ -4,6 +4,8 @@
     "folderCategoryMaxIndex":[2,0,0],
     "folderCategoryName":["Blog","Hobby","Project"],
 
+    "itemsPerPage":10,
+
  
 
     "contentFolderName":"Content",
@@ -15,6 +17,7 @@
     "summaryTitle":"title",
     "summaryData":"summary",
     "thumbnail":"thumbnail",
+    "hasSite":"hasSite",
 
 
     "summaryContainerClass":"spg-feed-item",
@@ -23,35 +26,30 @@
 
     
     "FilterChckBxClass": "FilterBtnMarker",
+
+    "filterCssClass":"filter-item",
+    "filterHeaderCssClass":"filter-header",
+    
     
     "filterNames": [
         "Category",
         "Lang",
         "Type"
-    ],
-    "filters": [
-        {
-            "filter": [
-                "Coding",
-                "Electronics",
-                "3Dprinting",
-                "Other"
-            ]
-        },
-        {
-            "filter": [
-                "C#",
-                "Java",
-                "ASP.net"
-            ]
-        },
-        {
-            "filter": [
-                "Web",
-                "Desktop",
-                "Other"
-            ]
-        }
     ]
+
+
+    ,
+    "filters":{
+
+        "Category":["Coding","Electronics","3Dprinting"],
+        "Lang":["Java","C++"],
+        "Type":["Personal","University"]
+
+
+    }
+
+
+
 }
+   
 
