@@ -25,13 +25,13 @@
 
 
     
-    "FilterChckBxClass": "FilterBtnMarker",
+    "filterActionMarkerClass": "FilterBtnMarker",
 
-    "filterCssClass":"filter-item",
+    "filterItemDivCssClass":"filter-item",
     "filterHeaderCssClass":"filter-header",
     
     
-    "filterNames": [
+    "filterGroupListName": [
         "Category",
         "Lang",
         "Type"
@@ -39,7 +39,7 @@
 
 
     ,
-    "filters":{
+    "filtersGroupLists":{
 
         "Category":["Coding","Electronics","3Dprinting"],
         "Lang":["Java","C++"],

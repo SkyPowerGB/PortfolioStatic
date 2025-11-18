@@ -1,4 +1,3 @@
-import { createElement } from "react";
 
 
 function createSummaryItem(metadata,configJson,compFolderRelPth) {
@@ -39,45 +38,16 @@ function createSummaryItem(metadata,configJson,compFolderRelPth) {
 return containerElement;
 }
 
-function createFilterListElement(configJson,filterIndex){
+ function createFilterListElement(configJson){
+
 
     let filterContainer=document.createElement("div");
-    let filterHeader=document.createElement("h3");
-    
-    let filterHeaderName=configJson.filterNames[filterIndex];
+  
 
-    let filterGroupList=configJson.filters[filterHeaderName];
+    configJson.filterGroupListName.forEach((item)=>{
 
-    
-    filterHeader.innerHTML=filterHeaderName+":";
-    filterHeader.classList.add(configJson.filterHeaderCssClass);
- 
-
-
-    filterContainer.appendChild(filterHeader);
-
-    filterGroupList.forEach(element => {
-
-
-        let checkbox=document.createElement("input");
-        let label=document.createElement("label");
-        let filterItemContainter=createElement("div");
-
-        filterItemContainter.classList.add(configJson.filterCssClass);
-        checkbox.type="checkbox";
-        label.innerHTML=element;
-
-        checkbox.value=element;
-
-        filterItemContainter.appendChild(checkbox);
-        filterItemContainter.appendChild(label);
-
-
-        filterContainer.appendChild(filterItemContainter);
-        
+        filterContainer.append(createFilterGroup(configJson,item));
     });
-
-
 
 
     return filterContainer;
@@ -85,6 +55,42 @@ function createFilterListElement(configJson,filterIndex){
 }
 
 
+function createFilterGroup(configJson,filterGroupName){
+
+    let filterList=configJson.filtersGroupLists[filterGroupName];
+    let containerDiv=document.createElement("div");
+    let header=document.createElement("h4");
+
+    header.innerText=filterGroupName;
+    containerDiv.append(header);
+
+    filterList.forEach((element)=>{
+        containerDiv.append( createFilterItem(element,configJson));
+    });
+
+
+return containerDiv;
+
+}
+
+function createFilterItem(filterItemName,configJson){
+
+    let containerDiv=document.createElement("div");
+    let inputCheckBx=document.createElement("input");
+    let label=document.createElement("label");
+
+    inputCheckBx.type="checkbox";
+    label.innerHTML=filterItemName;
+
+    containerDiv.classList.add(configJson.filterItemDivCssClass);
+    containerDiv.classList.add(configJson.filterActionMarkerClass);
+
+
+    containerDiv.appendChild(inputCheckBx);
+    containerDiv.appendChild(label);
+
+    return containerDiv;
+}
 
 
 export  {createSummaryItem,createFilterListElement}

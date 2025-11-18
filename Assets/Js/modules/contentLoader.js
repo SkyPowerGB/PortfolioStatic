@@ -33,10 +33,11 @@ let configJsonTemp;
 
 async function getConfigJsonV2(srcFolderRel){
     let targetPath ="";
-    let configFolderPath=" Config/Config.json"
+    let configFolderPath="Config/Config.json"
     if(configJsonTemp!=undefined){return configJsonTemp}
     if (srcFolderRel!=undefined) {
         targetPath = srcFolderRel + configFolderPath;
+  
 
     }else{
         targetPath=configFolderPath;
@@ -149,8 +150,14 @@ async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel){
 
 
 
-async function loadPageFilters(targetId,srcFolderRel){
-    const configJson=getConfigJsonV2(srcFolderRel);
+async function loadPageFilters(srcFolderRel){
+    const configJson= await getConfigJsonV2(srcFolderRel);
+
+
+    const output=compBuilder.createFilterListElement(configJson);
+
+    console.log(output);
+ 
     
 }
 
@@ -160,5 +167,6 @@ async function loadPageFilters(targetId,srcFolderRel){
 export {
   
     loadXlatestSummariesInto,
-    loadPageSummaries
+    loadPageSummaries,
+    loadPageFilters
 }

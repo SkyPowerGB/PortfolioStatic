@@ -1,10 +1,11 @@
-import * as componentBuilder from "./modules/componentBuilder";
-import * as contentLoader from "./modules/contentLoader";
+
+import * as contentLoader from "./modules/contentLoader.js";
 
 document.addEventListener("DOMContentLoaded",
 main
 );
 
 function main(){
+contentLoader.loadPageFilters("../");
 
 }
