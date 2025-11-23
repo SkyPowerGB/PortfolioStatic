@@ -6,6 +6,13 @@ main
 );
 
 function main(){
-contentLoader.loadPageFilters("../");
+
+loadFilters();
 
 }
+
+async function loadFilters(){
+    await contentLoader.loadPageFilters("../","filterContainer");
+
+}
+

@@ -73,12 +73,12 @@ function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFold
 
 }
 
+let filterObj;
 
 // summary load helper
-async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId, srcFolderRel) {
+async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId, srcFolderRel ,hasFilters) {
 
-
-   
+     
 
     let targetComponent = document.getElementById(targetId);
     let metadata;
@@ -90,6 +90,40 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
     metadata= await getContentMetadataV2(configJson,folderPath);
 
     if(metadata==undefined){ console.log("metadata failed to load"); return;}
+
+
+    let filterPositive=false;
+    
+  if(hasFilters!=false ){
+
+    console.log("filterign")
+    if(filterObj.filterGroups==undefined){return;}
+    
+    filterObj.filterGroups.forEach(element => {
+        
+         filtersArray=  filterObj[element];
+         metadataFilters=filterObj[element];
+
+         filtersArray.forEach(filterItem=>{
+
+            if(metadataFilters.includes(filterItem)){
+            
+                filterPositive=true;
+            }
+         })
+
+
+
+    });
+
+    
+    
+
+  }
+  if(!filterPositive&&hasFilters){
+    return;
+  }
+
 
     let component = compBuilder.createSummaryItem(metadata, configJson,folderPath);
     
@@ -110,7 +144,7 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
 
 
 
-async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFolderRel){
+async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFolderRel,hasFilters){
 
     let configJson=await getConfigJsonV2(srcFolderRel);
     if(configJson==undefined){ console.log("failed to load configJson"); return;}
@@ -123,7 +157,7 @@ async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFo
     for(let i=0;i<summaryNum;i++){
         if(currIndex==noDataIndex){return;}
 
-        loadSummaryInto(configJson,currIndex,folderCatIndex,targetId,srcFolderRel);
+        loadSummaryInto(configJson,currIndex,folderCatIndex,targetId,srcFolderRel,hasFilters);
 
         currIndex--;
     }
@@ -132,7 +166,7 @@ async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFo
 }
 
 
-async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel){
+async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel,hasFilters){
 
     let configJson=await getConfigJsonV2(srcFolderRel);
     if(configJson==undefined){ console.log("failed to load configJson"); return;}
@@ -141,8 +175,15 @@ async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel){
     let noDataIndex=configJson.noDataIndex;
 
      for(let i=currIndex-(configJson.itemsPerPage*pageNum);i>=noDataIndex;i--){
-        loadSummaryInto(configJson,i,folderCatIndex,targetId,srcFolderRel);
+        loadSummaryInto(configJson,i,folderCatIndex,targetId,srcFolderRel,hasFilters);
      }
+
+
+
+}
+
+function setFilterObj(filter){
+filterObj=filter;
 
 
 
@@ -150,15 +191,17 @@ async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel){
 
 
 
-async function loadPageFilters(srcFolderRel){
+async function loadPageFilters(srcFolderRel,targetComponentId){
     const configJson= await getConfigJsonV2(srcFolderRel);
 
 
+    const targetComponent=document.getElementById(targetComponentId)
     const output=compBuilder.createFilterListElement(configJson);
 
     console.log(output);
  
-    
+    targetComponent.appendChild(output);
+    console.log("filters loaded");
 }
 
 
