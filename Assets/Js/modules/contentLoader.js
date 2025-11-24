@@ -73,7 +73,7 @@ function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFold
 
 }
 
-let filterObj;
+let filterObj={};
 
 // summary load helper
 async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId, srcFolderRel ,hasFilters) {
@@ -92,16 +92,43 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
     if(metadata==undefined){ console.log("metadata failed to load"); return;}
 
 
-    let filterPositive=false;
+    let filterPositive=checkFilters(metadata);
     
-  if(hasFilters!=false ){
+    
 
-    console.log("filterign")
-    if(filterObj.filterGroups==undefined){return;}
+  
+  if(!filterPositive){
+    return;
+  }
+
+
+    let component = compBuilder.createSummaryItem(metadata, configJson,folderPath);
+    
+
+    targetComponent.append(component);
+}
+
+
+
+function checkFilters(metadata){
+
+
+
+        let filterPositive=false;
+    
+        let empty=true;
+
+
+
+    if(filterObj.filterGroups==undefined){return true;}
+    if(!filterObj.filtersAcive){return true;}
     
     filterObj.filterGroups.forEach(element => {
         
          filtersArray=  filterObj[element];
+
+        
+       
          metadataFilters=filterObj[element];
 
          filtersArray.forEach(filterItem=>{
@@ -115,22 +142,65 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
 
 
     });
-
-    
-    
-
-  }
-  if(!filterPositive&&hasFilters){
-    return;
-  }
-
-
-    let component = compBuilder.createSummaryItem(metadata, configJson,folderPath);
+  
     
 
-    targetComponent.append(component);
+  return filterPositive;
+
 }
 
+
+function setupFilerObj(filterGroup){
+
+    filterObj[filterGroup]=[];
+}
+
+
+
+
+function filterEvent(e,filterItem,configJson){
+
+    let checkboxElement=filterItem.querySelector("."+configJson.filterCheckbxClassMarker);
+    let groupValueElement=filterItem.querySelector("."+configJson.filterGroupValueClassMarker);
+
+    let groupValue=groupValueElement.value;
+    let filterValue=checkboxElement.value;
+
+  
+    if(e.target!==checkboxElement){
+    if(!checkboxElement.checked){
+
+   
+        checkboxElement.checked=true;
+    
+
+
+
+       addFilter(groupValue,filterValue);
+
+    }else{
+        console.log("remove filter");
+       
+     
+   
+        checkboxElement.checked=false;
+        
+
+                removeFilter(groupValue,filterValue);
+    }
+    }else{
+
+        if(checkboxElement.checked){
+             addFilter(groupValue,filterValue);
+        }else{
+              removeFilter(groupValue,filterValue);
+        }
+
+    }
+
+
+  
+}
 
 
 
@@ -182,12 +252,26 @@ async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel,ha
 
 }
 
-function setFilterObj(filter){
-filterObj=filter;
 
 
 
+function addFilter(filterGroup,filter){
+if(filterObj[filterGroup]==undefined){
+    setupFilerObj(filterGroup);
+    
 }
+if(filterObj[filterGroup].includes(filter)){return;}
+filterObj[filterGroup].push(filter);
+console.log(filterObj);
+}
+
+function removeFilter(filterGroup,filter){
+    if(filterObj[filterGroup]==undefined){ return ;}
+    setupFilerObj(filterGroup);
+   filterObj[filterGroup]= filterObj[filterGroup].filter((item)=>{return item==filter;});
+   console.log(filterObj);
+}
+
 
 
 
@@ -197,12 +281,19 @@ async function loadPageFilters(srcFolderRel,targetComponentId){
 
     const targetComponent=document.getElementById(targetComponentId)
     const output=compBuilder.createFilterListElement(configJson);
-
-    console.log(output);
- 
     targetComponent.appendChild(output);
+
+
+     let filters= output.getElementsByClassName(configJson.filterActionMarkerClass);
+
+   for(let i=0;i<filters.length;i++){
+
+    filters[i].addEventListener("click",(e)=>{filterEvent(e,filters[i],configJson)})
+   }
+
     console.log("filters loaded");
 }
+
 
 
 
@@ -211,5 +302,8 @@ export {
   
     loadXlatestSummariesInto,
     loadPageSummaries,
-    loadPageFilters
+    loadPageFilters,
+    getConfigJsonV2,
+    addFilter,
+    removeFilter
 }

@@ -13,6 +13,15 @@ loadFilters();
 
 async function loadFilters(){
     await contentLoader.loadPageFilters("../","filterContainer");
+    
+
+}
+
+
+
+function loadContent(){
+
+
 
 }
 

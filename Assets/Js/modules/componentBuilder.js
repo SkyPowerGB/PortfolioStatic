@@ -38,6 +38,8 @@ function createSummaryItem(metadata,configJson,compFolderRelPth) {
 return containerElement;
 }
 
+
+// create full filter list 
  function createFilterListElement(configJson){
 
 
@@ -55,6 +57,7 @@ return containerElement;
 }
 
 
+//create filters for specific group
 function createFilterGroup(configJson,filterGroupName){
 
     let filterList=configJson.filtersGroupLists[filterGroupName];
@@ -65,7 +68,7 @@ function createFilterGroup(configJson,filterGroupName){
     containerDiv.append(header);
 
     filterList.forEach((element)=>{
-        containerDiv.append( createFilterItem(element,configJson));
+        containerDiv.append( createFilterItem(element,configJson,filterGroupName));
     });
 
 
@@ -73,21 +76,36 @@ return containerDiv;
 
 }
 
-function createFilterItem(filterItemName,configJson){
+
+// create single filter checkbox
+function createFilterItem(filterItemName,configJson,filterGroupName){
 
     let containerDiv=document.createElement("div");
     let inputCheckBx=document.createElement("input");
+    let inputHidden=document.createElement("input");
     let label=document.createElement("label");
 
+    inputHidden.type="hidden";
     inputCheckBx.type="checkbox";
     label.innerHTML=filterItemName;
+    inputCheckBx.value=filterItemName;
+    inputHidden.value=filterGroupName;
 
+
+   
     containerDiv.classList.add(configJson.filterItemDivCssClass);
+
+     //add classes for script events 
     containerDiv.classList.add(configJson.filterActionMarkerClass);
+    
+    // add classes for script to extract values
+    inputHidden.classList.add(configJson.filterGroupValueClassMarker);
+    inputCheckBx.classList.add(configJson.filterCheckbxClassMarker);
 
 
     containerDiv.appendChild(inputCheckBx);
     containerDiv.appendChild(label);
+    containerDiv.appendChild(inputHidden);
 
     return containerDiv;
 }

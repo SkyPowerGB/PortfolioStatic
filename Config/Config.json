@@ -48,6 +48,9 @@
 
     }
 
+    ,
+    "filterCheckbxClassMarker":"filterCheckbox",
+    "filterGroupValueClassMarker":"filterGroupValue"
 
 
 }
