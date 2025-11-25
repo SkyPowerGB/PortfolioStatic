@@ -120,7 +120,6 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
 }
 
 
-
 function checkFilters(metadata) {
     
 
@@ -156,9 +155,9 @@ function checkFilters(metadata) {
 
 
                     // check for match  single match =correct
-                  if( metadataFilterList.includes(filterItem)){
-                    isFilterMatch=true;
-                  }
+                 isFilterMatch= metadataFilterList.includes(filterItem)
+                    
+                  
 
                 });
 
