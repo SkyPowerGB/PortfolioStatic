@@ -2,13 +2,13 @@ import * as compBuilder from "./componentBuilder.js";
 
 
 
-async function getContentMetadataV2(configJson,folderPath){
-    
-    
+async function getContentMetadataV2(configJson, folderPath) {
 
-      let metadataPath = folderPath + "/" + configJson.metadataJsonName + ".json";
-    
-   
+
+
+    let metadataPath = folderPath + "/" + configJson.metadataJsonName + ".json";
+
+
     try {
         let response = await fetch(metadataPath);
 
@@ -31,20 +31,20 @@ async function getContentMetadataV2(configJson,folderPath){
 
 let configJsonTemp;
 
-async function getConfigJsonV2(srcFolderRel){
-    let targetPath ="";
-    let configFolderPath="Config/Config.json"
-    if(configJsonTemp!=undefined){return configJsonTemp}
-    if (srcFolderRel!=undefined) {
+async function getConfigJsonV2(srcFolderRel) {
+    let targetPath = "";
+    let configFolderPath = "Config/Config.json"
+    if (configJsonTemp != undefined) { return configJsonTemp }
+    if (srcFolderRel != undefined) {
         targetPath = srcFolderRel + configFolderPath;
-  
 
-    }else{
-        targetPath=configFolderPath;
+
+    } else {
+        targetPath = configFolderPath;
     }
     let response = await fetch(targetPath);
     if (response.ok) {
-        configJsonTemp=response.json();
+        configJsonTemp = response.json();
         return configJsonTemp;
     } else {
         return undefined;
@@ -61,11 +61,11 @@ function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFold
 
 
 
-    let folderPath="";
-    if(srcFolderRel==undefined){
-     folderPath=configJson.contentFolderName+"/"+configJson.folderCategoryName[folderCatIndex]+"/"+folderIndex;
-    }else{
-             folderPath=srcFolderRel+"/"+configJson.contentFolderName+"/"+configJson.folderCategoryName[folderCatIndex]+"/"+folderIndex;
+    let folderPath = "";
+    if (srcFolderRel == undefined) {
+        folderPath = configJson.contentFolderName + "/" + configJson.folderCategoryName[folderCatIndex] + "/" + folderIndex;
+    } else {
+        folderPath = srcFolderRel  + configJson.contentFolderName + "/" + configJson.folderCategoryName[folderCatIndex] + "/" + folderIndex;
     }
 
 
@@ -73,133 +73,188 @@ function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFold
 
 }
 
-let filterObj={};
+let filterObj = {};
 
-// summary load helper
-async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId, srcFolderRel ,hasFilters) {
+/**
+ * Summary loader loads summary item for page to display
+ * returns -1 if fails,
+ * returns 0 if item was skipped : filters active
+ * returns 1 on success
+ * 
+ */
 
-     
+async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId, srcFolderRel) {
+
+
 
     let targetComponent = document.getElementById(targetId);
     let metadata;
 
 
-    let folderPath=await getContentFolderRelPth(configJson,folderIndex,folderCatIndex,srcFolderRel);
+    let folderPath = await getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFolderRel);
 
 
-    metadata= await getContentMetadataV2(configJson,folderPath);
+    metadata = await getContentMetadataV2(configJson, folderPath);
 
-    if(metadata==undefined){ console.log("metadata failed to load"); return;}
+    if (metadata == undefined) { console.log("metadata failed to load"); return -1; }
 
 
-    let filterPositive=checkFilters(metadata);
-    
-    
+    let filterPositive = checkFilters(metadata);
 
+
+
+
+    if (!filterPositive) {
   
-  if(!filterPositive){
-    return;
-  }
+        return 0;
+    }
 
+ 
 
-    let component = compBuilder.createSummaryItem(metadata, configJson,folderPath);
-    
+    let component = compBuilder.createSummaryItem(metadata, configJson, folderPath);
+
 
     targetComponent.append(component);
+
+    return 1;
 }
 
 
 
-function checkFilters(metadata){
-
-
-
-        let filterPositive=false;
+function checkFilters(metadata) {
     
-        let empty=true;
 
+    if(metadata==undefined){return true;}
+  
 
-
-    if(filterObj.filterGroups==undefined){return true;}
-    if(!filterObj.filtersAcive){return true;}
     
-    filterObj.filterGroups.forEach(element => {
-        
-         filtersArray=  filterObj[element];
+    let isFilterMatch = false; 
+   
+    let AllFilterGroupsEmpty=true;
+    let filterGroups=Object.keys(filterObj);
 
-        
-       
-         metadataFilters=filterObj[element];
+    // loop filter groups
+    filterGroups.forEach((group)=>{
 
-         filtersArray.forEach(filterItem=>{
+    
+    
+        // get group filter list
+        let filterList=filterObj[group];
 
-            if(metadataFilters.includes(filterItem)){
-            
-                filterPositive=true;
+        // get metadata filter list for that group
+        let metadataFilterList=metadata[group];
+      
+        // continure if not empty
+        if(filterList.length>0){
+            AllFilterGroupsEmpty=false;
+
+            // check if group list even exist in the metadata
+            if(metadataFilterList!==undefined){
+
+                // loop filter selected items
+                filterList.forEach(filterItem=>{
+
+
+                    // check for match  single match =correct
+                  if( metadataFilterList.includes(filterItem)){
+                    isFilterMatch=true;
+                  }
+
+                });
+
+
             }
-         })
-
-
-
-    });
-  
-    
-
-  return filterPositive;
-
-}
-
-
-function setupFilerObj(filterGroup){
-
-    filterObj[filterGroup]=[];
-}
-
-
-
-
-function filterEvent(e,filterItem,configJson){
-
-    let checkboxElement=filterItem.querySelector("."+configJson.filterCheckbxClassMarker);
-    let groupValueElement=filterItem.querySelector("."+configJson.filterGroupValueClassMarker);
-
-    let groupValue=groupValueElement.value;
-    let filterValue=checkboxElement.value;
-
-  
-    if(e.target!==checkboxElement){
-    if(!checkboxElement.checked){
-
-   
-        checkboxElement.checked=true;
-    
-
-
-
-       addFilter(groupValue,filterValue);
-
-    }else{
-        console.log("remove filter");
-       
-     
-   
-        checkboxElement.checked=false;
         
-
-                removeFilter(groupValue,filterValue);
+        }
+  
+    });
+ 
+    if(AllFilterGroupsEmpty){
+        return true;
     }
-    }else{
+   
 
-        if(checkboxElement.checked){
-             addFilter(groupValue,filterValue);
-        }else{
-              removeFilter(groupValue,filterValue);
+    return isFilterMatch;
+
+}
+    
+
+
+
+
+
+
+function setupFilerObj(filterGroup) {
+
+    filterObj[filterGroup] = [];
+}
+
+
+// check uncheck checkbox (container has event listener not checkbox)
+
+function addFilter(filterGroup, filter) {
+    if (filterObj[filterGroup] == undefined) {
+        setupFilerObj(filterGroup);
+
+    }
+    if (filterObj[filterGroup].includes(filter)) { return; }
+    filterObj[filterGroup].push(filter);
+
+}
+
+function removeFilter(filterGroup, filter) {
+    if (filterObj[filterGroup] == undefined) { return; }
+   
+    filterObj[filterGroup] = filterObj[filterGroup].filter((item) => { return item != filter; });
+ 
+    
+}
+
+
+// checkbox container event function
+function filterEvent(e, filterItem, configJson, callback) {
+
+    let checkboxElement = filterItem.querySelector("." + configJson.filterCheckbxClassMarker);
+    let groupValueElement = filterItem.querySelector("." + configJson.filterGroupValueClassMarker);
+
+    let groupValue = groupValueElement.value;
+    let filterValue = checkboxElement.value;
+
+
+    if (e.target !== checkboxElement) {
+        if (!checkboxElement.checked) {
+
+
+            checkboxElement.checked = true;
+
+
+
+
+            addFilter(groupValue, filterValue);
+
+        } else {
+          
+
+
+
+            checkboxElement.checked = false;
+
+
+            removeFilter(groupValue, filterValue);
+        }
+    } else {
+
+        if (checkboxElement.checked) {
+            addFilter(groupValue, filterValue);
+        } else {
+            removeFilter(groupValue, filterValue);
         }
 
     }
 
+    if (callback === undefined) { return; }
 
-  
+    callback(e);
 }
 
 
@@ -214,20 +269,20 @@ function filterEvent(e,filterItem,configJson){
 
 
 
-async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFolderRel,hasFilters){
+async function loadXlatestSummariesInto(summaryNum, folderCatIndex, targetId, srcFolderRel, ) {
 
-    let configJson=await getConfigJsonV2(srcFolderRel);
-    if(configJson==undefined){ console.log("failed to load configJson"); return;}
-    
-    let currIndex=configJson.folderCategoryMaxIndex[folderCatIndex];
-    let noDataIndex=configJson.noDataIndex;
+    let configJson = await getConfigJsonV2(srcFolderRel);
+    if (configJson == undefined) { console.log("failed to load configJson"); return; }
+
+    let currIndex = configJson.folderCategoryMaxIndex[folderCatIndex];
+    let noDataIndex = configJson.noDataIndex;
 
 
 
-    for(let i=0;i<summaryNum;i++){
-        if(currIndex==noDataIndex){return;}
+    for (let i = 0; i < summaryNum; i++) {
+        if (currIndex == noDataIndex) { return; }
 
-        loadSummaryInto(configJson,currIndex,folderCatIndex,targetId,srcFolderRel,hasFilters);
+        loadSummaryInto(configJson, currIndex, folderCatIndex, targetId, srcFolderRel);
 
         currIndex--;
     }
@@ -236,17 +291,36 @@ async function loadXlatestSummariesInto(summaryNum,folderCatIndex,targetId,srcFo
 }
 
 
-async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel,hasFilters){
+async function loadPageSummaries(pageNum, folderCatIndex, targetId, srcFolderRel) {
 
-    let configJson=await getConfigJsonV2(srcFolderRel);
-    if(configJson==undefined){ console.log("failed to load configJson"); return;}
-    
-    let currIndex=configJson.folderCategoryMaxIndex[folderCatIndex];
-    let noDataIndex=configJson.noDataIndex;
+    let configJson = await getConfigJsonV2(srcFolderRel);
+    if (configJson == undefined) { console.log("failed to load configJson"); return; }
 
-     for(let i=currIndex-(configJson.itemsPerPage*pageNum);i>=noDataIndex;i--){
-        loadSummaryInto(configJson,i,folderCatIndex,targetId,srcFolderRel,hasFilters);
-     }
+    let currIndex = configJson.folderCategoryMaxIndex[folderCatIndex];
+    let noDataIndex = configJson.noDataIndex;
+
+
+
+    let i = currIndex - (configJson.itemsPerPage * pageNum);
+    let target = i - configJson.itemsPerPage;
+
+
+
+    while (i >= target) {
+
+        if (i == noDataIndex) {
+            return;
+        }
+
+        let result = loadSummaryInto(configJson, i, folderCatIndex, targetId, srcFolderRel);
+
+        if (result == 0) {
+
+            target++;
+
+        }
+        i--;
+    }
 
 
 
@@ -254,42 +328,21 @@ async function loadPageSummaries(pageNum,folderCatIndex,targetId,srcFolderRel,ha
 
 
 
-
-function addFilter(filterGroup,filter){
-if(filterObj[filterGroup]==undefined){
-    setupFilerObj(filterGroup);
-    
-}
-if(filterObj[filterGroup].includes(filter)){return;}
-filterObj[filterGroup].push(filter);
-console.log(filterObj);
-}
-
-function removeFilter(filterGroup,filter){
-    if(filterObj[filterGroup]==undefined){ return ;}
-    setupFilerObj(filterGroup);
-   filterObj[filterGroup]= filterObj[filterGroup].filter((item)=>{return item==filter;});
-   console.log(filterObj);
-}
+async function loadPageFilters(srcFolderRel, targetComponentId, filterEventCallback) {
+    const configJson = await getConfigJsonV2(srcFolderRel);
 
 
-
-
-async function loadPageFilters(srcFolderRel,targetComponentId){
-    const configJson= await getConfigJsonV2(srcFolderRel);
-
-
-    const targetComponent=document.getElementById(targetComponentId)
-    const output=compBuilder.createFilterListElement(configJson);
+    const targetComponent = document.getElementById(targetComponentId)
+    const output = compBuilder.createFilterListElement(configJson);
     targetComponent.appendChild(output);
 
 
-     let filters= output.getElementsByClassName(configJson.filterActionMarkerClass);
+    let filters = output.getElementsByClassName(configJson.filterActionMarkerClass);
 
-   for(let i=0;i<filters.length;i++){
+    for (let i = 0; i < filters.length; i++) {
 
-    filters[i].addEventListener("click",(e)=>{filterEvent(e,filters[i],configJson)})
-   }
+        filters[i].addEventListener("click", (e) => { filterEvent(e, filters[i], configJson, filterEventCallback) })
+    }
 
     console.log("filters loaded");
 }
@@ -299,11 +352,9 @@ async function loadPageFilters(srcFolderRel,targetComponentId){
 
 
 export {
-  
+
     loadXlatestSummariesInto,
     loadPageSummaries,
     loadPageFilters,
     getConfigJsonV2,
-    addFilter,
-    removeFilter
 }
