@@ -2,6 +2,11 @@ import * as compBuilder from "./componentBuilder.js";
 
 
 
+
+//-- NAVBAR--------------------------------------------------------------------------------------------------------
+
+//-CONTENT---------------------------------------------------------------------------------------------------------
+
 async function getContentMetadataV2(configJson, folderPath) {
 
 
@@ -45,6 +50,7 @@ async function getConfigJsonV2(srcFolderRel) {
     let response = await fetch(targetPath);
     if (response.ok) {
         configJsonTemp = response.json();
+        console.log("config json here");
         return configJsonTemp;
     } else {
         return undefined;
@@ -53,7 +59,6 @@ async function getConfigJsonV2(srcFolderRel) {
 
 
 }
-
 
 
 // src folder Rel : korisitit ..   ili ../..  za pomicanje u glavni folder
@@ -73,7 +78,7 @@ function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFold
 
 }
 
-let filterObj = {};
+
 
 /**
  * Summary loader loads summary item for page to display
@@ -120,6 +125,10 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
 }
 
 
+
+//---------FILTERS --------------------------------------------------------------------------------------
+
+let filterObj = {};
 function checkFilters(metadata) {
     
 
@@ -178,11 +187,6 @@ function checkFilters(metadata) {
 }
     
 
-
-
-
-
-
 function setupFilerObj(filterGroup) {
 
     filterObj[filterGroup] = [];
@@ -210,7 +214,7 @@ function removeFilter(filterGroup, filter) {
 }
 
 
-// checkbox container event function
+// checkbox container event function abstraction
 function filterEvent(e, filterItem, configJson, callback) {
 
     let checkboxElement = filterItem.querySelector("." + configJson.filterCheckbxClassMarker);
@@ -259,7 +263,6 @@ function filterEvent(e, filterItem, configJson, callback) {
 
 
 
-
 //----------contentLoader primary functions------------------------------------------
 // srcFolderRel= relative path to SRC folder
 
@@ -272,6 +275,7 @@ async function loadXlatestSummariesInto(summaryNum, folderCatIndex, targetId, sr
 
     let configJson = await getConfigJsonV2(srcFolderRel);
     if (configJson == undefined) { console.log("failed to load configJson"); return; }
+
 
     let currIndex = configJson.folderCategoryMaxIndex[folderCatIndex];
     let noDataIndex = configJson.noDataIndex;
@@ -289,26 +293,29 @@ async function loadXlatestSummariesInto(summaryNum, folderCatIndex, targetId, sr
 
 }
 
-
+// returns false if no content is there to load
 async function loadPageSummaries(pageNum, folderCatIndex, targetId, srcFolderRel) {
 
     let configJson = await getConfigJsonV2(srcFolderRel);
-    if (configJson == undefined) { console.log("failed to load configJson"); return; }
+    if (configJson == undefined) { console.log("failed to load configJson"); return false; }
+    if( folderCatIndex>  configJson.folderCategoryMaxIndex.length||folderCatIndex<0){
+        console.log("FolderCatIndex out of bounds");
+        return false; }
 
-    let currIndex = configJson.folderCategoryMaxIndex[folderCatIndex];
+    let maxIndex = configJson.folderCategoryMaxIndex[folderCatIndex];
     let noDataIndex = configJson.noDataIndex;
 
 
 
-    let i = currIndex - (configJson.itemsPerPage * pageNum);
+    let i = maxIndex - (configJson.itemsPerPage * pageNum);
     let target = i - configJson.itemsPerPage;
 
-
-
+    if(i<=noDataIndex){return false;}
+    
     while (i >= target) {
 
-        if (i == noDataIndex) {
-            return;
+        if (i <= noDataIndex) {
+            break;
         }
 
         let result = loadSummaryInto(configJson, i, folderCatIndex, targetId, srcFolderRel);
@@ -321,7 +328,7 @@ async function loadPageSummaries(pageNum, folderCatIndex, targetId, srcFolderRel
         i--;
     }
 
-
+return true;
 
 }
 
@@ -347,7 +354,33 @@ async function loadPageFilters(srcFolderRel, targetComponentId, filterEventCallb
 }
 
 
+// TODO structure change this data will be contained in site script
+async function getFolderCatIndex(srcFolderRel){
+    let configJson= await getConfigJsonV2(srcFolderRel);
 
+    let dataComponent=document.getElementById(configJson.folderCatIndexHolderId);
+
+    let value =Number(dataComponent.value);
+
+    if(value==NaN) {
+        return -1;
+    }
+    return value;
+
+}
+
+//  *ConfigJson- > SitePosIndex:  ["src: 0","pages: 1", "contentSub: 2"....], 
+async function loadNavbar(srcFolderRel,sitePosIndex) {
+    let configJson= await getConfigJsonV2(srcFolderRel);
+    let targetComponent=document.getElementById(configJson.navbarSetup.navBarDivContElementID);
+
+    if(targetComponent!=null){
+
+        targetComponent.appendChild(compBuilder.navbarUlBuilder(configJson,sitePosIndex));
+
+    }
+     
+}
 
 
 export {
@@ -356,4 +389,6 @@ export {
     loadPageSummaries,
     loadPageFilters,
     getConfigJsonV2,
+    getFolderCatIndex,
+    loadNavbar
 }

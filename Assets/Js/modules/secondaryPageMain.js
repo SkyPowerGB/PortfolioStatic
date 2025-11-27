@@ -1,9 +1,6 @@
 
-import * as contentLoader from "./modules/contentLoader.js";
+import * as contentLoader from "./contentLoader.js";
 
-document.addEventListener("DOMContentLoaded",
-main
-);
 
 
 let contentTargetID="contentContainer";

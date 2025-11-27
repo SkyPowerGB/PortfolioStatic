@@ -1,60 +1,105 @@
 {
-    "noDataIndex":0,
-
-    "folderCategoryMaxIndex":[2,0,0],
-    "folderCategoryName":["Blog","Hobby","Project"],
-
-    "itemsPerPage":10,
-
- 
-
-    "contentFolderName":"Content",
-
-
-    "metadataJsonName":"metadata",
-
-    "publishDateTile":"dateUpload",
-    "summaryTitle":"title",
-    "summaryData":"summary",
-    "thumbnail":"thumbnail",
-    "hasSite":"hasSite",
-
-
-    "summaryContainerClass":"spg-feed-item",
-    
-
-
-    
+    "noDataIndex": 0,
+    "folderCategoryMaxIndex": [
+        4,
+        0,
+        0
+    ],
+    "folderCategoryName": [
+        "Blog",
+        "Hobby",
+        "Project"
+    ],
+    "itemsPerPage": 3,
+    "folderCatIndexHolderId": "folderCatIndexInput",
+    "contentFolderName": "Content",
+    "metadataJsonName": "metadata",
+    "publishDateTile": "dateUpload",
+    "summaryTitle": "title",
+    "summaryData": "summary",
+    "thumbnail": "thumbnail",
+    "hasSite": "hasSite",
+    "summaryContainerClass": "spg-feed-item",
     "filterActionMarkerClass": "FilterBtnMarker",
-
-    "filterItemDivCssClass":"filter-item",
-    "filterHeaderCssClass":"filter-header",
-    
-    
+    "filterItemDivCssClass": "filter-item",
+    "filterHeaderCssClass": "filter-header",
     "filterGroupListName": [
         "Category",
         "Lang",
         "Type"
-    ]
+    ],
+    "filtersGroupLists": {
+        "Category": [
+            "Coding",
+            "Electronics",
+            "3Dprinting"
+        ],
+        "Lang": [
+            "Java",
+            "C++"
+        ],
+        "Type": [
+            "Personal",
+            "University"
+        ]
+    },
+    "filterCheckbxClassMarker": "filterCheckbox",
+    "filterGroupValueClassMarker": "filterGroupValue",
 
 
-    ,
-    "filtersGroupLists":{
 
-        "Category":["Coding","Electronics","3Dprinting"],
-        "Lang":["Java","C++"],
-        "Type":["Personal","University"]
+    "navbarSetup": {
 
 
+
+        "navBarDivContElementID": "navbarContainer",
+
+        "NavBarItems__Reference": [
+            "SITE_NAME",
+            "SITE_FOLDER",
+            "SITE"
+        ],
+        "navbarItems": {
+            "Home": [
+                "Home",
+                "src",
+                ""
+            ],
+            "Projects": [
+                "Projects",
+                "pages",
+                "Projects.html"
+            ],
+            "Hobby": [
+                "Hobbies",
+                "pages",
+                "Hobby.html"
+            ],
+            "Blog": [
+                "Blog",
+                "pages",
+                "Blog.html"
+            ]
+        },
+        "NavBarCurrFolder__Reference": [
+            "FOLDER N: src-0",
+            "pages-1",
+            "contentSub-2"
+        ],
+        "navbarPaths": {
+            "src": [
+                "",
+                "../",
+                "../../"
+            ],
+            "pages": [
+                "Pages/",
+                "",
+                "../../Pages/"
+            ]
+        },
+        "navCurrSiteIndexId": "navCurrSiteIndex",
+        "navBarLiElementClass": "nav-item",
+        "navBarUlElementClass": "navbar"
     }
-
-    ,
-    "filterCheckbxClassMarker":"filterCheckbox",
-    "filterGroupValueClassMarker":"filterGroupValue"
-
-
-    
-
 }
-   
-
