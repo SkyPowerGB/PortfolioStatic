@@ -18,8 +18,9 @@ loadLatestNewsB();
   
   function loadLatestNewsB(){
 
-      contentLoader.loadXlatestSummariesInto(2,0,"LatestProjectsFeedHolder","",false);
+      contentLoader.loadXlatestSummariesInto(2,0,"LatestProjectsFeedHolder","");
 
+      contentLoader.loadXlatestSummariesInto(3,0,"LatestUpdatesFeedHolder","")
   }
 
 

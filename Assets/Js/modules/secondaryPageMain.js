@@ -3,55 +3,58 @@ import * as contentLoader from "./contentLoader.js";
 
 
 
-let contentTargetID="contentContainer";
+let contentTargetID = "contentContainer";
+
+let folderCategoryIndex;
+
+function main(folderCatIndex, sitePosIndex,hasContent) {
+    folderCategoryIndex = folderCatIndex;
+    let loadMoreBtn = document.getElementById("loadMoreBtn");
+    loadMoreBtn.addEventListener("click", loadNewPage);
+    contentLoader.loadNavbar("../", sitePosIndex);
+
+    if(hasContent){
+    loadFilters();
+    load();
+}
+
+}
+
+async function loadFilters() {
+    await contentLoader.loadPageFilters("../", "filterContainer", reloadContent);
+
+}
 
 
-function main(){
+function reloadContent() {
+    let targetElement = document.getElementById(contentTargetID);
+    targetElement.innerHTML = "";
+    pagenum = 0;
+    load();
 
-   let loadMoreBtn= document.getElementById("loadMoreBtn");
-   loadMoreBtn.addEventListener("click",loadNewPage);
-   contentLoader.loadNavbar("../",1);
-loadFilters();
+}
+let pagenum = 0;
+let maxNotReached = false;
+
+function loadNewPage() {
+    if (!maxNotReached) { return; }
+    pagenum++;
+
 
     load();
 }
 
-async function loadFilters(){
-    await contentLoader.loadPageFilters("../","filterContainer",reloadContent);
+
+async function load() {
+
+
+
+    maxNotReached = await contentLoader.loadPageSummaries(pagenum, folderCategoryIndex, contentTargetID, "../");
+
+
 
 }
 
-
-
-function reloadContent(){
-let   targetElement=document.getElementById(contentTargetID);
-targetElement.innerHTML="";
-pagenum=0;
-load();
-
-}
-let pagenum=0;
-let maxNotReached=false;
-
-function loadNewPage(){
-    if(!maxNotReached){ return;}
-    pagenum++;
-
-   
-   load();
-}
-
-
-async function load(){
-    let pageFolderCatIndex= await contentLoader.getFolderCatIndex("../");
-
-    if(pageFolderCatIndex==-1||pageFolderCatIndex==null){
-        console.log(" Page folder cat index FAILED TO LOAD CONTENT ");
-        return ;
-    }
-
-   maxNotReached=await contentLoader.loadPageSummaries(pagenum,pageFolderCatIndex,contentTargetID,"../");
-
-
-
+export{
+    main
 }

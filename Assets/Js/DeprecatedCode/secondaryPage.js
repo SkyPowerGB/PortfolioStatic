@@ -1,6 +1,9 @@
 
 import * as contentLoader from "./modules/contentLoader.js";
 
+// DEPRECATED
+
+
 document.addEventListener("DOMContentLoaded",
 main
 );

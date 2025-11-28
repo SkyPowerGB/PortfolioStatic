@@ -307,18 +307,21 @@ async function loadPageSummaries(pageNum, folderCatIndex, targetId, srcFolderRel
 
 
 
-    let i = maxIndex - (configJson.itemsPerPage * pageNum);
+    let i = maxIndex ;
+    let offset= (configJson.itemsPerPage * pageNum);
+    i-=offset;
     let target = i - configJson.itemsPerPage;
 
     if(i<=noDataIndex){return false;}
+
     
-    while (i >= target) {
+    while (i > target) {
 
         if (i <= noDataIndex) {
             break;
         }
 
-        let result = loadSummaryInto(configJson, i, folderCatIndex, targetId, srcFolderRel);
+        let result = await loadSummaryInto(configJson, i, folderCatIndex, targetId, srcFolderRel);
 
         if (result == 0) {
 
