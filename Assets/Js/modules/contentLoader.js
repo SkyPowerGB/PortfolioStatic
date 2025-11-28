@@ -285,7 +285,7 @@ async function loadXlatestSummariesInto(summaryNum, folderCatIndex, targetId, sr
     for (let i = 0; i < summaryNum; i++) {
         if (currIndex == noDataIndex) { return; }
 
-        loadSummaryInto(configJson, currIndex, folderCatIndex, targetId, srcFolderRel);
+      await  loadSummaryInto(configJson, currIndex, folderCatIndex, targetId, srcFolderRel);
 
         currIndex--;
     }

@@ -6,12 +6,16 @@ import * as contentLoader from "./contentLoader.js";
 let contentTargetID = "contentContainer";
 
 let folderCategoryIndex;
-
-function main(folderCatIndex, sitePosIndex,hasContent) {
+let srcRelData="../"
+function main(folderCatIndex, sitePosIndex,hasContent,srcRel) {
     folderCategoryIndex = folderCatIndex;
+   if(srcRel!=undefined){
+    srcRelData=srcRel;
+   }
+    
     let loadMoreBtn = document.getElementById("loadMoreBtn");
     loadMoreBtn.addEventListener("click", loadNewPage);
-    contentLoader.loadNavbar("../", sitePosIndex);
+    contentLoader.loadNavbar(srcRel, sitePosIndex);
 
     if(hasContent){
     loadFilters();

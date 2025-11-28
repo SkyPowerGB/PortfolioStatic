@@ -90,12 +90,12 @@
             "src": [
                 "",
                 "../",
-                "../../"
+                "../../../"
             ],
             "pages": [
                 "Pages/",
                 "",
-                "../../Pages/"
+                "../../../Pages/"
             ]
         },
         "navCurrSiteIndexId": "navCurrSiteIndex",
