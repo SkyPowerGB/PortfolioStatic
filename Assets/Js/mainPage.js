@@ -18,9 +18,11 @@ loadLatestNewsB();
   
   function loadLatestNewsB(){
 
+    contentLoader.loadNavbar("",0);
       contentLoader.loadXlatestSummariesInto(2,0,"LatestProjectsFeedHolder","");
 
-      contentLoader.loadXlatestSummariesInto(3,0,"LatestUpdatesFeedHolder","")
+      contentLoader.loadXlatestSummariesInto(3,0,"LatestUpdatesFeedHolder","");
+      
   }
 
 
