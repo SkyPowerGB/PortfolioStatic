@@ -144,7 +144,7 @@ function checkFilters(metadata) {
     // loop filter groups
     filterGroups.forEach((group)=>{
 
-    
+ 
     
         // get group filter list
         let filterList=filterObj[group];
@@ -163,9 +163,10 @@ function checkFilters(metadata) {
                 filterList.forEach(filterItem=>{
 
 
+                  
                     // check for match  single match =correct
                  isFilterMatch= metadataFilterList.includes(filterItem)
-                    
+                 
                   
 
                 });
@@ -325,7 +326,8 @@ async function loadPageSummaries(pageNum, folderCatIndex, targetId, srcFolderRel
 
         if (result == 0) {
 
-            target++;
+           
+            target--;
 
         }
         i--;

@@ -13,13 +13,14 @@ function main(folderCatIndex, sitePosIndex,hasContent,srcRel) {
     srcRelData=srcRel;
    }
     
-    let loadMoreBtn = document.getElementById("loadMoreBtn");
-    loadMoreBtn.addEventListener("click", loadNewPage);
+
     contentLoader.loadNavbar(srcRel, sitePosIndex);
 
     if(hasContent){
     loadFilters();
     load();
+     let loadMoreBtn = document.getElementById("loadMoreBtn");
+    loadMoreBtn.addEventListener("click", loadNewPage);
 }
 
 }
