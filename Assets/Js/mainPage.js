@@ -7,10 +7,14 @@ document.addEventListener("DOMContentLoaded",
 main
 );
 
+
+
 function main(){
     console.log("script loaded!");
 
 loadLatestNewsB();
+
+
 
 
 
@@ -19,7 +23,7 @@ loadLatestNewsB();
   function loadLatestNewsB(){
 
     contentLoader.loadNavbar("",0);
-      contentLoader.loadXlatestSummariesInto(2,0,"LatestProjectsFeedHolder","");
+      contentLoader.loadXlatestSummariesInto(2,2,"LatestProjectsFeedHolder","");
 
       contentLoader.loadXlatestSummariesInto(3,0,"LatestUpdatesFeedHolder","");
       

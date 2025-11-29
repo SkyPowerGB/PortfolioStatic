@@ -46,14 +46,29 @@ function createFilterListElement(configJson) {
 
     let filterContainer = document.createElement("div");
 
+    filterContainer.classList.add(configJson.filtersContainerCssClass);
 
+   
+
+    filterContainer.id=configJson.filtersContainerCssId;
     configJson.filterGroupListName.forEach((item) => {
 
         filterContainer.append(createFilterGroup(configJson, item));
     });
 
+ 
 
     return filterContainer;
+
+}
+
+function createFiltersHideShowBtn(configJson){
+    
+    let filters_close =document.createElement("div");
+    filters_close.id=configJson.filterCloseBtnID;
+   filters_close.innerText=configJson.filtersOpenBtnTxt;
+   return filters_close;
+
 
 }
 
@@ -65,6 +80,7 @@ function createFilterGroup(configJson, filterGroupName) {
     let containerDiv = document.createElement("div");
     let header = document.createElement("h4");
 
+    containerDiv.classList.add(configJson.filtersGroupContainerClass);
     header.innerText = filterGroupName;
     containerDiv.append(header);
 
@@ -120,7 +136,7 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
  arrays are in ConfigJson.navbarPaths
 
  * navbarPaths has arrays with paths , key for array is told by "ConfigJson.navbarItems SITE FOLDER":
-  ->   "NavBarItems__Reference":  ["SITE_NAME","SITE_FOLDER",SITE],
+  ->   "NavBarItems__Reference":  ["SITE_NAME","SITE_FOLDER",SITE...],
 
   to get href use SITE_FOLDER[current site pos index] + SITE
  * 
@@ -130,12 +146,15 @@ function navbarUlBuilder(configJson,currSitePosIndex) {
     let ul_Element = document.createElement("ul");
     let navbarItemsAtt=Object.keys(configJson.navbarSetup.navbarItems);
     let navbarItems=configJson.navbarSetup.navbarItems;
+
+    let navbarLiClass=configJson.navbarSetup.navBarLiElementClass;
   
     navbarItemsAtt.forEach(navItemNm=>{
 
         let li_Element=document.createElement("li");
         let a_Element=document.createElement("a");
 
+     
         let navbarItem=navbarItems[navItemNm];
 
        a_Element.innerText=navbarItem[0];
@@ -145,20 +164,35 @@ function navbarUlBuilder(configJson,currSitePosIndex) {
      
        
 
-       li_Element.classList.add(configJson.navbarSetup.navBarLiElementClass);
+       li_Element.classList.add(navbarLiClass);
 
        li_Element.appendChild(a_Element);
        ul_Element.appendChild(li_Element);
-    });
-
+ });
+/*    let li_Element_hamb = document.createElement("li");
+ 
+     li_Element_hamb.innerText="≡";
+     li_Element_hamb.classList.add(navbarLiClass);
+     li_Element_hamb.id="TriBarBtn";
+ 
+    ul_Element.appendChild(li_Element_hamb);*/
     ul_Element.classList.add(configJson.navbarSetup.navBarUlElementClass);
 
  
     return ul_Element;
 }
 
+function createNavbarHamb(configJson){
+let div_element=document.createElement("div");
+
+div_element.id=configJson.navbarSetup.tribarElementID;
+
+div_element.innerText="≡";
+return div_element;
+
+}
 
 
 
 
-export { createSummaryItem, createFilterListElement ,navbarUlBuilder}
+export { createSummaryItem, createFilterListElement ,navbarUlBuilder,createNavbarHamb,createFiltersHideShowBtn}

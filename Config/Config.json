@@ -45,19 +45,36 @@
     },
     "filterCheckbxClassMarker": "filterCheckbox",
     "filterGroupValueClassMarker": "filterGroupValue",
+    "filterCloseBtnID": "filtersCloseBtnId",
 
 
+    "filtersGroupContainerClass":"filters-group",
 
+    "filtersContainerCssClass": "filters-list",
+    "filtersContainerCssId": "filtersList",
+
+    "filtresContainerCssClassShown":"filters-list-shown",
+
+
+    "filtersOpenBtnTxt": "Show Filters",
+    "filtersCloseBtnTxt": "Hide Filters",
+
+    "_Comment: ": "this will be used later for  improved filters / content setup to be just like navbar",
+
+    "contentSetup":{},
+
+    "filtersSetup": {},
+    
     "navbarSetup": {
-
-
-
         "navBarDivContElementID": "navbarContainer",
-
         "NavBarItems__Reference": [
             "SITE_NAME",
-            "SITE_FOLDER",
-            "SITE"
+            "SITE_PATHS_ATTRIBUTE",
+            "SITE",
+            "HAS IMG",
+            "IMG FOLDER",
+            "IMG SIDE LEFT",
+            "IMG CLASS"
         ],
         "navbarItems": {
             "Home": [
@@ -98,6 +115,7 @@
                 "../../../Pages/"
             ]
         },
+        "tribarElementID": "TriBarBtn",
         "navCurrSiteIndexId": "navCurrSiteIndex",
         "navBarLiElementClass": "nav-item",
         "navBarUlElementClass": "navbar"

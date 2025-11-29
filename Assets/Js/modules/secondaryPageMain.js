@@ -8,6 +8,7 @@ let contentTargetID = "contentContainer";
 let folderCategoryIndex;
 let srcRelData="../"
 function main(folderCatIndex, sitePosIndex,hasContent,srcRel) {
+  
     folderCategoryIndex = folderCatIndex;
    if(srcRel!=undefined){
     srcRelData=srcRel;

@@ -70,7 +70,7 @@ function getContentFolderRelPth(configJson, folderIndex, folderCatIndex, srcFold
     if (srcFolderRel == undefined) {
         folderPath = configJson.contentFolderName + "/" + configJson.folderCategoryName[folderCatIndex] + "/" + folderIndex;
     } else {
-        folderPath = srcFolderRel  + configJson.contentFolderName + "/" + configJson.folderCategoryName[folderCatIndex] + "/" + folderIndex;
+        folderPath = srcFolderRel + configJson.contentFolderName + "/" + configJson.folderCategoryName[folderCatIndex] + "/" + folderIndex;
     }
 
 
@@ -110,11 +110,11 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
 
 
     if (!filterPositive) {
-  
+
         return 0;
     }
 
- 
+
 
     let component = compBuilder.createSummaryItem(metadata, configJson, folderPath);
 
@@ -130,63 +130,63 @@ async function loadSummaryInto(configJson, folderIndex, folderCatIndex, targetId
 
 let filterObj = {};
 function checkFilters(metadata) {
-    
 
-    if(metadata==undefined){return true;}
-  
 
-    
-    let isFilterMatch = false; 
-   
-    let AllFilterGroupsEmpty=true;
-    let filterGroups=Object.keys(filterObj);
+    if (metadata == undefined) { return true; }
+
+
+
+    let isFilterMatch = false;
+
+    let AllFilterGroupsEmpty = true;
+    let filterGroups = Object.keys(filterObj);
 
     // loop filter groups
-    filterGroups.forEach((group)=>{
+    filterGroups.forEach((group) => {
 
- 
-    
+
+
         // get group filter list
-        let filterList=filterObj[group];
+        let filterList = filterObj[group];
 
         // get metadata filter list for that group
-        let metadataFilterList=metadata[group];
-      
+        let metadataFilterList = metadata[group];
+
         // continure if not empty
-        if(filterList.length>0){
-            AllFilterGroupsEmpty=false;
+        if (filterList.length > 0) {
+            AllFilterGroupsEmpty = false;
 
             // check if group list even exist in the metadata
-            if(metadataFilterList!==undefined){
+            if (metadataFilterList !== undefined) {
 
                 // loop filter selected items
-                filterList.forEach(filterItem=>{
+                filterList.forEach(filterItem => {
 
 
-                  
+
                     // check for match  single match =correct
-                 isFilterMatch= metadataFilterList.includes(filterItem)
-                 
-                  
+                    isFilterMatch = metadataFilterList.includes(filterItem)
+
+
 
                 });
 
 
             }
-        
+
         }
-  
+
     });
- 
-    if(AllFilterGroupsEmpty){
+
+    if (AllFilterGroupsEmpty) {
         return true;
     }
-   
+
 
     return isFilterMatch;
 
 }
-    
+
 
 function setupFilerObj(filterGroup) {
 
@@ -208,10 +208,10 @@ function addFilter(filterGroup, filter) {
 
 function removeFilter(filterGroup, filter) {
     if (filterObj[filterGroup] == undefined) { return; }
-   
+
     filterObj[filterGroup] = filterObj[filterGroup].filter((item) => { return item != filter; });
- 
-    
+
+
 }
 
 
@@ -237,7 +237,7 @@ function filterEvent(e, filterItem, configJson, callback) {
             addFilter(groupValue, filterValue);
 
         } else {
-          
+
 
 
 
@@ -264,6 +264,61 @@ function filterEvent(e, filterItem, configJson, callback) {
 
 
 
+let hambStateShow = false
+async function handleNavHambClick(srcFolderRel) {
+    let configJson = await getConfigJsonV2(srcFolderRel);
+    let navElementsCss = configJson.navbarSetup.navBarLiElementClass;
+    let navElements = document.getElementsByClassName(navElementsCss);
+
+    hambStateShow = !hambStateShow;
+
+
+
+    for (let i = 1; i < navElements.length; i++) {
+
+
+        let navItem = navElements[i];
+
+        if (!hambStateShow) {
+            navItem.style.display = "none"
+        } else {
+            navItem.style.display = "flex";
+        }
+
+
+
+
+    }
+
+
+}
+
+async function handleFiltersToggleClick(srcFolderRel,eventTarget) {
+    let configJson = await getConfigJsonV2(srcFolderRel);
+    let targetComponent = document.getElementById(configJson.filtersContainerCssId);
+    
+
+    if (targetComponent.classList.contains(configJson.filtresContainerCssClassShown)) {
+        targetComponent.classList.remove(configJson.filtresContainerCssClassShown);
+        eventTarget.innerText=configJson.filtersOpenBtnTxt;
+    } else {
+        targetComponent.classList.add(configJson.filtresContainerCssClassShown);
+        eventTarget.innerText=configJson.filtersCloseBtnTxt;
+    }
+
+
+    if (targetComponent.classList.contains(configJson.filtersContainerCssClass)) {
+        targetComponent.classList.remove(configJson.filtersContainerCssClass);
+    } else {
+        targetComponent.classList.add(configJson.filtersContainerCssClass);
+    }
+
+
+}
+
+
+
+
 //----------contentLoader primary functions------------------------------------------
 // srcFolderRel= relative path to SRC folder
 
@@ -272,7 +327,7 @@ function filterEvent(e, filterItem, configJson, callback) {
 
 
 
-async function loadXlatestSummariesInto(summaryNum, folderCatIndex, targetId, srcFolderRel, ) {
+async function loadXlatestSummariesInto(summaryNum, folderCatIndex, targetId, srcFolderRel,) {
 
     let configJson = await getConfigJsonV2(srcFolderRel);
     if (configJson == undefined) { console.log("failed to load configJson"); return; }
@@ -286,7 +341,7 @@ async function loadXlatestSummariesInto(summaryNum, folderCatIndex, targetId, sr
     for (let i = 0; i < summaryNum; i++) {
         if (currIndex == noDataIndex) { return; }
 
-      await  loadSummaryInto(configJson, currIndex, folderCatIndex, targetId, srcFolderRel);
+        await loadSummaryInto(configJson, currIndex, folderCatIndex, targetId, srcFolderRel);
 
         currIndex--;
     }
@@ -299,23 +354,24 @@ async function loadPageSummaries(pageNum, folderCatIndex, targetId, srcFolderRel
 
     let configJson = await getConfigJsonV2(srcFolderRel);
     if (configJson == undefined) { console.log("failed to load configJson"); return false; }
-    if( folderCatIndex>  configJson.folderCategoryMaxIndex.length||folderCatIndex<0){
+    if (folderCatIndex > configJson.folderCategoryMaxIndex.length || folderCatIndex < 0) {
         console.log("FolderCatIndex out of bounds");
-        return false; }
+        return false;
+    }
 
     let maxIndex = configJson.folderCategoryMaxIndex[folderCatIndex];
     let noDataIndex = configJson.noDataIndex;
 
 
 
-    let i = maxIndex ;
-    let offset= (configJson.itemsPerPage * pageNum);
-    i-=offset;
+    let i = maxIndex;
+    let offset = (configJson.itemsPerPage * pageNum);
+    i -= offset;
     let target = i - configJson.itemsPerPage;
 
-    if(i<=noDataIndex){return false;}
+    if (i <= noDataIndex) { return false; }
 
-    
+
     while (i > target) {
 
         if (i <= noDataIndex) {
@@ -326,14 +382,14 @@ async function loadPageSummaries(pageNum, folderCatIndex, targetId, srcFolderRel
 
         if (result == 0) {
 
-           
+
             target--;
 
         }
         i--;
     }
 
-return true;
+    return true;
 
 }
 
@@ -347,6 +403,9 @@ async function loadPageFilters(srcFolderRel, targetComponentId, filterEventCallb
     const output = compBuilder.createFilterListElement(configJson);
     targetComponent.appendChild(output);
 
+    let filtersToggleBtn = compBuilder.createFiltersHideShowBtn(configJson);
+
+    targetComponent.appendChild(filtersToggleBtn);
 
     let filters = output.getElementsByClassName(configJson.filterActionMarkerClass);
 
@@ -355,19 +414,21 @@ async function loadPageFilters(srcFolderRel, targetComponentId, filterEventCallb
         filters[i].addEventListener("click", (e) => { filterEvent(e, filters[i], configJson, filterEventCallback) })
     }
 
-    console.log("filters loaded");
+    filtersToggleBtn.addEventListener("click", (e) => { handleFiltersToggleClick(srcFolderRel,filtersToggleBtn); })
+
+
 }
 
 
 // TODO structure change this data will be contained in site script
-async function getFolderCatIndex(srcFolderRel){
-    let configJson= await getConfigJsonV2(srcFolderRel);
+async function getFolderCatIndex(srcFolderRel) {
+    let configJson = await getConfigJsonV2(srcFolderRel);
 
-    let dataComponent=document.getElementById(configJson.folderCatIndexHolderId);
+    let dataComponent = document.getElementById(configJson.folderCatIndexHolderId);
 
-    let value =Number(dataComponent.value);
+    let value = Number(dataComponent.value);
 
-    if(value==NaN) {
+    if (value == NaN) {
         return -1;
     }
     return value;
@@ -375,16 +436,18 @@ async function getFolderCatIndex(srcFolderRel){
 }
 
 //  *ConfigJson- > SitePosIndex:  ["src: 0","pages: 1", "contentSub: 2"....], 
-async function loadNavbar(srcFolderRel,sitePosIndex) {
-    let configJson= await getConfigJsonV2(srcFolderRel);
-    let targetComponent=document.getElementById(configJson.navbarSetup.navBarDivContElementID);
+async function loadNavbar(srcFolderRel, sitePosIndex) {
+    let configJson = await getConfigJsonV2(srcFolderRel);
+    let targetComponent = document.getElementById(configJson.navbarSetup.navBarDivContElementID);
+    let hambComponent = await compBuilder.createNavbarHamb(configJson);
 
-    if(targetComponent!=null){
+    if (targetComponent != null) {
 
-        targetComponent.appendChild(compBuilder.navbarUlBuilder(configJson,sitePosIndex));
-
+        targetComponent.append(hambComponent);
+        targetComponent.insertBefore(compBuilder.navbarUlBuilder(configJson, sitePosIndex), targetComponent.firstChild);
+        hambComponent.addEventListener("click", () => { handleNavHambClick(srcFolderRel); });
     }
-     
+
 }
 
 
@@ -395,5 +458,6 @@ export {
     loadPageFilters,
     getConfigJsonV2,
     getFolderCatIndex,
-    loadNavbar
+    loadNavbar,
+
 }
