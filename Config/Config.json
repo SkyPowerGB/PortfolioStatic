@@ -51,25 +51,50 @@
     "filterCheckbxClassMarker": "filterCheckbox",
     "filterGroupValueClassMarker": "filterGroupValue",
     "filterCloseBtnID": "filtersCloseBtnId",
-
-
-    "filtersGroupContainerClass":"filters-group",
-
+    "filtersGroupContainerClass": "filters-group",
     "filtersContainerCssClass": "filters-list",
     "filtersContainerCssId": "filtersList",
-
-    "filtresContainerCssClassShown":"filters-list-shown",
-
-
+    "filtresContainerCssClassShown": "filters-list-shown",
     "filtersOpenBtnTxt": "Show Filters",
     "filtersCloseBtnTxt": "Hide Filters",
-
     "_Comment: ": "this will be used later for  improved filters / content setup to be just like navbar",
 
-    "contentSetup":{},
 
+
+    "contentSetup": {
+
+
+
+        "adressMapSetup": {
+            "adressMapPaths": {
+                "folderLoc": "Config",
+                "fileName": "adressMap_",
+                "noDataIndex": 0
+            },
+            "adressMaps": {
+                "Blog": {
+                    "count": 1,
+                    "folder": "Blog"
+                },
+                "Hobby": {
+                    "count": 1,
+                    "folde": "Hobby"
+                },
+                "Project": {
+                    "count": 1,
+                    "folder": "Project"
+                }
+            }
+        },
+        
+        "contentDisplaySetup":{
+
+
+        }
+
+
+    },
     "filtersSetup": {},
-    
     "navbarSetup": {
         "navBarDivContElementID": "navbarContainer",
         "NavBarItems__Reference": [
