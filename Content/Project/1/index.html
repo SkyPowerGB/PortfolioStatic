@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template</title>
+  <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
+</head>
+
+<body>
+  <script type="module" src="../../../Assets/Js/PageJs/Content.js"> </script>
+
+
+
+  <div id="navbarContainer" class="navbar-container">
+
+  </div>
+
+
+
+  <div class="content-page-container">
+    <h1 class="content-page-title-center"> ERASMUS smart home virtualisation</h1>
+    <p class="siteTxt">The project goal was to make an game for VR where user could interact with demo room of smart home , meanwhile any
+      change in game should translate to the real demo room . We were split into multiple teams competing against each other while
+      having regular meetings . My team decided to use Unity , we managed to make an game with clickable items such as turning lights on and turning tv while changing current  
+      state of items in real home. 
+
+      
+ 
+</p>
+
+
+    <h2 class="content-page-title-center"> Project timeline</h2>
+
+    <p class="siteTxt">
+     I never used unity up to this point so i spent 1.st week getting familiar with it . While rest of the team was making room model and movement script . 
+     We later got notified that the company prepared the HTTP endpoints for controling the room . I also didnt knew anyhting about HTTP requests at the time, but team
+     said that my task was to connect our home with the real one so i started exploring how to send http requests in c# , 
+     i didnt knew at the time difference between HTTP POST and GET, 
+     and didnt knew structure of Json so  once i managed to only send a POST method which updated the state  i went onto making script quick and easy to setup . Then team asked me to connect items
+     with my script , turns out having an static  file in the assets folder is enough to acces my static method  for updating states in home . 
+     We used onClick built in method for simple click on object handeling . The team couldnt make LEDs work so in meantime i found an obj Property we can use to make them,
+     luminosity and so with combination of scripts and objects i made them work and on same day i also solved the tv animation by rotating tv object . 
+     Finally on last days we found out that our game has too many triangles to run on VR,
+      also i was warning team that the onClick method might not work on VR which turned out to be true.
+   On last day we needed to present our results and we got second place, we didnt manage to make proper textures and animations also we used light sources instead of precomputed lights.
+   My mistake was making script update state instead of first reading state updating game with the states and look for succesful request during runtime . 
+    </p>
+
+   
+
+   
+
+
+
+
+
+  </div>
+
+</body>
+
+</html>

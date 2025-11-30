@@ -3,7 +3,7 @@
     "folderCategoryMaxIndex": [
         0,
         0,
-        0
+        12
     ],
     "folderCategoryName": [
         "Blog",
@@ -36,11 +36,16 @@
         ],
         "Lang": [
             "Java",
+            "PHP",
+            "NodeJs",
+            "JavaScript",
+            "C#",
             "C++"
         ],
         "Type": [
             "Personal",
-            "University"
+            "University",
+            "Profesional"
         ]
     },
     "filterCheckbxClassMarker": "filterCheckbox",

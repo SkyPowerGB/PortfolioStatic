@@ -1,0 +1,18 @@
+{
+
+
+    "title":"ASP.NET MVC 5 Group Project",
+    "summary":"The exam of university class was to make website on specific use  with criteria: CRUD,multy user role based acces,basic security and PDF download . The website was aimed to be vheicle repair shop website ",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"31.10.2025",
+
+     "hasSite":false,
+  
+
+    "Category":["Coding"],
+    "Lang":["C#"],
+    "Type":["university"]
+
+
+
+}

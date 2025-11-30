@@ -1,0 +1,18 @@
+{
+
+
+    "title":"Portfolio",
+    "summary":"Finally my official portfolio, this very site. It was decided to make it static for security reasons but with an catch, using JS to dynamically load content onto page effectivly truning it into an manual CMS",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"30.11.2025",
+
+     "hasSite":false,
+  
+
+    "Category":["Coding"],
+    "Lang":["JS"],
+    "Type":["Personal"]
+
+
+
+}

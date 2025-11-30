@@ -1,0 +1,18 @@
+{
+
+
+    "title":"PHP exam project",
+    "summary":"A project as an exam at end of PHP class, goal was to make PHP based CMS website while applying all knowledge gained during clasess",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"28.2.2024",
+
+     "hasSite":false,
+  
+
+    "Category":["Coding"],
+    "Lang":["PHP"],
+    "Type":["University"]
+
+
+
+}

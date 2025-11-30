@@ -1,0 +1,18 @@
+{
+
+
+    "title":"Folder Backup",
+    "summary":"A mini crude folder auto backuper for backing up important folders in real time",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"3.11.2024",
+
+     "hasSite":false,
+  
+
+    "Category":["Coding"],
+    "Lang":["C#"],
+    "Type":["Personal"]
+
+
+
+}

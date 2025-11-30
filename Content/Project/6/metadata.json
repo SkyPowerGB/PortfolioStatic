@@ -1,0 +1,18 @@
+{
+
+
+    "title":"Minecraft world manager V1",
+    "summary":"An comprehensive minecraft world manager for making backups and transfering mc worlds. It makes managing worlds easier as it can be done trough UI rather than constantly acces AppData folder manually and has some aditional integrated features like editing NBT files ",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"27.10.2024",
+
+     "hasSite":false,
+  
+
+    "Category":["Coding"],
+    "Lang":["C#"],
+    "Type":["Personal"]
+
+
+
+}

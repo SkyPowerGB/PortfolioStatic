@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template</title>
+  <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
+</head>
+
+<body>
+  <script type="module" src="../../../Assets/Js/PageJs/Content.js"> </script>
+
+
+
+  <div id="navbarContainer" class="navbar-container">
+
+  </div>
+
+
+
+  <div class="content-page-container">
+    <h1 class="content-page-title-center"> this is the TEMPLATE page</h1>
+    <p class="siteTxt">In this project goal was to make an static site with dynamic js content loading.
+      The site consists of few main sites which then use scripts to acces content loading script,
+      an content loading script has internal functions to acces the ConfigJson. ConfigJson contains many
+      settings including data about max indexes for content folders as well as the metadata json atributes
+
+      
+    <div class="content-img-right">
+      <div >
+        <img src="contentImgSample.jpg">
+
+        <p>Img: right</p>
+      </div>
+    </div>
+</p>
+
+    <p class="siteTxt">
+      The content is located in contentGroup folders and uses indexed folders.
+      It is also used for dynamic loading of navbar and filters, since they too require configJson they have
+      their events setup in same module. Alongside the content loader the component builder module has job of making
+      components that will be included to the webpage . Each page has its own group or induvidual script that acces the
+      content loader
+
+
+
+    and provide necesary data such as relative position to src folder or folder category index. The config json
+    has also data abaout classes or ids of components to insert or use .
+    </p>
+
+    <div class="content-img-left">
+      <img src="contentImgSample.jpg">
+      <p>Img: left</p>
+    </div>
+
+
+    <p class="siteTxt">
+      There is also slight optimization to only fetch json once and store it for later use though its only done in js
+      variable
+      not local storage. In the future there is plan to improve this website by making configJson more organized and
+      also store fetched
+
+      data on local storage for performance optimization by removing need for fetching same data.
+    </p>
+
+
+
+
+    <div class="content-img-center-large">
+      <img src="contentImgSample.jpg">
+      <p>Img: center</p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

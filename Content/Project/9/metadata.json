@@ -1,0 +1,18 @@
+{
+
+
+    "title":"SPDay",
+    "summary":"An NodeJs based website for saving appointments and tracking financial data, project aimed to test and expand newly learned NodeJs skills ",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"26.4.2025",
+
+     "hasSite":false,
+  
+
+    "Category":["Coding"],
+    "Lang":["NodeJs"],
+    "Type":["Personal"]
+
+
+
+}

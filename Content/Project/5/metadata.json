@@ -1,0 +1,18 @@
+{
+
+
+    "title":"Bachelors thesis: Arduino CNC engraving machine",
+    "summary":"The final project in university, i made an machine as well as coded basic firmware to read and execute Gcode",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"24.9.2024",
+
+     "hasSite":false,
+  
+
+    "Category":["Coding"],
+    "Lang":["C++","C#"],
+    "Type":["University"]
+
+
+
+}
