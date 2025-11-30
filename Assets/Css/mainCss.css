@@ -421,9 +421,11 @@ width: 100%;
       padding-right: 5%;
       padding-top: 40px;
       padding-bottom: 40px;
-      aspect-ratio: 2/1;
+      aspect-ratio: unset;
 
    }
+
+
 
 
    /*----------------------------------------------*/
