@@ -295,9 +295,80 @@ text-align: center;
    background-color: rgb(90, 90, 90);
 }
 
+/**------SITE TEMPLATE PRESET STYLES--CONTENT PRESETS-----------------------------------------------------------------------------------------------------------------**/
+.siteTxt{
+   margin-top: 30px;
+   margin-bottom: 30px;
+   
+   line-height: 30px;
+   text-indent: 30px;
+   font-size: large;
+   
+   
+}
+.content-page-container{
+   padding-left: 20%;
+   padding-right: 20%;
+}
+.content-page-title-center{
+   text-align: center;
+}
+
+.content-img-left{
+     margin-right: 30px;
+ width: 50%;
+ float: left;
+}
+.content-img-left img{
+   width: 100%
+}
+.content-img-right{
+   margin-left: 30px;
+   float: right;
+   width: 50%;
+
+}
+
+.content-img-right img{
+   width: 100%;
+}
+.content-img-center-large{
+
+
+   width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+.content-img-center-large img{
+width: 100%;
+}
+
 @media (max-width: 800px) {
 
-   
+   /**-CONTENT PRESETS-------------------------------*/
+   .content-page-container{
+   padding-left: 10%;
+   padding-right: 10%;
+   }
+   .content-img-left{
+      margin: 0;
+      float:none;
+      width: 100%;
+        flex-direction: column;
+      align-items: center;
+   }
+   .content-img-right{
+      margin: 0;
+      float: none;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+  
+
    /* NAVBAR --------------------------------------------------*/
    #TriBarBtn {
 
