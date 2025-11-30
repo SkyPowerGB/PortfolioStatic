@@ -437,7 +437,7 @@ width: 100%;
 
    .spg-feed-item {
       max-width: 70%;
-      aspect-ratio: 1/1;
+      aspect-ratio:unset;
       padding: 50px;
       padding-right: 5%;
       padding-left: 5%;
