@@ -1,7 +1,17 @@
 {
     "1": {
         "folderName": "1",
-        "filters": {}
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "C#"
+            ],
+            "Type": [
+                "University"
+            ]
+        }
     },
     "2": {
         "folderName": "2",
@@ -13,11 +23,11 @@
     },
     "4": {
         "folderName": "4",
-        "filters":{}
+        "filters": {}
     },
     "5": {
         "folderName": "5",
-        "filters":{}
+        "filters": {}
     },
     "6": {
         "folderName": "6",
@@ -25,7 +35,7 @@
     },
     "7": {
         "folderName": "7",
-        "filters":{}
+        "filters": {}
     },
     "8": {
         "folderName": "8",
@@ -43,9 +53,8 @@
         "folderName": "11",
         "filters": {}
     },
-     "12": {
+    "12": {
         "folderName": "12",
         "filters": {}
     }
-
 }

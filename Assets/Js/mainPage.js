@@ -23,9 +23,14 @@ loadLatestNewsB();
   function loadLatestNewsB(){
 
     contentLoader.loadNavbar("",0);
-      contentLoader.loadXlatestSummariesInto(2,2,"LatestProjectsFeedHolder","");
+  
 
-      contentLoader.loadXlatestSummariesInto(3,0,"LatestUpdatesFeedHolder","");
+      contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");
+
+
+
+      contentLoader.loadXlatestSummariesIntoV2(2,"Project","LatestProjectsFeedHolder","");
+ 
       
   }
 

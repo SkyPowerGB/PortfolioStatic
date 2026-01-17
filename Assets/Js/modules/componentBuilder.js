@@ -16,7 +16,9 @@ function createSummaryItem(metadata, configJson, compFolderRelPth) {
 
     containerElement.classList.add(configJson.summaryContainerClass);
 
+ 
     if (metadata[configJson.hasSite]) {
+       
         linkElement.href = compFolderRelPth;
     } else {
 

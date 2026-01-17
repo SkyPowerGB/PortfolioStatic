@@ -43,11 +43,9 @@ let pagenum = 0;
 let maxNotReached = false;
 
 function loadNewPage() {
-    if (!maxNotReached) { return; }
-    pagenum++;
+          pagenum++;
+      contentLoader.loadPaginatedSummaries("../",pagenum,"Project",contentTargetID);
 
-
-    load();
 }
 
 
@@ -55,7 +53,8 @@ async function load() {
 
 
 
-    maxNotReached = await contentLoader.loadPageSummaries(pagenum, folderCategoryIndex, contentTargetID, "../");
+ //  maxNotReached = await contentLoader.loadPageSummaries(pagenum, folderCategoryIndex, contentTargetID, "../");
+    contentLoader.loadPaginatedSummaries("../",pagenum,"Project",contentTargetID);
 
 
 

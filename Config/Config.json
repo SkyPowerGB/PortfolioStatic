@@ -13,7 +13,6 @@
     "itemsPerPage": 5,
     "folderCatIndexHolderId": "folderCatIndexInput",
     "contentFolderName": "Content",
-    "metadataJsonName": "metadata",
     "publishDateTile": "dateUpload",
     "summaryTitle": "title",
     "summaryData": "summary",
@@ -64,37 +63,66 @@
     "contentSetup": {
 
 
-
         "adressMapSetup": {
-            "adressMapPaths": {
-                "folderLoc": "Config",
-                "fileName": "adressMap_",
-                "noDataIndex": 0
-            },
-            "adressMaps": {
+            "noDataIndex": 0,
+            "adressMapsIndexing": {
                 "Blog": {
-                    "count": 1,
-                    "folder": "Blog"
+                    "count": 0
                 },
                 "Hobby": {
-                    "count": 1,
-                    "folde": "Hobby"
+                    "count": 0
                 },
                 "Project": {
-                    "count": 1,
-                    "folder": "Project"
+                    "count": 1
+                }
+            },
+            "adressMapPaths": {
+                "foldersLoc": "Config/ContentAdressMaps",
+                "fileNameRef": "fileName_index",
+                "fileName": "adressMap_",
+                "adressMapsFolderCat": {
+                    "Blog": "Blog",
+                    "Hobby": "Hobby",
+                    "Project": "Project"
                 }
             }
         },
-        
-        "contentDisplaySetup":{
-
-
+        "contentDataSetup": {
+            "contentFolder": "Content",
+            "itemsPerPage": 5,
+            "metadataSetup": {
+                "metadataFileName": "metadata",
+                "summaryTitle": "title",
+                "summaryData": "summary",
+                "thumbnail": "thumbnail",
+                "hasSite": "hasSite"
+            },
+            "folderCatName": {
+                "Blog":"Blog",
+                "Hobby":"Hobby",
+                "Project":"Project"
+            }
         }
 
 
     },
-    "filtersSetup": {},
+    "filtersSetup": {
+        "filtersDataSetup": {
+            "FilterGroups": {
+                "Category": {
+                    "keyName": "Category",
+                    "DisplayName": "Category"
+                }
+            },
+            "FilterGroupLists": {
+                "Category": {
+                    "Values": [],
+                    "DisplayName": []
+                }
+            }
+        },
+        "FiltersElementsSetup": {}
+    },
     "navbarSetup": {
         "navBarDivContElementID": "navbarContainer",
         "NavBarItems__Reference": [
