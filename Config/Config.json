@@ -91,19 +91,21 @@
             "contentFolder": "Content",
             "itemsPerPage": 5,
             "metadataSetup": {
-                "metadataFileName": "metadata",
-                "summaryTitle": "title",
-                "summaryData": "summary",
-                "thumbnail": "thumbnail",
-                "hasSite": "hasSite"
+                "metadataFileName": "metadata"
             },
             "folderCatName": {
                 "Blog":"Blog",
                 "Hobby":"Hobby",
                 "Project":"Project"
             }
+        },
+        "metadataReadSetup":{
+            "optionalTxtSummaryKey":"summaryFile",
+            "titleKey":"title",
+            "thumbnailKey":"thumbnail",
+            "hasSitekey":"hasSite"
+            
         }
-
 
     },
     "filtersSetup": {

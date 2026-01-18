@@ -58,15 +58,6 @@ function getContentItemFolderPth(srcFoldRel, configJson, folderCat, folderName) 
     return targetPath;
 }
 
-function setupFilerObj(filterGroup) {
-
-    filterObj[filterGroup] = [];
-}
-
-
-
-
-
 
 
 // folderCat this time is related to configJsonContentData not adress map (though they should always match) this is helper to build Href and SRC towards content folder
@@ -144,6 +135,20 @@ async function getContentMetadataV2(srcFoldRel,folderCat,folderName){
 return await getContentMetadata(configJson,getContentItemFolderPth(srcFoldRel,configJson,folderCat,folderName));
 }
 
+async function getMetadataTxt(folderPth,fileName){
+let filePth=folderPth+"/"+fileName;
+let response=await fetch(filePth);
+
+
+
+if(response.ok){
+    return response.text();
+}else{
+    return "failed to get metadataTxt";
+}
+
+}
+
 async function getConfigJsonV2(srcFolderRel) {
     let targetPath = "";
     let configFolderPath = "Config/Config.json"
@@ -183,10 +188,16 @@ async function getConfigJsonV2(srcFolderRel) {
 }
 
 
+
+
+
+
 export{
 getConfigJsonV2,
 getContentAdressMap,
 getContentMetadataV2,
-contentFolderLink
+contentFolderLink,
+getMetadataTxt
+
 
 }

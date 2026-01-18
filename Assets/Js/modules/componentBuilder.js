@@ -1,8 +1,10 @@
 
 
-function createSummaryItem(metadata, configJson, compFolderRelPth) {
+function createSummaryItem(metadata, configJson, compFolderRelPth,summaryTxt) {
 
 
+    let contentSetup=configJson.contentSetup;
+    let metadataReadSetup=contentSetup.metadataReadSetup;
 
 
     let containerElement = document.createElement("div");
@@ -25,7 +27,12 @@ function createSummaryItem(metadata, configJson, compFolderRelPth) {
     }
     headerElement.innerHTML = metadata[configJson.summaryTitle]
     thumbnailElement.src = compFolderRelPth + "/" + metadata[configJson.thumbnail];
+
+    if(summaryTxt==""){
     descriptionElement.innerHTML = metadata[configJson.summaryData];
+    }else{
+        descriptionElement.innerText=summaryTxt;
+    }
     dateElement.innerHTML = metadata[configJson.publishDateTile];
 
 

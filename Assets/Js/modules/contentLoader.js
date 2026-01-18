@@ -53,8 +53,42 @@ async function loadPageFilters(srcFolderRel, targetComponentId, filterEventCallb
 
 
 
+
 //*------------------------------------------------------------------------------------*/
 
+
+async function loadMetadataInto(srcFoldRel,folderCat,folderNm,targetId){
+
+    let configJson=await loaderHelper.getConfigJsonV2(srcFoldRel);
+   let metadata= await loaderHelper.getContentMetadataV2(srcFoldRel,folderCat,folderNm);
+
+   if(metadata==undefined){
+    return;
+   }
+
+                let contentFolderRelPth= await loaderHelper.contentFolderLink(configJson,folderCat,folderNm,srcFoldRel);
+
+
+                let dataTxtKey=configJson.contentSetup.metadataReadSetup.optionalTxtSummaryKey;
+                  let summaryTxt="";
+                  let summaryFileNm=metadata[dataTxtKey]
+             
+              
+                 if(summaryFileNm!=undefined){
+                  
+                 summaryTxt=await loaderHelper.getMetadataTxt(contentFolderRelPth,summaryFileNm);
+                 }
+              
+                let component= compBuilder.createSummaryItem(metadata,configJson,contentFolderRelPth,summaryTxt);
+            
+
+                let targetComponent=document.getElementById(targetId);
+
+
+                targetComponent.appendChild(component);
+
+
+}
 
 
 // --- New Load Functions
@@ -76,27 +110,28 @@ async function loadXlatestSummariesIntoV2(summaryNum, folderCat, targetId, srcFo
             let adressMap= await adressMapLoadResult.result;
           
 
+
             let adressMapKeys=Object.keys(adressMap);
 
+            
            
 
-            for(let ki=adressMapKeys.length;ki>0;ki--){
+            for(let ki=adressMapKeys.length-1;ki>=0;ki--){
                 if(loadedSummaries==summaryNum){
                     break;
                 }
               
-                let adress=adressMap[ki];
+
+
+                let key=adressMapKeys[ki]
+                let adress=adressMap[key];
+        
+
                 let folderName=adress.folderName
+
+                
             
-                let metadata= await loaderHelper.getContentMetadataV2(srcFoldRel,folderCat,folderName);
-
-                let contentFolderRelPth= await loaderHelper.contentFolderLink(configJson,folderCat,folderName,srcFoldRel );
-                let component= compBuilder.createSummaryItem(metadata,configJson,contentFolderRelPth);
-           
-                let targetComponent=document.getElementById(targetId);
-
-
-                targetComponent.appendChild(component);
+                await loadMetadataInto(srcFoldRel,folderCat,folderName,targetId);
                 loadedSummaries++;
 
                  
@@ -146,8 +181,8 @@ async function loadPaginatedSummaries(srcFoldRel, pageNum,folderCat, targetId) {
 
            
 
-            for(let ki=adressMapKeys.length;ki>0;ki--){
-          
+            for(let ki=adressMapKeys.length-1;ki>=0;ki--){
+            
                 if(loadedSummaries==summaryNum){
           
                     break;
@@ -155,22 +190,20 @@ async function loadPaginatedSummaries(srcFoldRel, pageNum,folderCat, targetId) {
                 if(skip==0){
 
               
-                let adress=adressMap[ki];
-                let folderName=adress.folderName
-            
+               let key=adressMapKeys[ki];
+                 
+                let adress=adressMap[key];
 
+             
+                
+                let folderName=adress.folderName;
+        
+             
+                
 
                 if(filtersHelper.checkFiltersV2(adress.filters)){
-                let metadata= await loaderHelper.getContentMetadataV2(srcFoldRel,folderCat,folderName);
-
-                let contentFolderRelPth= await loaderHelper.contentFolderLink(configJson,folderCat,folderName,srcFoldRel);
-                let component= compBuilder.createSummaryItem(metadata,configJson,contentFolderRelPth);
-            
-
-                let targetComponent=document.getElementById(targetId);
-
-
-                targetComponent.appendChild(component);
+             
+                  await  loadMetadataInto(srcFoldRel,folderCat,folderName,targetId);
 
                 loadedSummaries++;
         
