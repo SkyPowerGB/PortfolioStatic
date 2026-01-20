@@ -7,63 +7,7 @@ import * as compBuilder from "../componentBuilder.js";
  * 
  */
 let filterObj = {};
-function checkFilters(metadata) {
 
-
-    if (metadata == undefined) { return true; }
-
-
-
-    let isFilterMatch = false;
-
-    let AllFilterGroupsEmpty = true;
-    let filterGroups = Object.keys(filterObj);
-
-    // loop filter groups
-    filterGroups.forEach((group) => {
-
-
-
-        // get group filter list
-        let filterList = filterObj[group];
-
-        // get metadata filter list for that group
-        let metadataFilterList = metadata[group];
-
-        // continure if not empty
-        if (filterList.length > 0) {
-            AllFilterGroupsEmpty = false;
-
-            // check if group list even exist in the metadata
-            if (metadataFilterList !== undefined) {
-
-                // loop filter selected items
-                filterList.forEach(filterItem => {
-
-
-
-                    // check for match  single match =correct
-                    isFilterMatch = metadataFilterList.includes(filterItem)
-
-
-
-                });
-
-
-            }
-
-        }
-
-    });
-
-    if (AllFilterGroupsEmpty) {
-        return true;
-    }
-
-
-    return isFilterMatch;
-
-}
 
 // filters improved--------------------------------------------------------------
 function checkFiltersV2(adressMapFilters) {
@@ -91,12 +35,14 @@ function checkFiltersV2(adressMapFilters) {
     filterGroups.forEach((group) => {
 
 
+       
 
         // get group filter list
         let filterList = filterObj[group];
 
         // get metadata filter list for that group
         let adressmapFilterGroup = adressMapFilters[group];
+
 
         // continure if not empty
         if (filterList.length > 0) {
@@ -109,11 +55,18 @@ function checkFiltersV2(adressMapFilters) {
                 filterList.forEach(filterItem => {
 
 
+                    
 
                     // check for match  single match =correct
-                    isFilterMatch = adressmapFilterGroup.includes(filterItem)
+                    isFilterMatch = adressmapFilterGroup.includes(filterItem);
+
+                 
                  
 
+                    if(isFilterMatch){
+                    return true;
+                
+                    }
 
 
                 });
@@ -135,7 +88,6 @@ function checkFiltersV2(adressMapFilters) {
          
 
 }
-
 
 function setupFilerObj(filterGroup){
     filterObj[filterGroup]=[];

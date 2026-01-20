@@ -22,7 +22,7 @@ loadLatestNewsB();
   
   function loadLatestNewsB(){
 
-    contentLoader.loadNavbar("",0);
+    contentLoader.loadNavbar("",0,"");
   
 
       contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");

@@ -40,7 +40,7 @@ async function getFolderCatIndex(srcFolderRel) {
 //  *ConfigJson- > SitePosIndex:  ["src: 0","pages: 1", "contentSub: 2"....], 
 async function loadNavbar(srcFolderRel, sitePosIndex) {
     let configJson = await loaderHelper.getConfigJsonV2(srcFolderRel);
-    navbarHelper.loadNavbar(configJson,sitePosIndex);
+    navbarHelper.loadNavbar(configJson,sitePosIndex,srcFolderRel);
 
 }
 

@@ -1,6 +1,6 @@
 import * as compBuilder from "../componentBuilder.js";
 
-async function loadNavbar(configJson, sitePosIndex) {
+async function loadNavbar(configJson, sitePosIndex,srcFolderRel) {
   
     let targetComponent = document.getElementById(configJson.navbarSetup.navBarDivContElementID);
     let hambComponent = await compBuilder.createNavbarHamb(configJson);
@@ -9,7 +9,7 @@ async function loadNavbar(configJson, sitePosIndex) {
 
         targetComponent.append(hambComponent);
         targetComponent.insertBefore(compBuilder.navbarUlBuilder(configJson, sitePosIndex), targetComponent.firstChild);
-        hambComponent.addEventListener("click", () => { handleNavHambClick(srcFolderRel); });
+        hambComponent.addEventListener("click", () => { handleNavHambClick(configJson); });
     }
 
 }

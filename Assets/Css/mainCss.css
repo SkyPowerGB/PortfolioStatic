@@ -283,6 +283,7 @@ text-align: center;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+
 }
 .filters-list {
    display: block;
@@ -422,6 +423,7 @@ width: 100%;
       padding-top: 40px;
       padding-bottom: 40px;
       aspect-ratio: unset;
+      font-size: small;
 
    }
 
@@ -445,6 +447,7 @@ width: 100%;
       padding-left: 5%;
       margin: 25px;
       background-color: rgb(31, 31, 31);
+      font-size: x-small;
 
    }
 

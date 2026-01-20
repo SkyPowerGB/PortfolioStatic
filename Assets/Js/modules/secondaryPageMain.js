@@ -15,7 +15,7 @@ function main(folderCatIndex, sitePosIndex,hasContent,srcRel) {
    }
     
 
-    contentLoader.loadNavbar(srcRel, sitePosIndex);
+    contentLoader.loadNavbar(srcRel, sitePosIndex,srcRelData);
 
     if(hasContent){
     loadFilters();
