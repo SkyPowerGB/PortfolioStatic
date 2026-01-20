@@ -1,5 +1,5 @@
 import * as secondaryPage from "../modules/secondaryPageMain.js";
 
 document.addEventListener("DOMContentLoaded",()=>{
-    secondaryPage.main(0,1,true,"../");
+    secondaryPage.main("Blog",1,true,"../");
 })

@@ -5,11 +5,11 @@ import * as contentLoader from "./contentLoader.js";
 
 let contentTargetID = "contentContainer";
 
-let folderCategoryIndex;
+let folderCategory;
 let srcRelData="../"
-function main(folderCatIndex, sitePosIndex,hasContent,srcRel) {
+function main(folderCat, sitePosIndex,hasContent,srcRel) {
   
-    folderCategoryIndex = folderCatIndex;
+    folderCategory= folderCat;
    if(srcRel!=undefined){
     srcRelData=srcRel;
    }
@@ -44,7 +44,7 @@ let maxNotReached = false;
 
 function loadNewPage() {
           pagenum++;
-      contentLoader.loadPaginatedSummaries("../",pagenum,"Project",contentTargetID);
+      contentLoader.loadPaginatedSummaries("../",pagenum,folderCategory,contentTargetID);
 
 }
 
@@ -54,7 +54,7 @@ async function load() {
 
 
  //  maxNotReached = await contentLoader.loadPageSummaries(pagenum, folderCategoryIndex, contentTargetID, "../");
-    contentLoader.loadPaginatedSummaries("../",pagenum,"Project",contentTargetID);
+    contentLoader.loadPaginatedSummaries("../",pagenum,folderCategory,contentTargetID);
 
 
 
