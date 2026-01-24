@@ -1,10 +1,5 @@
 {
     "noDataIndex": 0,
-    "folderCategoryMaxIndex": [
-        0,
-        0,
-        12
-    ],
     "folderCategoryName": [
         "Blog",
         "Hobby",
@@ -57,12 +52,7 @@
     "filtersOpenBtnTxt": "Show Filters",
     "filtersCloseBtnTxt": "Hide Filters",
     "_Comment: ": "this will be used later for  improved filters / content setup to be just like navbar",
-
-
-
     "contentSetup": {
-
-
         "adressMapSetup": {
             "noDataIndex": 0,
             "adressMapsIndexing": {
@@ -94,19 +84,51 @@
                 "metadataFileName": "metadata"
             },
             "folderCatName": {
-                "Blog":"Blog",
-                "Hobby":"Hobby",
-                "Project":"Project"
+                "Blog": "Blog",
+                "Hobby": "Hobby",
+                "Project": "Project"
             }
         },
-        "metadataReadSetup":{
-            "optionalTxtSummaryKey":"summaryFile",
-            "titleKey":"title",
-            "thumbnailKey":"thumbnail",
-            "hasSitekey":"hasSite"
-            
+        "metadataReadSetup": {
+            "optionalTxtSummaryKey": "summaryFile",
+            "titleKey": "title",
+            "thumbnailKey": "thumbnail",
+            "hasSiteKey": "hasSite",
+            "dateKey": "dateUpload",
+            "summaryKey": "summary"
+        },
+        "contentDisplaySetup": {
+            "mainCont": {
+                "class": "feed-item-main-cont"
+            },
+            "articleLink": {
+                "class": "feed-item-link"
+            },
+            "imageCont": {
+                "class": "feed-item-thumbnail-cont"
+            },
+            "image": {
+                "class": "feed-item-thumbnail"
+            },
+            "dateCont": {
+                "class": "feed-item-date-cont"
+            },
+            "date": {
+                "class": "feed-item-date"
+            },
+            "titleCont": {
+                "class": "feed-item-title-cont"
+            },
+            "title": {
+                "class": "feed-item-title"
+            },
+            "summaryCont": {
+                "class": "feed-item-summary-cont"
+            },
+            "summary": {
+                "class": "feed-item-summary"
+            }
         }
-
     },
     "filtersSetup": {
         "filtersDataSetup": {
@@ -123,7 +145,16 @@
                 }
             }
         },
-        "FiltersElementsSetup": {}
+        "FiltersElementsSetup": {
+
+            "filterItemEle":{
+                "checked":"filter-checked",
+                "unchecked":"filter-unchecked",
+                "class":"filter-item"
+            }
+
+        }
+
     },
     "navbarSetup": {
         "navBarDivContElementID": "navbarContainer",

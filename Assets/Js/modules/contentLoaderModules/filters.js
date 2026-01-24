@@ -118,6 +118,10 @@ function filterEvent(e, filterItem, configJson, callback) {
     let checkboxElement = filterItem.querySelector("." + configJson.filterCheckbxClassMarker);
     let groupValueElement = filterItem.querySelector("." + configJson.filterGroupValueClassMarker);
 
+    let filtersSetup=configJson.filtersSetup;
+    let FiltersElementsSetup=filtersSetup.FiltersElementsSetup;
+    
+
     let groupValue = groupValueElement.value;
     let filterValue = checkboxElement.value;
 
@@ -127,9 +131,8 @@ function filterEvent(e, filterItem, configJson, callback) {
 
 
             checkboxElement.checked = true;
-
-
-
+            filterItem.classList.add(FiltersElementsSetup.filterItemEle.checked);
+            filterItem.classList.remove(FiltersElementsSetup.filterItemEle.unchecked);
 
             addFilter(groupValue, filterValue);
 
@@ -137,7 +140,8 @@ function filterEvent(e, filterItem, configJson, callback) {
 
 
 
-
+         filterItem.classList.remove(FiltersElementsSetup.filterItemEle.checked);
+            filterItem.classList.add(FiltersElementsSetup.filterItemEle.unchecked);
             checkboxElement.checked = false;
 
 
@@ -147,8 +151,12 @@ function filterEvent(e, filterItem, configJson, callback) {
 
         if (checkboxElement.checked) {
             addFilter(groupValue, filterValue);
+              filterItem.classList.add(FiltersElementsSetup.filterItemEle.checked);
+               filterItem.classList.remove(FiltersElementsSetup.filterItemEle.unchecked);
         } else {
             removeFilter(groupValue, filterValue);
+                    filterItem.classList.remove(FiltersElementsSetup.filterItemEle.checked);
+                            filterItem.classList.add(FiltersElementsSetup.filterItemEle.unchecked);
         }
 
     }
@@ -179,7 +187,6 @@ async function handleFiltersToggleClick(configJson, eventTarget) {
     } else {
         targetComponent.classList.add(configJson.filtersContainerCssClass);
     }
-
 
 }
 

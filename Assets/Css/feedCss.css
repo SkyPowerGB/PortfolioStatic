@@ -1,0 +1,166 @@
+
+
+
+
+
+
+
+.container-item-list {
+
+    padding-left: 5%;
+    padding-right: 5%;
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+
+
+}
+
+.latest-projects-feed {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+}
+.latest-projects-feed .feed-item-main-cont{
+
+    margin-left: 2%;
+    margin-right: 2%;
+}
+/* element ---------------------------------------------------------- */
+
+.feed-item-main-cont{
+    width:80%;
+    max-width: 800px;
+ 
+    display: flex;
+    flex-direction: column;
+   background-color: rgb(24, 26, 31);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    margin-bottom: 50px;
+    margin-top: 50px;
+    border-radius: 5px;
+    color:rgb(144, 165, 177);
+}
+
+.feed-item-link{
+    text-decoration: none;
+  color: inherit;
+}
+
+.feed-item-link:hover{
+       border-radius: 5px;
+            box-shadow: 0 5px 13px rgba(0, 255, 102, 0.7), inset 0 0 5px rgba(0, 255, 72, 0.4);
+
+                background-color: rgb(14, 15, 18);
+              color:rgb(0, 255, 72);
+             
+    transform: translateY(-2px);
+
+}
+
+.feed-item-thumbnail-cont{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+}
+
+.feed-item-thumbnail{
+ width: 100%;
+ margin: 10px;
+
+
+ 
+}
+.feed-item-date-cont{
+    margin: 10px;
+
+}
+
+.feed-item-date{
+    color: rgb(0, 179, 255);
+    margin: 0;
+}
+.feed-item-title-cont{
+    margin: 10px;
+}
+.feed-item-title{
+    color: rgb(199, 127, 65);
+    font-size: 3rem;
+   margin: 0;
+    letter-spacing: 3px;
+}
+.feed-item-summary{
+ letter-spacing: 2px;
+    line-height: 2.5;
+    font-weight: bold;
+    max-width: 75ch;
+    font-size:20px;
+   font-family: 'Roboto', sans-serif;
+      text-indent: 2rem;
+         margin-bottom: 1rem; 
+      
+}
+.feed-item-summary-cont {
+    margin:15px;
+}
+
+
+
+
+/**-/-------------------------------------------------***/
+
+
+
+
+
+@media (max-width: 800px)  {
+    .container-item-list{
+        width: 100%;
+        margin: 0;
+        padding: 0 ;
+
+    }
+
+      .latest-projects-feed {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+     .latest-projects-feed .feed-item-main-cont{
+        margin-top: 5%;
+     
+     }
+
+
+     .feed-item-title-cont{
+        width: 100%;
+        
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+     
+     }
+     
+    
+.feed-item-summary{
+    letter-spacing: 2px;
+    line-height: 1.5;
+    font-weight: bold;
+    max-width: 75ch;
+    font-size:15px;
+   font-family: 'Roboto', sans-serif;
+      text-indent: 1rem;
+         margin-bottom: 1rem; 
+}
+
+.feed-item-title{
+    font-size: 2rem;
+}
+
+    } 

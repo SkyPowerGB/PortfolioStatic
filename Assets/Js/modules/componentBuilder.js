@@ -1,52 +1,121 @@
 
 
-function createSummaryItem(metadata, configJson, compFolderRelPth,summaryTxt) {
+function createSummaryItem(metadata, configJson, compFolderRelPth, summaryTxt) {
 
 
-    let contentSetup=configJson.contentSetup;
-    let metadataReadSetup=contentSetup.metadataReadSetup;
+    let contentSetup = configJson.contentSetup;
+    let contentDisplaySetup = contentSetup.contentDisplaySetup;
+    let metadataReadSetup = contentSetup.metadataReadSetup;
+
+    // making components and populating them------------------- main container
+
+    let mainCont = document.createElement("div");
+
+    mainCont.classList.add(contentDisplaySetup.mainCont.class);
 
 
-    let containerElement = document.createElement("div");
-    let linkElement = document.createElement("a");
+    //-------------------------------------------------------- arcticle link
+    let articleLink = document.createElement("a");
 
-    let headerElement = document.createElement("h1");
-    let thumbnailElement = document.createElement("img");
-    let descriptionElement = document.createElement("p");
-    let dateElement = document.createElement("h4");
+    articleLink.href = compFolderRelPth;
+    articleLink.classList.add(contentDisplaySetup.articleLink.class);
 
 
-    containerElement.classList.add(configJson.summaryContainerClass);
 
+    //------------------------------------------------- image container
+
+    let imageCont = document.createElement("div");
+    imageCont.classList.add(contentDisplaySetup.imageCont.class);
+
+    //------------------------------------------------- image element
+    let imageEle = document.createElement("img");
+
+    let imageFileNm = metadata[metadataReadSetup.thumbnailKey];
+    let imagePth = compFolderRelPth + "/" + imageFileNm;
+       let hadimg=metadata[metadataReadSetup.thumbnailKey];
+       if(hadimg!=undefined){
+    imageEle.src = imagePth;}
  
-    if (metadata[configJson.hasSite]) {
-       
-        linkElement.href = compFolderRelPth;
+    imageEle.classList.add(contentDisplaySetup.image.class);
+
+    //------------------------------------------------- date container
+
+    let dateCont = document.createElement("div");
+    dateCont.classList.add(contentDisplaySetup.dateCont.class);
+
+    //-------------------------------------------------date element
+    let dateEle = document.createElement("p");
+
+    let dateData = metadata[metadataReadSetup.dateKey];
+    dateEle.innerText = dateData;
+    dateEle.classList.add(contentDisplaySetup.date.class);
+
+
+    //-------------------------------------------------header container
+
+    let headerCont = document.createElement("div");
+    headerCont.classList.add(contentDisplaySetup.titleCont.class);
+
+    //-------------------------------------------------header element
+    let headerEle = document.createElement("h2");
+
+    let titleData = metadata[metadataReadSetup.titleKey];
+    headerEle.innerText = titleData;
+    headerEle.classList.add(contentDisplaySetup.title.class);
+
+    //-------------------------------------------------sumamry container
+    let summaryCont = document.createElement("div");
+    summaryCont.classList.add(contentDisplaySetup.summaryCont.class);
+
+    //-------------------------------------------------summary
+    let summaryEle = document.createElement("p");
+    summaryEle.classList.add(contentDisplaySetup.summary.class);
+
+    if (summaryTxt == "") {
+        let summaryData = metadata[metadataReadSetup.summaryKey];
+        summaryEle.innerText = summaryData;
     } else {
-
+        summaryEle.innerText = summaryTxt;
     }
-    headerElement.innerHTML = metadata[configJson.summaryTitle]
-    thumbnailElement.src = compFolderRelPth + "/" + metadata[configJson.thumbnail];
 
-    if(summaryTxt==""){
-    descriptionElement.innerHTML = metadata[configJson.summaryData];
+    //-----------------------------------------------------------------------------------
+    imageCont.appendChild(imageEle);
+    dateCont.appendChild(dateEle);
+    headerCont.appendChild(headerEle);
+    summaryCont.appendChild(summaryEle);
+
+    if(metadata[metadataReadSetup.hasSiteKey]){
+
+        
+        if(hadimg!=undefined){
+    articleLink.appendChild(imageCont);
+        }
+    articleLink.appendChild(dateCont);
+    articleLink.appendChild(headerCont);
+    articleLink.appendChild(summaryCont);
+    mainCont.appendChild(articleLink);
     }else{
-        descriptionElement.innerText=summaryTxt;
+           if(hadimg!=undefined){
+    mainCont.appendChild(imageCont);
+           }
+    mainCont.appendChild(dateCont);
+    mainCont.appendChild(headerCont);
+    mainCont.appendChild(summaryCont);
     }
-    dateElement.innerHTML = metadata[configJson.publishDateTile];
+   
+    
+    //----------------------------------------------------------------------------------
 
 
-
-    linkElement.appendChild(thumbnailElement);
-    linkElement.appendChild(headerElement);
-    linkElement.appendChild(dateElement);
-    linkElement.appendChild(descriptionElement);
-    containerElement.appendChild(linkElement);
-
-
-
-    return containerElement;
+    return mainCont;
 }
+
+
+
+
+
+
+
 
 
 // create full filter list 
@@ -57,26 +126,26 @@ function createFilterListElement(configJson) {
 
     filterContainer.classList.add(configJson.filtersContainerCssClass);
 
-   
 
-    filterContainer.id=configJson.filtersContainerCssId;
+
+    filterContainer.id = configJson.filtersContainerCssId;
     configJson.filterGroupListName.forEach((item) => {
 
         filterContainer.append(createFilterGroup(configJson, item));
     });
 
- 
+
 
     return filterContainer;
 
 }
 
-function createFiltersHideShowBtn(configJson){
-    
-    let filters_close =document.createElement("div");
-    filters_close.id=configJson.filterCloseBtnID;
-   filters_close.innerText=configJson.filtersOpenBtnTxt;
-   return filters_close;
+function createFiltersHideShowBtn(configJson) {
+
+    let filters_close = document.createElement("div");
+    filters_close.id = configJson.filterCloseBtnID;
+    filters_close.innerText = configJson.filtersOpenBtnTxt;
+    return filters_close;
 
 
 }
@@ -105,6 +174,9 @@ function createFilterGroup(configJson, filterGroupName) {
 
 // create single filter checkbox
 function createFilterItem(filterItemName, configJson, filterGroupName) {
+ 
+    let filtersSetup=configJson.filtersSetup;
+    let FiltersElementsSetup=filtersSetup.FiltersElementsSetup;
 
     let containerDiv = document.createElement("div");
     let inputCheckBx = document.createElement("input");
@@ -119,7 +191,8 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
 
 
 
-    containerDiv.classList.add(configJson.filterItemDivCssClass);
+    containerDiv.classList.add(FiltersElementsSetup.filterItemEle.class);
+    containerDiv.classList.add(FiltersElementsSetup.filterItemEle.unchecked);
 
     //add classes for script events 
     containerDiv.classList.add(configJson.filterActionMarkerClass);
@@ -151,57 +224,57 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
  * 
 */
 
-function navbarUlBuilder(configJson,currSitePosIndex) {
+function navbarUlBuilder(configJson, currSitePosIndex) {
     let ul_Element = document.createElement("ul");
-    let navbarItemsAtt=Object.keys(configJson.navbarSetup.navbarItems);
-    let navbarItems=configJson.navbarSetup.navbarItems;
+    let navbarItemsAtt = Object.keys(configJson.navbarSetup.navbarItems);
+    let navbarItems = configJson.navbarSetup.navbarItems;
 
-    let navbarLiClass=configJson.navbarSetup.navBarLiElementClass;
-  
-    navbarItemsAtt.forEach(navItemNm=>{
+    let navbarLiClass = configJson.navbarSetup.navBarLiElementClass;
 
-        let li_Element=document.createElement("li");
-        let a_Element=document.createElement("a");
+    navbarItemsAtt.forEach(navItemNm => {
 
+        let li_Element = document.createElement("li");
+        let a_Element = document.createElement("a");
+
+
+        let navbarItem = navbarItems[navItemNm];
+
+        a_Element.innerText = navbarItem[0];
+
+
+        a_Element.href = configJson.navbarSetup.navbarPaths[navbarItem[1]][currSitePosIndex] + navbarItem[2];
+
+
+
+        li_Element.classList.add(navbarLiClass);
+
+        li_Element.appendChild(a_Element);
+        ul_Element.appendChild(li_Element);
+    });
+    /*    let li_Element_hamb = document.createElement("li");
      
-        let navbarItem=navbarItems[navItemNm];
-
-       a_Element.innerText=navbarItem[0];
-    
-       
-     a_Element.href=configJson.navbarSetup.navbarPaths[navbarItem[1]][currSitePosIndex]+navbarItem[2];
+         li_Element_hamb.innerText="≡";
+         li_Element_hamb.classList.add(navbarLiClass);
+         li_Element_hamb.id="TriBarBtn";
      
-       
-
-       li_Element.classList.add(navbarLiClass);
-
-       li_Element.appendChild(a_Element);
-       ul_Element.appendChild(li_Element);
- });
-/*    let li_Element_hamb = document.createElement("li");
- 
-     li_Element_hamb.innerText="≡";
-     li_Element_hamb.classList.add(navbarLiClass);
-     li_Element_hamb.id="TriBarBtn";
- 
-    ul_Element.appendChild(li_Element_hamb);*/
+        ul_Element.appendChild(li_Element_hamb);*/
     ul_Element.classList.add(configJson.navbarSetup.navBarUlElementClass);
 
- 
+
     return ul_Element;
 }
 
-function createNavbarHamb(configJson){
-let div_element=document.createElement("div");
+function createNavbarHamb(configJson) {
+    let div_element = document.createElement("div");
 
-div_element.id=configJson.navbarSetup.tribarElementID;
+    div_element.id = configJson.navbarSetup.tribarElementID;
 
-div_element.innerText="≡";
-return div_element;
+    div_element.innerText = "≡";
+    return div_element;
 
 }
 
 
 
 
-export { createSummaryItem, createFilterListElement ,navbarUlBuilder,createNavbarHamb,createFiltersHideShowBtn}
+export { createSummaryItem, createFilterListElement, navbarUlBuilder, createNavbarHamb, createFiltersHideShowBtn }
