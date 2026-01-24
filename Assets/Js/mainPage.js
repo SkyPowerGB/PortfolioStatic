@@ -29,13 +29,13 @@ let introTxt = {
     2: ["[Error]", "intro-txt-red", false]
   },
   line6: {
-    1: ["> ls ./Content/Project --limit 2", "intro-cmd", true,loadSummariesProject]
+    1: ["> ls ./Content/Project | head -n 2", "intro-cmd", true,loadSummariesProject]
   },
   line7: {
     1: ["loading_cards... [OK]", "intro-res-blue", false]
   },
   line8:{
-    1:[">ls ./Content/Blog --limit 3 ","intro-cmd",true,loadSummariesBlog]
+    1:[">ls ./Content/Blog | head -n 3","intro-cmd",true,loadSummariesBlog]
   },
     line9: {
     1: ["loading_cards... [OK]", "intro-res-blue", false,]
