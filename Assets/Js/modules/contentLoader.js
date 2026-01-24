@@ -152,6 +152,11 @@ async function loadXlatestSummariesIntoV2(summaryNum, folderCat, targetId, srcFo
 }
 // auto paginates the site
 let pageNum = 0;
+let loadedItems = new Set();
+
+function refreshLoaded(){
+    loadedItems=new Set();
+}
 async function loadPaginatedSummaries(srcFoldRel, pageNum,folderCat, targetId) {
   
 
@@ -181,42 +186,18 @@ async function loadPaginatedSummaries(srcFoldRel, pageNum,folderCat, targetId) {
 
            
 
-            for(let ki=adressMapKeys.length-1;ki>=0;ki--){
-            
-                if(loadedSummaries==summaryNum){
-          
-                    break;
-                }
-                if(skip==0){
+          for (let key of adressMapKeys) {
+    let adress = adressMap[key];
+    if (loadedItems.has(adress.folderName)) continue; // skip already loaded
 
-              
-               let key=adressMapKeys[ki];
-                 
-                let adress=adressMap[key];
+    if (!filtersHelper.checkFiltersV2(adress.filters)) continue; // skip non-matching
 
-             
-                
-                let folderName=adress.folderName;
-        
-             
-                
+    await loadMetadataInto(srcFoldRel, folderCat, adress.folderName, targetId);
+    loadedItems.add(adress.folderName);
+    loadedSummaries++;
 
-                if(filtersHelper.checkFiltersV2(adress.filters)){
-             
-                  await  loadMetadataInto(srcFoldRel,folderCat,folderName,targetId);
-
-                loadedSummaries++;
-        
-                }
-
-                }else{
-                    skip--;
-             
-                }
-
-                 
-
-            }
+    if (loadedSummaries >= summaryNum) break; // page full
+}
             
         }
 
@@ -237,6 +218,7 @@ export {
     getFolderCatIndex,
     loadNavbar,
     loadXlatestSummariesIntoV2,
-    loadPaginatedSummaries
+    loadPaginatedSummaries,
+    refreshLoaded
 
 }

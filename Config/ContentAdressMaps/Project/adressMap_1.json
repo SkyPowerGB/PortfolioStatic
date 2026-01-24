@@ -1,12 +1,129 @@
 {
-    "SmartHomeVirtualization": {
-        "folderName": "SmartHomeVirtualization",
+    "Portfolio": {
+        "folderName": "Portfolio",
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "JavaScript"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
+    "PowerLevelTracker": {
+        "folderName": "PowerLevelTracker",
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "Java"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
+    "FishFeeder": {
+        "folderName": "FishFeeder",
+        "filters": {
+            "Category": [
+                "Coding",
+                "3Dprinting",
+                "Electronics"
+            ],
+            "Lang": [
+                "C++"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
+    "SPDay": {
+        "folderName": "SPDay",
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "NodeJs"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
+    "PHP_interviewProject": {
+        "folderName": "PHP_interviewProject",
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "PHP"
+            ],
+            "Type": [
+                "Profesional"
+            ]
+        }
+    },
+    "FolderBackup": {
+        "folderName": "FolderBackup",
         "filters": {
             "Category": [
                 "Coding"
             ],
             "Lang": [
                 "C#"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
+    "mcWorldManager": {
+        "folderName": "mcWorldManager",
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "C#"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
+    "ArduinoCNC": {
+        "folderName": "ArduinoCNC",
+        "filters": {
+            "Category": [
+                "Coding",
+                "3Dprinting",
+                "Electronics"
+            ],
+            "Lang": [
+                "C++",
+                "C#"
+            ],
+            "Type": [
+                "University"
+            ]
+        }
+    },
+    "QuestTeach": {
+        "folderName": "QuestTeach",
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "PHP"
             ],
             "Type": [
                 "University"
@@ -41,133 +158,18 @@
             ]
         }
     },
-    "QuestTeach": {
-        "folderName": "QuestTeach",
+    "SmartHomeVirtualization": {
+        "folderName": "SmartHomeVirtualization",
         "filters": {
             "Category": [
                 "Coding"
             ],
             "Lang": [
-                "PHP"
-            ],
-            "Type": [
-                "University"
-            ]
-        }
-    },
-    "ArduinoCNC": {
-        "folderName": "ArduinoCNC",
-        "filters": {
-            "Category": [
-                "Coding","3Dprinting","Electronics"
-            ],
-            "Lang": [
-                "C++",
                 "C#"
             ],
             "Type": [
                 "University"
-            ]
-        }
-    },
-    "mcWorldManager": {
-        "folderName": "mcWorldManager",
-        "filters": {
-            "Category": [
-                "Coding"
-            ],
-            "Lang": [
-                "C#"
-            ],
-            "Type": [
-                "Personal"
-            ]
-        }
-    },
-    "FolderBackup": {
-        "folderName": "FolderBackup",
-        "filters": {
-            "Category": [
-                "Coding"
-            ],
-            "Lang": [
-                "C#"
-            ],
-            "Type": [
-                "Personal"
-            ]
-        }
-    },
-    "PHP_interviewProject": {
-        "folderName": "PHP_interviewProject",
-        "filters": {
-            "Category": [
-                "Coding"
-            ],
-            "Lang": [
-                "PHP"
-            ],
-            "Type": [
-                "Profesional"
-            ]
-        }
-    },
-    "SPDay": {
-        "folderName": "SPDay",
-        "filters": {
-            "Category": [
-                "Coding"
-            ],
-            "Lang": [
-                "NodeJs"
-            ],
-            "Type": [
-                "Personal"
-            ]
-        }
-    },
-    "FishFeeder": {
-        "folderName": "FishFeeder",
-        "filters": {
-            "Category": [
-                "Coding","3Dprinting","Electronics"
-            ],
-            "Lang": [
-                "C++"
-            ],
-            "Type": [
-                "Personal"
-            ]
-        }
-    },
-    "PowerLevelTracker": {
-        "folderName": "PowerLevelTracker",
-        "filters": {
-            "Category": [
-                "Coding"
-            ],
-            "Lang": [
-                "Java"
-            ],
-            "Type": [
-                "Personal"
-            ]
-        }
-    },
-    "Portfolio": {
-        "folderName": "Portfolio",
-        "filters": {
-            "Category": [
-                "Coding"
-            ],
-            "Lang": [
-                "JS"
-            ],
-            "Type": [
-                "Personal"
             ]
         }
     }
-
-    
 }

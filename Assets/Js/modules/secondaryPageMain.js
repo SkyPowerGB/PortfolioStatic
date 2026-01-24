@@ -36,6 +36,7 @@ function reloadContent() {
     let targetElement = document.getElementById(contentTargetID);
     targetElement.innerHTML = "";
     pagenum = 0;
+    contentLoader.refreshLoaded();
     load();
 
 }

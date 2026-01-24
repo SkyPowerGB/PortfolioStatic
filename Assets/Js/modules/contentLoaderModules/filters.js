@@ -11,82 +11,33 @@ let filterObj = {};
 
 // filters improved--------------------------------------------------------------
 function checkFiltersV2(adressMapFilters) {
+    let filterGroups = Object.keys(filterObj);
 
-   
+    if (filterGroups.length === 0) return true;
 
-  
-        
-        let filterGroups=Object.keys(filterObj);
+    let allFilterGroupsEmpty = true;
 
-        // if filters are empty 
-        if(filterGroups.length==0){
-        
-            return true;
-        }
-    
-
-        
-    let isFilterMatch = false;
-
-    let AllFilterGroupsEmpty = true;
-  
-
-    // loop filter groups
-    filterGroups.forEach((group) => {
-
-
-       
-
-        // get group filter list
+    for (let group of filterGroups) {
         let filterList = filterObj[group];
-
-        // get metadata filter list for that group
         let adressmapFilterGroup = adressMapFilters[group];
 
-
-        // continure if not empty
         if (filterList.length > 0) {
-            AllFilterGroupsEmpty = false;
-
-            // check if group list even exist in the metadata
-            if (adressmapFilterGroup !== undefined) {
-
-                // loop filter selected items
-                filterList.forEach(filterItem => {
-
-
-                    
-
-                    // check for match  single match =correct
-                    isFilterMatch = adressmapFilterGroup.includes(filterItem);
-
-                 
-                 
-
-                    if(isFilterMatch){
-                    return true;
+            allFilterGroupsEmpty = false;
+            if (adressmapFilterGroup) {
+            
+                let match = filterList.some(filterItem => adressmapFilterGroup.includes(filterItem));
+                if (!match) {
                 
-                    }
-
-
-                });
-
-
+                    return false;
+                }
+            } else {
+            
+                return false;
             }
-
         }
-
-    });
-
-    if (AllFilterGroupsEmpty) {
-        return true;
     }
 
-
-    return isFilterMatch;
-
-         
-
+    return true;
 }
 
 function setupFilerObj(filterGroup){
