@@ -25,8 +25,7 @@ let introTxt = {
     1: ["> systemctl status skills", "intro-cmd", true]
   },
   line5: {
-    1: ["Logic: 50% | Programming:40% | Electronics: 10% | Social_Skills:  ", "intro-res", false],
-    2: ["[Error]", "intro-txt-red", false]
+    1: ["Logic: 50% | Programming:40% | Electronics: 10%  ", "intro-res", false],
   },
   line6: {
     1: ["> ls ./Content/Project | head -n 2", "intro-cmd", true,loadSummariesProject]
