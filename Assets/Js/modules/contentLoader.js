@@ -85,9 +85,9 @@ async function loadMetadataInto(srcFoldRel, folderCat, folderNm, targetId) {
 
     let targetComponent = document.getElementById(targetId);
 
-
+    
     targetComponent.appendChild(component);
-
+ 
 
 }
 
@@ -132,7 +132,7 @@ async function loadXlatestSummariesIntoV2(summaryNum, folderCat, targetId, srcFo
 
 
 
-                await loadMetadataInto(srcFoldRel, folderCat, folderName, targetId);
+                await  loadMetadataInto(srcFoldRel, folderCat, folderName, targetId);
                 loadedSummaries++;
 
 

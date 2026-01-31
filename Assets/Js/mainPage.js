@@ -6,6 +6,15 @@ import * as contentLoader from "./modules/contentLoader.js";
 document.addEventListener("DOMContentLoaded",
 main
 );
+
+let skipIntro=false;
+let projectsLoaded=false;
+let blogLoaded=false;
+document.addEventListener("keydown",()=>{
+  skipIntro=true;
+  load();
+})
+
 let introTxt = {
 
   line0: {
@@ -68,6 +77,7 @@ async function cmdActive(elementId){
   let introKeys=Object.keys(introTxt);
 
   for(let i=0;i<introKeys.length;i++){
+ 
     let line=document.createElement("div");
     line.classList.add("terminal-line");
     terminal.append(line);
@@ -98,10 +108,11 @@ async function readLineData(lineData,terminalEle){
     segment.classList.add(cssClass);
     terminalEle.append(segment);
 
-    if(userInput){
+    
+    if(userInput&&skipIntro==false){
 
       await  userWrite(segment,txt,empty);
-      if(lnFunction!=undefined){
+      if(lnFunction!=undefined && !skipIntro){
        await lnFunction();
       }
 
@@ -127,25 +138,42 @@ async function userWrite(targetElement, txt,empty) {
     targetElement.appendChild(cursor); 
     
     // Start typing the text
+
+    if(skipIntro){
+      writeAll(targetElement,txt,empty,cursor);
+    }else{
     for (let char of txt) {
   
         targetElement.removeChild(cursor);
         targetElement.textContent += char;
         targetElement.appendChild(cursor); 
         
-        await new Promise(r => setTimeout(r, 40 + Math.random() * 140));
+        if(!skipIntro){
+        
+        await  new Promise(r => setTimeout(r, 40 + Math.random() * 140));
+        }
     }
+  
 
     if(empty==undefined||empty==false){
+
+ cursor.remove(); }}
+}
+
+function writeAll(targetElement,txt,empty,cursor){
+targetElement.textContent = txt;
+    targetElement.appendChild(cursor); 
+ if(empty==undefined||empty==false){
 
  cursor.remove(); }
 }
 
-
 async function cmdWrite(targetElement,txt){
   targetElement.textContent = txt;
 
-  await new Promise(r => setTimeout(r, 50+ Math.random() * 40)); 
+if(!skipIntro){
+  await   new Promise(r => setTimeout(r, 50+ Math.random() * 40)) ; 
+}
 }
 
 
@@ -154,21 +182,30 @@ async function cmdWrite(targetElement,txt){
 
     contentLoader.loadNavbar("",0,"Home");
     
+    if(!skipIntro){
     cmdActive("cmdTerminal");
-  
+    }
+
 
  
       
   }
 
   async function loadSummariesProject(){
+    if(projectsLoaded){return;}
  await contentLoader.loadXlatestSummariesIntoV2(2,"Project","LatestProjectsFeedHolder","");
+ projectsLoaded=true;
   }
   async function loadSummariesBlog(){
+    if(blogLoaded){return;}
   await contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");
+  blogLoaded=true;
   }
 
-  
+function load(){
+   contentLoader.loadXlatestSummariesIntoV2(2,"Project","LatestProjectsFeedHolder","");
+  contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");
+}  
 
 
 

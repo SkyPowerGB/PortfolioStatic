@@ -29,6 +29,10 @@
     margin-right: 2%;
  width: 45%;
     aspect-ratio: 1/1;
+
+     animation-name:fadeIn;
+    animation-duration: 2s;
+    animation-iteration-count: 1; 
 }
 /* element ---------------------------------------------------------- */
 
@@ -44,7 +48,16 @@
     margin-top: 50px;
     border-radius: 5px;
     color:rgb(144, 165, 177);
+
+   
+   
 }
+@keyframes fadeIn{
+    0%{opacity: 10%;}
+
+    100%{opacity: 100%;}
+}
+
 
 .feed-item-link{
     text-decoration: none;
