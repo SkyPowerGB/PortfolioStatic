@@ -224,10 +224,12 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
  * 
 */
 
-function navbarUlBuilder(configJson, currSitePosIndex) {
+//currsitename optional for curr site css must match navbar items name
+function navbarUlBuilder(configJson, currSitePosIndex,currsiteName) {
     let ul_Element = document.createElement("ul");
-    let navbarItemsAtt = Object.keys(configJson.navbarSetup.navbarItems);
-    let navbarItems = configJson.navbarSetup.navbarItems;
+    let navbarSetup=configJson.navbarSetup;
+    let navbarItemsAtt = Object.keys(navbarSetup.navbarItems);
+    let navbarItems = navbarSetup.navbarItems;
 
     let navbarLiClass = configJson.navbarSetup.navBarLiElementClass;
 
@@ -242,9 +244,18 @@ function navbarUlBuilder(configJson, currSitePosIndex) {
         a_Element.innerText = navbarItem[0];
 
 
-        a_Element.href = configJson.navbarSetup.navbarPaths[navbarItem[1]][currSitePosIndex] + navbarItem[2];
+        let aHref=configJson.navbarSetup.navbarPaths[navbarItem[1]][currSitePosIndex] + navbarItem[2];
+        a_Element.href = aHref;
 
+    
+console.log(currsiteName)
+        if(navItemNm==currsiteName){
 
+         
+            li_Element.classList.add(navbarSetup.navBarCurrSiteClass);
+        }
+        
+    
 
         li_Element.classList.add(navbarLiClass);
 

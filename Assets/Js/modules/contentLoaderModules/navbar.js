@@ -1,14 +1,15 @@
 import * as compBuilder from "../componentBuilder.js";
 
-async function loadNavbar(configJson, sitePosIndex,srcFolderRel) {
+async function loadNavbar(configJson, sitePosIndex,currsiteName) {
   
+   
     let targetComponent = document.getElementById(configJson.navbarSetup.navBarDivContElementID);
     let hambComponent = await compBuilder.createNavbarHamb(configJson);
 
     if (targetComponent != null) {
 
         targetComponent.append(hambComponent);
-        targetComponent.insertBefore(compBuilder.navbarUlBuilder(configJson, sitePosIndex), targetComponent.firstChild);
+        targetComponent.insertBefore(compBuilder.navbarUlBuilder(configJson, sitePosIndex,currsiteName), targetComponent.firstChild);
         hambComponent.addEventListener("click", () => { handleNavHambClick(configJson); });
     }
 

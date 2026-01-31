@@ -209,6 +209,7 @@
         "tribarElementID": "TriBarBtn",
         "navCurrSiteIndexId": "navCurrSiteIndex",
         "navBarLiElementClass": "nav-item",
-        "navBarUlElementClass": "navbar"
+        "navBarUlElementClass": "navbar",
+        "navBarCurrSiteClass":"nav-item-current"
     }
 }

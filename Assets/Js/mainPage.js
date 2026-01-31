@@ -19,7 +19,7 @@ let introTxt = {
     1: ["> grep -r 'about_me' ./identity", "intro-cmd", true]
   },
   line3: {
-    1: ["Applied knowledge . Focused on solving problems", "intro-res", false]
+    1: ["Applied knowledge . Focused on building stuff", "intro-res", false]
   },
   line4: {
     1: ["> systemctl status skills", "intro-cmd", true]
@@ -37,8 +37,14 @@ let introTxt = {
     1:[">ls ./Content/Blog | head -n 3","intro-cmd",true,loadSummariesBlog]
   },
     line9: {
-    1: ["loading_cards... [OK]", "intro-res-blue", false,]
+    1: ["loading_cards... [OK]", "intro-res-blue", false,undefined]
   },
+
+     line10: {
+    1: [">_", "intro-cmd", false,undefined],
+    2:["","intro-cmd",true,undefined,true]
+  },
+
 };
 
 
@@ -55,6 +61,8 @@ loadLatestNewsB();
 }
 
 async function cmdActive(elementId){
+
+ 
 
   let terminal=document.getElementById(elementId);
   let introKeys=Object.keys(introTxt);
@@ -84,6 +92,7 @@ async function readLineData(lineData,terminalEle){
     let cssClass=lineSegment[1];
     let txt=lineSegment[0];
     let lnFunction=lineSegment[3];
+    let empty=lineSegment[4];
 
     let segment=document.createElement("span");
     segment.classList.add(cssClass);
@@ -91,7 +100,7 @@ async function readLineData(lineData,terminalEle){
 
     if(userInput){
 
-      await  userWrite(segment,txt);
+      await  userWrite(segment,txt,empty);
       if(lnFunction!=undefined){
        await lnFunction();
       }
@@ -107,17 +116,30 @@ async function readLineData(lineData,terminalEle){
 
 }
 
+async function userWrite(targetElement, txt,empty) {
+ 
+    const cursor = document.createElement("span");
+    cursor.classList.add("cmd-cursor");
+    cursor.innerText = "  ";
+    
+  
+    targetElement.textContent = ""; 
+    targetElement.appendChild(cursor); 
+    
+    // Start typing the text
+    for (let char of txt) {
+  
+        targetElement.removeChild(cursor);
+        targetElement.textContent += char;
+        targetElement.appendChild(cursor); 
+        
+        await new Promise(r => setTimeout(r, 40 + Math.random() * 140));
+    }
 
-async function userWrite(targetElement,txt){
+    if(empty==undefined||empty==false){
 
-for (let char of txt) {
-    targetElement.textContent += char;
-    await new Promise(r => setTimeout(r, 40 + Math.random() * 140));
-
+ cursor.remove(); }
 }
-}
-
-
 
 
 async function cmdWrite(targetElement,txt){
@@ -130,7 +152,7 @@ async function cmdWrite(targetElement,txt){
   
   function loadLatestNewsB(){
 
-    contentLoader.loadNavbar("",0,"");
+    contentLoader.loadNavbar("",0,"Home");
     
     cmdActive("cmdTerminal");
   

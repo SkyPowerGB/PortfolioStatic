@@ -7,15 +7,16 @@ let contentTargetID = "contentContainer";
 
 let folderCategory;
 let srcRelData="../"
-function main(folderCat, sitePosIndex,hasContent,srcRel) {
+function main(folderCat, sitePosIndex,hasContent,srcRel,pageName) {
   
+    console.log("secondary");
     folderCategory= folderCat;
    if(srcRel!=undefined){
     srcRelData=srcRel;
    }
     
 
-    contentLoader.loadNavbar(srcRel, sitePosIndex,srcRelData);
+    contentLoader.loadNavbar(srcRel, sitePosIndex,pageName);
 
     if(hasContent){
     loadFilters();

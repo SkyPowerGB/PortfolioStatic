@@ -27,6 +27,8 @@
 
     margin-left: 2%;
     margin-right: 2%;
+ width: 45%;
+    aspect-ratio: 1/1;
 }
 /* element ---------------------------------------------------------- */
 
@@ -133,6 +135,7 @@
       align-items: center;
    }
      .latest-projects-feed .feed-item-main-cont{
+        width: 90%;
         margin-top: 5%;
      
      }
