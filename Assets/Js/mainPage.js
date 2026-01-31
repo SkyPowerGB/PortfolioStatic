@@ -10,10 +10,8 @@ main
 let skipIntro=false;
 let projectsLoaded=false;
 let blogLoaded=false;
-document.addEventListener("keydown",()=>{
-  skipIntro=true;
-  load();
-})
+
+
 
 let introTxt = {
 
@@ -55,11 +53,33 @@ let introTxt = {
   },
 
 };
+function skipIntroProcedure(){
+  
+  cmdPowerBtn.style.backgroundColor ="#490704";
+  cmdPowerBtn.style.color="gray";
+  
+if(!skipIntro){
+  load();
+}
+  skipIntro=true;
+  
+}
 
-
-
+let cmdPowerBtn;
 function main(){
+ cmdPowerBtn=document.getElementById("cmdTerminalPowerBtn");
+
+ cmdPowerBtn.addEventListener("click",()=>{
+  skipIntroProcedure();
+ });
+
  
+document.addEventListener("keydown",()=>{
+
+
+skipIntroProcedure();
+})
+
 
 loadLatestNewsB();
 
@@ -88,6 +108,7 @@ async function cmdActive(elementId){
     
 
   }
+  skipIntro=true;
 
 }
 
@@ -109,7 +130,7 @@ async function readLineData(lineData,terminalEle){
     terminalEle.append(segment);
 
     
-    if(userInput&&skipIntro==false){
+    if(userInput){
 
       await  userWrite(segment,txt,empty);
       if(lnFunction!=undefined && !skipIntro){
@@ -117,12 +138,14 @@ async function readLineData(lineData,terminalEle){
       }
 
     } else{
+      
     await  cmdWrite(segment,txt);
     }
 
 
 
   }
+
 
 
 }
@@ -140,12 +163,14 @@ async function userWrite(targetElement, txt,empty) {
     // Start typing the text
 
     if(skipIntro){
+   
       writeAll(targetElement,txt,empty,cursor);
     }else{
     for (let char of txt) {
   
         targetElement.removeChild(cursor);
         targetElement.textContent += char;
+
         targetElement.appendChild(cursor); 
         
         if(!skipIntro){
@@ -156,12 +181,15 @@ async function userWrite(targetElement, txt,empty) {
   
 
     if(empty==undefined||empty==false){
+ cursor.remove(); }
 
- cursor.remove(); }}
+}
 }
 
 function writeAll(targetElement,txt,empty,cursor){
+
 targetElement.textContent = txt;
+
     targetElement.appendChild(cursor); 
  if(empty==undefined||empty==false){
 
@@ -203,8 +231,12 @@ if(!skipIntro){
   }
 
 function load(){
+  if(!projectsLoaded){
    contentLoader.loadXlatestSummariesIntoV2(2,"Project","LatestProjectsFeedHolder","");
+  }
+   if(!blogLoaded){
   contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");
+   }
 }  
 
 

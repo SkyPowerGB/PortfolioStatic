@@ -161,7 +161,6 @@ function refreshLoaded() {
 async function loadPaginatedSummaries(srcFoldRel, pageNum, folderCat, targetId) {
 
 
-
     let configJson = await loaderHelper.getConfigJsonV2(srcFoldRel);
 
     let adressMapSetup = configJson.contentSetup.adressMapSetup;
@@ -188,6 +187,7 @@ async function loadPaginatedSummaries(srcFoldRel, pageNum, folderCat, targetId) 
 
 
             for (let key of adressMapKeys) {
+                
                 let adress = adressMap[key];
                 if (loadedItems.has(adress.folderName)) continue;
 

@@ -1,0 +1,18 @@
+{
+
+
+    "title":"Template",
+    "summary":"This is test Real template for content",
+    "thumbnail":"thumbnail.jpg",
+    "dateUpload":"31.10.2025",
+
+     "hasSite":true,
+  
+
+    "Category":["Coding"],
+    "Lang":["Java"],
+    "Type":["Personal"]
+
+
+
+}

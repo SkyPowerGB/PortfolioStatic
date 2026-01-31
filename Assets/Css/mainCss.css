@@ -97,10 +97,43 @@ body {
    aspect-ratio: 2/1;
    background-color:#0a1421;
   box-shadow:   0 4px 12px rgba(234, 234, 234, 0.7);
+
     
     
 font-family: 'Fira Code', 'Source Code Pro', monospace;
 }
+
+#cmdTerminalPowerBtn{
+      width: 35px;
+      position: relative;
+      font-weight:bolder;
+      font-size: x-large;
+      left: 45%;
+      bottom:50px;
+        min-height: 20px;
+        border-radius: 10px;
+        padding: 2px;
+   display: flex;
+   flex-direction: row;
+align-items: center;
+justify-content: center;
+
+
+   color: rgb(176, 14, 14);
+   font-weight: bolder;
+   text-align: center;
+  
+background-color:  rgb(38, 124, 30);
+
+   
+
+}
+#cmdTerminalPowerBtn:hover{
+   background-color: rgb(0, 255, 60);
+   cursor: pointer;
+}
+
+
 /**-----------------------------------*/
 .intro-cmd{
   color:rgb(77, 255, 0);
@@ -294,7 +327,7 @@ height: 50px;
 border: none;
 background-color: #30333a;
 color: white;
-font-size: large;
+font-size: 1rem;
 
 }
 
@@ -304,6 +337,7 @@ font-size: large;
    flex-direction: row;
    justify-content: center;
    align-items: center;
+
    
 
 }
@@ -324,7 +358,7 @@ color: white;
    color: rgb(49, 144, 12);
    width: 35%;
    text-decoration: none;
-   font-size: x-large;
+   font-size: 1rem;
    background-color: #0a1421;
 
 
@@ -512,9 +546,13 @@ padding: 0;
       font-size: small;
     min-height: 30vh;
 
+
    }
 
-
+#cmdTerminalPowerBtn{
+  left:35%;
+   bottom: 50px;
+}
 
 
 

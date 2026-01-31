@@ -1,6 +1,47 @@
 {
+"January": {
+        "folderName": "jaunary",
+        "filters": {
+            "Category": [
+                ""
+            ],
+            "Lang": [
+                ""
+            ],
+            "Type": [
+                ""
+            ]
+        }
+    },
+    "Template": {
+        "folderName": "Template",
+        "filters": {
+            "Category": [
+                ""
+            ],
+            "Lang": [
+                ""
+            ],
+            "Type": [
+                ""
+            ]
+        }
+    },
 
-
+ "TemplateB": {
+        "folderName": "TemplateB",
+        "filters": {
+            "Category": [
+                ""
+            ],
+            "Lang": [
+                ""
+            ],
+            "Type": [
+                ""
+            ]
+        }
+    }
 
 
 
