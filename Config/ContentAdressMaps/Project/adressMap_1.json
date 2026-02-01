@@ -130,6 +130,22 @@
             ]
         }
     },
+   "2DCAD": {
+        "folderName": "CncCadCam",
+        "filters": {
+            "Category": [
+                "Coding"
+            ],
+            "Lang": [
+                "Java"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
+
+
     "ServisVozila": {
         "folderName": "ServisVozila",
         "filters": {

@@ -10,13 +10,37 @@
    line-height: 1.5;   
    
 }
+.site-title-orange{
+   color: orange;
+}
+.title-orange{
+     color: orange;
+}
+.title-secondary{
+
+}
+.title-main{
+    text-align: center;
+      margin-top: 10vh;
+      font-size: 4rem;
+       color: rgb(255, 179, 0);
+        margin-bottom: 0;
+}
+.title-main-bottom{
+   text-align: center;
+   margin-bottom: 10vh;
+    font-size: 4rem;
+    margin-top: 0;
+}
+
+
 .content-page-container{
    padding-left: 5%;
    padding-right: 5%;
 }
 .content-page-title-center{
    text-align: center;
-   color: orange;
+  font-size: 4vw;
    margin-top: 50px
   
 }
@@ -65,9 +89,15 @@ width: 100%;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .txt-orange{
-   color:rgb(209, 123, 52);
+   color:rgb(255, 142, 61);
 }
-
+.site-list{
+   font-size: 1.5rem;
+}
+.site-list li{
+   margin-top: 1vw;
+   margin-bottom: 1vw;
+}
 
 @media (max-width: 800px) {
 

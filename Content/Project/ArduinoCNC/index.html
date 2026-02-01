@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Template</title>
+  <title>Arduino CNC</title>
   <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
+  <link href="../../../Assets/Css/template.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,57 +21,158 @@
 
 
   <div class="content-page-container">
-    <h1 class="content-page-title-center"> this is the TEMPLATE page</h1>
-    <p class="siteTxt">In this project goal was to make an static site with dynamic js content loading.
-      The site consists of few main sites which then use scripts to acces content loading script,
-      an content loading script has internal functions to acces the ConfigJson. ConfigJson contains many
-      settings including data about max indexes for content folders as well as the metadata json atributes
-
-      
-    <div class="content-img-right">
-      <div >
-        <img src="contentImgSample.jpg">
-
-        <p>Img: right</p>
-      </div>
-    </div>
-</p>
-
+    <h1 class="title-main ">Bachelors thesis:
+    </h1>
+    <h1 class="title-main-bottom txt-blue">CNC engraver based on arduino</h1>
     <p class="siteTxt">
-      The content is located in contentGroup folders and uses indexed folders.
-      It is also used for dynamic loading of navbar and filters, since they too require configJson they have
-      their events setup in same module. Alongside the content loader the component builder module has job of making
-      components that will be included to the webpage . Each page has its own group or induvidual script that acces the
-      content loader
 
-
-
-    and provide necesary data such as relative position to src folder or folder category index. The config json
-    has also data abaout classes or ids of components to insert or use .
-    </p>
-
-    <div class="content-img-left">
-      <img src="contentImgSample.jpg">
-      <p>Img: left</p>
-    </div>
-
-
-    <p class="siteTxt">
-      There is also slight optimization to only fetch json once and store it for later use though its only done in js
-      variable
-      not local storage. In the future there is plan to improve this website by making configJson more organized and
-      also store fetched
-
-      data on local storage for performance optimization by removing need for fetching same data.
+      For my thesis i suggested my idea to build an cnc with arduino. I was quite confident
+      due to prior use of arduino as well as seeing the Gcode (which at the time i thought its just linear movements).
+      Only problem i saw on my way was how to control mutliple stepper motors simutaniosly ,but i did had idea for
+      solution.
+      Aditonally the backup solution was to use library.
     </p>
 
 
+    <h2 class="site-title-orange">How code works ? </h2>
+    <p class="siteTxt">
+      There are two software parts working together, first is PC win froms deskop app and scnd is the arduino code
+      controling machine.
+    </p>
+    <h2 class="site-title-orange">Arduino CNC PC Controler</h2>
+
+     <img class="content-img-right" src="./assets/imgs/cncPcControler.jpg" alt="CNC PC Controler">
+    <p class="siteTxt">
+      As you open the deskop app you must select the port and baud rate then hit connect. This will attempt to establish
+      connection
+      to arduino
+      using .net framework, after connection is established it will send command $Connect to which arduino responds
+      $Connected
+      marking succesful communication (there is timeout if it doesnt succeed).
+      The UI has many useful controls for contrling machine such as XYZ movement and aditional routines
+      like HOME, CENTER, Z CAL . The user is expected to lead machine to desired starting point usually center and use
+      ZCAL to set
+      machine 0,0,0 datum , ZCAL uses the Z probe so you must put it under the tooltip plus attach the crocodile clips
+      to the tooltip.
+    </p>
+         
+
+    <p class="siteTxt">
+      After ZCAL is finished machine moves up and you can disconnect used tools . There is run Gcode option for which
+      you must select file.
+      When user runs this option, the app will start sending gcode line by line to arudino , after line is finished
+      executing ,machine
+      requests next line with $NEXT . All operations are done behind Task.Run / Async Await in C# to keep UI responsive.
+      In later versions of software the gcode is sent coupled with <> symbols so if stream stops machine can stop too .
+    </p>
 
 
-    <div class="content-img-center-large">
-      <img src="contentImgSample.jpg">
-      <p>Img: center</p>
-    </div>
+    <h2 class="site-title-orange">Arduino CNC software</h2>
+
+    <p class="siteTxt">
+
+      The whole software is consisting of few segments.
+
+
+
+
+    </p>
+    <ul class="site-list txt-blue" >
+      <li >Communication part</li>
+      <li>Gcode reader</li>
+      <li>Linear movement execution</li>
+      <li>Circular movement execution</li>
+      <li>Sensor checks and feedback</li>
+
+    </ul>
+
+    <p class="siteTxt">
+        <span class="txt-orange">Communication</span> part uses SerialPrint and SerialRead to communicate with PC
+    </p>
+    <p class="siteTxt">
+  <span class="txt-orange">Gcode reader</span> line by cutting into segments like G1 X100 then further into the
+      letter and number, depending on the both it sets many variables such as movement type as well
+      variable values . When end of line is reached execution begins
+    </p>
+    <p class="siteTxt">
+      <span class="txt-orange">Linear movement </span>(G1/G0) takes all parameters, and starts calulating. Since the step/mm is known it calulates
+      the steps per mm (or inch depending on unit command) ,then uses step ratios and feedrate to get speeds for each
+      motor.
+      After all is calulated parameters are set to the Acell stepper library and form there the loop that runs until
+      steps=0 is called.
+    </p>
+
+    <p class="siteTxt">
+     <span class="txt-orange">  Circular movement</span> (G2/G3) uses X Y J K values. X,Y being the target while J and K offsets to the circle center
+      from current position.
+      The program calulates the points along circle in either clockwise or c clockwise direction using circle formula.
+      X is incremeneted once while the Y keeps being incremented until radius is reached. To determine increment
+      direction it sents current
+      circle position plus center location to an function which based on quadrant or axis returns boolean. There is one
+      final check if distance
+      from target is smaller or equal to treshold so it finishes the circle by moving to target point.
+      All resulting points are sent to the linear movement execution . <span class="txt-blue">
+        Quite ineficient but, during that time i wasnt aware of
+        matrix vector rotation, plus debugging trigonometry would have been difficult
+      </span>
+    </p>
+
+    <p class="siteTxt">
+      During all proceses machine keeps track of the endstops and stop button while also being able to send feedback.
+      The spindle motor is programmed to slowly ramp up/down with PWM to reduce starting current.
+    </p>
+
+        <h2 class="site-title-orange">Mehanics  </h2>
+
+        <p class="siteTxt">
+          The frame is made out of wood ,for linear rails it uses drawer rails , while the for motion systems it uses T8 rods.
+          Overall economical design since linear rails are expensive as well as aluminum extrusions. For attaching material
+          the inserted nuts are used. 
+          <span class="txt-blue">Only downsides i noticed are the T8 rods having backlash plus Z axis has spots where it stops then moves most likely aligment issue</span>
+        </p>
+
+        <h2 class="site-title-orange">Electronics  </h2>
+ <p class="siteTxt">
+  Electornics consists of Arudino uno + CNC shield, 3x NEMA 17 HS4401 motors, 3x A4988 drivers ,  24V DC 20 000 RPM motor ,
+  12V 5A PSU, 6x endstop, 400W Boost converter , motor driver , stop button and CNC touch probe.
+  Unsolved issue with power is that when arduino drives PWM. If PWM is less than 100% wires leading to motor heat up significantly ,as well as voltage on converter dropping
+  below 24V , most likely cause is the timing gap in PWM making motor pull lot of current out of supply.
+ </p>
+<img class="content-img-right" src="./assets/imgs/shema.png">
+         <h2 class="site-title-orange">History  </h2>
+
+          <p class="siteTxt">
+            Initally project was planned to use Arduino MEGA + Ramps 1.4 hence the 12V PSU. Goal with ramps was to allow SD card use to avoid
+            need for USB communication. During project i already developed the LCD + encoder UI for SD card. When it came to full hardware tests
+            the AMS1117 blew up which forced me to move onto arduino uno,at the time i wasnt aware you musnt have PSU plugged along with USB
+            which was most likely the cause of regulator failure. As time progressed the USB comm turned out to not be that difficult 
+            to implement. And by the time i was testing the uno ,the replacement mega came and i tried once more thinking it was wiring issue.
+            It resulted in same failure so development and bug fixes continued on UNO. I defitnetly overesitmated complexity of this project,
+            the Gcode turned out to be more complex than i thought, while i did figure it out, machine doesnt fully support it.
+            The linear motion also became apparent its not as simple ,initally i did attempt on my own to time out the motors but using high level
+            abstractions for this doesnt work so in end i was forced to go for accel stepper library. During dev of linear movements i explored
+            Bresenham's line algorithm  though i didnt implement it in end.
+          </p>
+                <p class="siteTxt">
+                  Machine itended use was to be used in PCB milling for projects.
+                </p>
+
+
+           <h2 class="site-title-orange">Current state  </h2>
+           <p class="siteTxt">
+            While machine still remains unused, there are plans to upgrade software with more efficient circle algorithm, as well
+            as next gcommand detection .The pc controler could even have visual feedback and predicted paths debugging.
+             Also plan is that after software upgrades to return back to arduino mega so it wouldnt require
+            PC to operate . Another hardware upgrades could include new T8 rod for Z axis and anti backlash nuts . 
+            Aditonally switch to the 24V PSU would probably solve issue with overheating wires while buck converter would power 
+            ramps and steppers.
+            To allow USB communication there is idea to pull voltage of PSU diode on ramps to drive mosfet ,
+             so if PSU is plugged Vcc on USB gets blocked. In meantime i managed to repair both arduino megas damaged in project.
+  
+           </p>
+
+       
+
 
   </div>
 
