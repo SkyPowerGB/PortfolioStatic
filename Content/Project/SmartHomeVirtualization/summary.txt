@@ -1,1 +1,1 @@
-is this even working
+ERASMUS project : replicate the smart home demo room for VR, make state changes in real time trough  http

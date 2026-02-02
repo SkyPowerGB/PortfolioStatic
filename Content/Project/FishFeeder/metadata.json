@@ -2,11 +2,11 @@
 
 
     "title":"Fish Feeder ",
-    "summary":"Simple arduino based fish feeding contraption for few days. It consists of an 5 slot rotating revolver style dispenser powered by stepper motor and turns once every 24h since power has been turned on",
+    "summary":"Simple arduino based fish feeding contraption made in few days. It consists of an 5 slot rotating revolver style dispenser powered by stepper motor and turns once every 24h since power has been turned on",
     "thumbnail":"thumbnail.jpg",
     "dateUpload":"4.8.2025",
 
-     "hasSite":true,
+     "hasSite":false,
   
 
     "Category":["Coding,3Dprinting,Electronics"],
