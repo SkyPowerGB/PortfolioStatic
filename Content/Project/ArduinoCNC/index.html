@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino CNC</title>
+  <title>ArduinoCNC</title>
   <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
-  <link href="../../../Assets/Css/template.css" rel="stylesheet">
+  <link href="../../../Assets/Css/templateV3.css" rel="stylesheet">
+  <link href="./assets/css.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,162 +21,221 @@
 
 
 
-  <div class="content-page-container">
-    <h1 class="title-main ">Bachelors thesis:
+  <div class="tpl-content-container">
+    <h1 class="tpl-txt-orange tpl-title-main tpl-margin-b0 tpl-margin-t5 tpl-txt-center tpl-margin-t20"> Batchelors
+      Thesis :</h1>
+    <h1 class="tpl-txt-orange tpl-title-secondary tpl-txt-left tpl-margin-t0 tpl-margin-b10
+    tpl-txt-center "> Arduino based CNC engraver
     </h1>
-    <h1 class="title-main-bottom txt-blue">CNC engraver based on arduino</h1>
-    <p class="siteTxt">
 
-      For my thesis i suggested my idea to build an cnc with arduino. I was quite confident
-      due to prior use of arduino as well as seeing the Gcode (which at the time i thought its just linear movements).
-      Only problem i saw on my way was how to control mutliple stepper motors simutaniosly ,but i did had idea for
-      solution.
-      Aditonally the backup solution was to use library.
+
+
+        <div class="tpl-img-container tpl-img-center tpl-w100">
+      <img class="tpl-w100 tpl-img-shadow " src="thumbnail.JPG">
+      <p class="tpl-img-description tpl-txt-left">Machine</p>
+    </div>
+
+
+    <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-l5 tpl-margin-t5">Project Overview</h1>
+
+    <p class="tpl-txt">For my bachelors thesis I have suggested theme of making CNC engraver.
+
+      Goal of project was to make CNC engraver and write firmware for it ot make it work.
+
+      Ideally machine would be used for PCB milling .
     </p>
 
 
-    <h2 class="site-title-orange">How code works ? </h2>
-    <p class="siteTxt">
-      There are two software parts working together, first is PC win froms deskop app and scnd is the arduino code
-      controling machine.
-    </p>
-    <h2 class="site-title-orange">Arduino CNC PC Controler</h2>
+    <p class="tpl-txt">
+      Main challenges included : building machine, percise motor control , reading and interpreting gcode commands ,
+      and communication between pc software and machine.
 
-     <img class="content-img-right" src="./assets/imgs/cncPcControler.jpg" alt="CNC PC Controler">
-    <p class="siteTxt">
-      As you open the deskop app you must select the port and baud rate then hit connect. This will attempt to establish
-      connection
-      to arduino
-      using .net framework, after connection is established it will send command $Connect to which arduino responds
-      $Connected
-      marking succesful communication (there is timeout if it doesnt succeed).
-      The UI has many useful controls for contrling machine such as XYZ movement and aditional routines
-      like HOME, CENTER, Z CAL . The user is expected to lead machine to desired starting point usually center and use
-      ZCAL to set
-      machine 0,0,0 datum , ZCAL uses the Z probe so you must put it under the tooltip plus attach the crocodile clips
-      to the tooltip.
     </p>
-         
 
-    <p class="siteTxt">
-      After ZCAL is finished machine moves up and you can disconnect used tools . There is run Gcode option for which
-      you must select file.
-      When user runs this option, the app will start sending gcode line by line to arudino , after line is finished
-      executing ,machine
-      requests next line with $NEXT . All operations are done behind Task.Run / Async Await in C# to keep UI responsive.
-      In later versions of software the gcode is sent coupled with <> symbols so if stream stops machine can stop too .
+    <p class="tpl-txt">
+      Lessons: software-hardware integration is crucial; mechanical limits dominate performance.
+
+      <span class="tpl-txt-red">Warning: 20k RPM spindle is loud and potentially dangerous.</span>
     </p>
 
 
-    <h2 class="site-title-orange">Arduino CNC software</h2>
+   
 
-    <p class="siteTxt">
 
-      The whole software is consisting of few segments.
+    <div class="tpl-margin-b10 tpl-image-center">
+        <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-l5 tpl-margin-t5">DEMO</h1>
+      <video controls src="./assets/video/cncDemo.mp4" class="tpl-w100">
+        
+      </video>
+    </div>
 
+
+    <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-l5 tpl-margin-t20">Timeline</h1>
+
+
+
+    <p class="tpl-txt">
+      Initially i planned to use Ramps 1.4 with arduino mega in order to use LCD + encoder interface to allow standalone
+      operation. There was slight difficulty coming from reliably reading encoder encoder but i was able to solve it and
+      thus
+      make functional interface.
+    </p>
+
+    <p class="tpl-txt">
+      Next big step was reading gcode commands before turning them to movements. Most issues came from
+      difficulty understanding how to read gcode.
+    </p>
+
+
+    <p class="tpl-txt">
+
+      Development of movement operations was more difficult than expected.
+      I struggled to implement precise motor control, so I used the AccelStepper library to focus on other control
+      aspects.
+
+
+    </p>
+
+
+
+    <p class="tpl-txt">
+      However during first full hardware test regulator (ams1117) blew up which forced me to switch to arduino uno.
+      This required exploring usb serial communication as well as developing pc software to send gcode commands to the
+      engraver.
+      In end it turned to be slightly easier than previously thought and big challenges came from syncing communication
+      .
+
+    </p>
+
+    <p class="tpl-txt">
+      Finnaly once machine was working it was all about testing and fixing bugs.
+    </p>
+
+
+    <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-l5">How code works </h1>
+
+
+    <p class="tpl-txt">
+      Typical use case is that user connects trough pc software to engraver. Next step is to set machine physical
+      position above
+      starting position on material. After that user calibrates Zaxis using CNC touch probe. Once machine is ready user
+      can select
+      gcode file and hit run. During run pc software will send gcode commands line by line while awaiting "$NEXT" ,a
+      signal to
+      send next line .
+    </p>
+    <p class="tpl-txt">
+      As arduino recives the line it will start slicing it into induvidual letter-number pairs which are then read and
+      stored into variables.
+      Once end of line is reached execution begins.
+    </p>
+    <p class="tpl-txt">
+      Linear movements (G0 and G1) are handled by calculating the number of steps and relative speed for each axis.
+      These values are sent to the AccelStepper library, which executes the movement.
+      Step counts are calculated as distance ÷ step size, and relative speed is determined from the input feedrate
+      multiplied by step ratios.
+    </p>
+
+    <p class="tpl-txt ">
+      Arc movments G2 and G3 are done by using brute force approach of using cirlce formula starting from current
+      position for one axis, while
+      other is incremented from center . It also has ability to handle G17-G19 plane selection by switching axis in
+      formula.
+      The point is tracked distance from target and once treshold is reached machine moves to target point . All
+      calulated points
+      are sent to linear movement function .
+    </p>
+
+
+    <p class="tpl-txt">
+      Spindle control is handled by M3 and M5. It slowly ramps up speed of sindle to avoid high current draw and
+      sparks. It caluates speed by using simple formula of (S/N)*255 where S is spindle speed from gcode and 255 is max
+      value for pwm signal.
+      N is max spindle rpm which is 20 000 i my case.
+    </p>
+
+
+    <p class="tpl-txt">
+      During whole execution machine is checking endstops and stop button to ensure machine and operator safety.
+      Once execution is finished machine requests optional next line.
+    </p>
+
+
+    <div class="tpl-img-container tpl-img-right tpl-w100">
+      <img class="tpl-w100 tpl-img-shadow " src="./assets/img/cncPcControler.jpg">
+      <p class="tpl-img-description tpl-txt-left">PC controller</p>
+    </div>
+
+    <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-l5">Mechanics</h1>
+
+    <p class="tpl-txt">
+      The mahcine is built out of wooden frame with drawer rails as linear guides.
+      It uses 3d printed parts for holding motors and bearings.
+      Motor rotation is turned to linear movement using T8 rods and nuts . XY axis use 8mm lead while Z axis uses 2mm
+      lead.
+      Material is mounted on wooden bed using insertion nuts and bolts.
+
+    </p>
+
+    <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-l5">Electronics</h1>
+
+    <p class="tpl-txt">
+      The machine uses Arduino Uno as main controller and CNC shield as motor driver.
+      Endstops are fused together on single input along with cnc touch probe. Machine uses 3 nema 17 hs4401 motors for
+      movement
+      and 24V 1.5A 20k rpm brushed spindle motor.
+      Board is powered by 12V PSU . Spindle is powered by boost converter to step up voltage to 24V .
+      Spindle control is handeled trough H bridge bts7960 which allows for high current draw.
+      Stepper motors use basic stepper drivers A4988 which are set to full step mode.
+    </p>
+
+
+
+    <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-l5">Implementation conclusion and issues</h1>
+
+
+    <p class="tpl-txt">
+      Mahcine uses slightly too weak PSU due to my calculation mistake though this is only true if all 3 steppers are
+      used at once and pull max current.
+
+      Initally i hoped to use PC PSU but it had too much noise which made motors buzz .
+      Reason for 12V PSU is that ramps 1.4 can only use 12V which i initally planned .
+      However boosting 12 to 24V aint ideal as boost struggles to maintain 24V when spindle is not run at full speed.
+      This is likely caused by too low frequency of PWM which causes spindle to draw more current and heats up whole
+      power delivery section.
 
 
 
     </p>
-    <ul class="site-list txt-blue" >
-      <li >Communication part</li>
-      <li>Gcode reader</li>
-      <li>Linear movement execution</li>
-      <li>Circular movement execution</li>
-      <li>Sensor checks and feedback</li>
-
-    </ul>
-
-    <p class="siteTxt">
-        <span class="txt-orange">Communication</span> part uses SerialPrint and SerialRead to communicate with PC
+    <p class="tpl-txt">
+      Code uses simple approach for G2 and G3 commands which is super inneficent due to many calulations per single
+      point
+      as well as heavy use of floating point numbers plus square roots .
+      It also has potential bug if target point is closer than treshold.
+      Ideal soltuion would be to use bresenhams circle algorithm which is designed for raster displays but can be
+      adapted for cnc use.
     </p>
-    <p class="siteTxt">
-  <span class="txt-orange">Gcode reader</span> line by cutting into segments like G1 X100 then further into the
-      letter and number, depending on the both it sets many variables such as movement type as well
-      variable values . When end of line is reached execution begins
-    </p>
-    <p class="siteTxt">
-      <span class="txt-orange">Linear movement </span>(G1/G0) takes all parameters, and starts calulating. Since the step/mm is known it calulates
-      the steps per mm (or inch depending on unit command) ,then uses step ratios and feedrate to get speeds for each
-      motor.
-      After all is calulated parameters are set to the Acell stepper library and form there the loop that runs until
-      steps=0 is called.
+    <p class="tpl-txt">
+      Reason for regulator failure in past was most likely USB and PSU conflict , ramps 1.4 cannot be used with PC when
+      powered by PSU.
+
     </p>
 
-    <p class="siteTxt">
-     <span class="txt-orange">  Circular movement</span> (G2/G3) uses X Y J K values. X,Y being the target while J and K offsets to the circle center
-      from current position.
-      The program calulates the points along circle in either clockwise or c clockwise direction using circle formula.
-      X is incremeneted once while the Y keeps being incremented until radius is reached. To determine increment
-      direction it sents current
-      circle position plus center location to an function which based on quadrant or axis returns boolean. There is one
-      final check if distance
-      from target is smaller or equal to treshold so it finishes the circle by moving to target point.
-      All resulting points are sent to the linear movement execution . <span class="txt-blue">
-        Quite ineficient but, during that time i wasnt aware of
-        matrix vector rotation, plus debugging trigonometry would have been difficult
-      </span>
+    <p class="tpl-txt">
+      Overall the machine is funcitonal and most likely limited by mechanics rather than electronics or code.
+      It can be used as demo
+      <span class="tpl-txt-red">however at 20k rpm spinle is soo loud it poses danger to operator hearing even with
+        protection</span>.
+      Sadly goal of diy PCB milling was not achived due to mechanical limitations.
     </p>
 
-    <p class="siteTxt">
-      During all proceses machine keeps track of the endstops and stop button while also being able to send feedback.
-      The spindle motor is programmed to slowly ramp up/down with PWM to reduce starting current.
-    </p>
-
-        <h2 class="site-title-orange">Mehanics  </h2>
-
-        <p class="siteTxt">
-          The frame is made out of wood ,for linear rails it uses drawer rails , while the for motion systems it uses T8 rods.
-          Overall economical design since linear rails are expensive as well as aluminum extrusions. For attaching material
-          the inserted nuts are used. 
-          <span class="txt-blue">Only downsides i noticed are the T8 rods having backlash plus Z axis has spots where it stops then moves most likely aligment issue</span>
-        </p>
-
-        <h2 class="site-title-orange">Electronics  </h2>
- <p class="siteTxt">
-  Electornics consists of Arudino uno + CNC shield, 3x NEMA 17 HS4401 motors, 3x A4988 drivers ,  24V DC 20 000 RPM motor ,
-  12V 5A PSU, 6x endstop, 400W Boost converter , motor driver , stop button and CNC touch probe.
-  Unsolved issue with power is that when arduino drives PWM. If PWM is less than 100% wires leading to motor heat up significantly ,as well as voltage on converter dropping
-  below 24V , most likely cause is the timing gap in PWM making motor pull lot of current out of supply.
- </p>
-<img class="content-img-right" src="./assets/imgs/shema.png">
-         <h2 class="site-title-orange">History  </h2>
-
-          <p class="siteTxt">
-            Initally project was planned to use Arduino MEGA + Ramps 1.4 hence the 12V PSU. Goal with ramps was to allow SD card use to avoid
-            need for USB communication. During project i already developed the LCD + encoder UI for SD card. When it came to full hardware tests
-            the AMS1117 blew up which forced me to move onto arduino uno,at the time i wasnt aware you musnt have PSU plugged along with USB
-            which was most likely the cause of regulator failure. As time progressed the USB comm turned out to not be that difficult 
-            to implement. And by the time i was testing the uno ,the replacement mega came and i tried once more thinking it was wiring issue.
-            It resulted in same failure so development and bug fixes continued on UNO. I defitnetly overesitmated complexity of this project,
-            the Gcode turned out to be more complex than i thought, while i did figure it out, machine doesnt fully support it.
-            The linear motion also became apparent its not as simple ,initally i did attempt on my own to time out the motors but using high level
-            abstractions for this doesnt work so in end i was forced to go for accel stepper library. During dev of linear movements i explored
-            Bresenham's line algorithm  though i didnt implement it in end.
-          </p>
-                <p class="siteTxt">
-                  Machine itended use was to be used in PCB milling for projects.
-                </p>
-
-
-           <h2 class="site-title-orange">Current state  </h2>
-           <p class="siteTxt">
-            While machine still remains unused, there are plans to upgrade software with more efficient circle algorithm, as well
-            as next gcommand detection .The pc controler could even have visual feedback and predicted paths debugging.
-             Also plan is that after software upgrades to return back to arduino mega so it wouldnt require
-            PC to operate . Another hardware upgrades could include new T8 rod for Z axis and anti backlash nuts . 
-            Aditonally switch to the 24V PSU would probably solve issue with overheating wires while buck converter would power 
-            ramps and steppers.
-            To allow USB communication there is idea to pull voltage of PSU diode on ramps to drive mosfet ,
-             so if PSU is plugged Vcc on USB gets blocked. In meantime i managed to repair both arduino megas damaged in project.
-  
-           </p>
-
-       
-
-
+    
   </div>
 
 </body>
+
+
+
+
 
 </html>

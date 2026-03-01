@@ -131,7 +131,7 @@
         }
     },
    "2DCAD": {
-        "folderName": "CncCadCam",
+        "folderName": "2DCAD",
         "filters": {
             "Category": [
                 "Coding"

@@ -26,7 +26,7 @@ body {
    flex-direction: row;
    width: 100%;
    margin-top: 50px;
- 
+
    align-items: center;
    justify-content: center;
    background-image: linear-gradient(to right, rgb(29, 33, 43), rgb(21, 26, 39));
@@ -40,7 +40,7 @@ body {
    flex-direction: row;
    padding: 0;
    margin: 0;
-
+transition: 100ms;
    justify-content: center;
 }
 
@@ -55,7 +55,7 @@ body {
 
    text-decoration: none;
    color: rgb(100, 173, 79);
-   font-size: 2.1svb;
+   font-size: 1rem;
    font-weight: bolder;
  
 

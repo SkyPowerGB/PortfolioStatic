@@ -1,19 +1,36 @@
-/**------SITE TEMPLATE PRESET STYLES--CONTENT PRESETS-----------------------------------------------------------------------------------------------------------------**/
+
+/*================================================================================*/
+/*=======PREDEFINED  TXT COLORS===================================================*/
+
+.orange{
+   color:orange;
+}
+.blue {
+  color: rgb(98, 213, 255);
+  
+}
+.red{
+   color:red;
+}
+
+/*================================================================================*/
+
+
 .siteTxt{
    margin-top: 30px;
    margin-bottom: 30px;
    
    line-height: 30px;
    text-indent: 2%;
-   font-size: x-large;
+   font-size: 1.5rem;
    word-spacing: 1%;
    line-height: 1.5;   
    
-}
-.site-title-orange{
+ }
+ .site-title-orange{
    color: orange;
-}
-.title-orange{
+ }
+ .title-orange{
      color: orange;
 }
 .title-secondary{
@@ -22,14 +39,15 @@
 .title-main{
     text-align: center;
       margin-top: 10vh;
-      font-size: 4rem;
-       color: rgb(255, 179, 0);
+      font-size: 4rem;     
+      
+      color: rgb(255, 179, 0);
         margin-bottom: 0;
 }
 .title-main-bottom{
    text-align: center;
    margin-bottom: 10vh;
-    font-size: 4rem;
+    font-size:3.5rem;
     margin-top: 0;
 }
 
@@ -101,11 +119,14 @@ width: 100%;
 
 @media (max-width: 800px) {
 
+   .siteTxt{
+      font-size: 0.8rem;
 
+   }
    /**-CONTENT PRESETS-------------------------------*/
    .content-page-container{
-   padding-left: 10%;
-   padding-right: 10%;
+   padding-left:4% ;
+   padding-right: 4%;
    }
    .content-img-left{
       margin: 0;
@@ -122,5 +143,22 @@ width: 100%;
       flex-direction: column;
       align-items: center;
    }
+
+.title-main{
+    text-align: center;
+      margin-top: 10vh;
+      font-size: 2rem;     
+      
+      color: rgb(255, 179, 0);
+        margin-bottom: 0;
 }
+.title-main-bottom{
+   text-align: center;
+   margin-bottom: 10vh;
+    font-size:1.5rem;
+    margin-top: 0;
+}
+   
+
 /*----------------------------------------------*/
+}

@@ -1,0 +1,158 @@
+/*=====================================================================*/
+/*==================== Article Template CSS ===========================*/
+
+/*---------------- COLORS ----------------*/
+:root {
+    --color-red: red;
+    --color-green: #07a507;
+    --color-blue: #62d5ff;
+    --color-orange: orange;
+    --color-gray: gray;
+}
+
+/*---------------- TEXT -----------------*/
+.tpl-title-main {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+}
+
+.tpl-title-secondary {
+    font-size: 1.4rem;
+    margin: 0.8rem 0;
+}
+
+.tpl-title-tertiary {
+    font-size: 1.2rem;
+    margin: 0.6rem 0;
+}
+
+.tpl-txt {
+    margin: 1rem 0;
+    line-height: 1.5;
+    text-indent: 2ch;
+    font-size: 0.95rem;
+    word-spacing: 0.1rem;
+}
+
+.tpl-txt-red { color: var(--color-red); }
+.tpl-txt-green { color: var(--color-green); }
+.tpl-txt-blue { color: var(--color-blue); }
+.tpl-txt-orange { color: var(--color-orange); }
+
+.tpl-txt-left { text-align: left; }
+.tpl-txt-center { text-align: center; }
+.tpl-txt-right { text-align: right; }
+
+/*---------------- CONTAINERS ----------------*/
+.tpl-content-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*---------------- IMAGES ----------------*/
+.tpl-img-container {
+ 
+    margin: 1rem 0;
+}
+
+
+.tpl-img-left,
+.tpl-img-right,
+.tpl-img-center {
+    display: block;
+    width: 100%;
+   
+}
+
+.tpl-img-shadow {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.tpl-img-description {
+    font-size: 0.8rem;
+    color: var(--color-gray);
+   
+    margin-top: 0.3rem;
+}
+
+/*---------------- LISTS ----------------*/
+.tpl-ul-decimal {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.tpl-ul-arrow {
+    list-style: none;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.tpl-ul-arrow li::before {
+    content: "➤ ";
+    color: var(--color-orange);
+    margin-right: 0.5rem;
+}
+
+/* FLOATS*/
+.tpl-float-left{
+    float:left;
+}
+.tpl-float-right{
+    float:right;
+}
+
+/*---------------- MARGINS ----------------*/
+.tpl-margin-t0 { margin-top: 0; }
+.tpl-margin-t5 { margin-top: 2rem; }
+.tpl-margin-t10 { margin-top: 4rem; }
+.tpl-margin-t20{margin-top: rem;}
+
+.tpl-margin-b0 { margin-bottom: 0; }
+.tpl-margin-b5 { margin-bottom: 2rem; }
+.tpl-margin-b10 { margin-bottom: 4rem; }
+.tpl-margin-b20 { margin-bottom: 8rem; }
+.tpl-margin-b40 { margin-bottom: 16rem; }
+
+.tpl-margin-l5 { margin-left: 2rem; }
+.tpl-margin-l10 { margin-left: 4rem; }
+.tpl-margin-l20 {margin-left: 8rem;}
+
+.tpl-margin-r5 { margin-right: 1rem; }
+.tpl-margin-r10 { margin-right: 2rem; }
+
+.tpl-margin-0{margin:0;}
+.tpl-margin-5 { margin: 1rem; }
+.tpl-margin-10 { margin: 2rem; }
+
+/*---------------- WIDTHS ----------------*/
+.tpl-w25 { width: 25%; }
+.tpl-w50 { width: 50%; }
+.tpl-w80 { width: 80%; }
+.tpl-w100 { width: 100%; }
+
+/*---------------- RESPONSIVE DESIGN ----------------*/
+@media (min-width: 800px) {
+
+       .tpl-img-left {
+        float: left;
+   
+        width: 50%;
+    }
+
+    .tpl-img-right {
+        float: right;
+         width: 50%;
+       
+    }
+
+    .tpl-img-center {
+       
+        margin:auto;
+        float: none;
+         width: 50%;
+    }
+
+
+}

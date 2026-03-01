@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template</title>
+  <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
+    <link href="../../../Assets/Css/templateV3.css" rel="stylesheet">
+    <link href="./assets/css.css" rel="stylesheet">
+</head>
+
+<body>
+  <script type="module" src="../../../Assets/Js/PageJs/Content.js"> </script>
+
+
+
+  <div id="navbarContainer" class="navbar-container">
+
+  </div>
+
+
+
+  <div class="tpl-content-container">
+    <h1 class="tpl-txt-orange tpl-title-main tpl-txt-center"> Digital circuit sim</h1>
+    <p class="tpl-txt">In this project goal was to make an static site with dynamic js content loading.
+      The site consists of few main sites which then use scripts to acces content loading script,
+      an content loading script has internal functions to acces the ConfigJson. ConfigJson contains many
+      settings including data about max indexes for content folders as well as the metadata json atributes
+
+      
+    <div class="tpl-img-container  tpl-img-right    ">
+      
+        <img class=" tpl-w100 tpl-img-shadow" src="thumbnail.jpg">
+
+        <p class="tpl-img-description">Img: right</p>
+     
+    </div>
+
+
+</p>
+
+    <p class="tpl-txt">
+      The content is located in contentGroup folders and uses indexed folders.
+      It is also used for dynamic loading of navbar and filters, since they too require configJson they have
+      their events setup in same module. Alongside the content loader the component builder module has job of making
+      components that will be included to the webpage . Each page has its own group or induvidual script that acces the
+      content loader
+
+
+
+    and provide necesary data such as relative position to src folder or folder category index. The config json
+    has also data abaout classes or ids of components to insert or use .
+    </p>
+
+    <h1 class="tpl-title-secondary tpl-txt-blue">Project Details</h1>
+ 
+
+    <p class="tpl-txt">
+      There is also slight optimization to only fetch json once and store it for later use though its only done in js
+      variable
+      not local storage. In the future there is plan to improve this website by making configJson more organized and
+      also store fetched
+
+      data on local storage for performance optimization by removing need for fetching same data.
+      <span class="tpl-txt-blue">final significant optimisation was using adress maps to avoid fecthin many times during filtering instead fetch 
+        only ones that passed filters</span>
+    </p>
+
+
+    <ul class="tpl-ul-arrow tpl-txt-blue">
+      <li>test1</li>
+      <li>test2</li>
+      <li>test3</li>
+    </ul>
+
+
+    
+
+  </div>
+
+</body>
+
+
+
+
+
+</html>

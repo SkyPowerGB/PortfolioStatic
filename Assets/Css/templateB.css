@@ -1,0 +1,257 @@
+/*================================================================================*/
+/*==========PREDEFINED CONTAINERS - MOBILE FIRST==================================*/
+
+.article-content-container {
+
+    width: 92%;
+    margin: 0 auto;
+
+
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.width-50 {
+    width: 100%;
+}
+
+/* mobile full width */
+.width-25 {
+    width: 100%;
+}
+
+.margin-top-5 {
+    margin-top: 5vh;
+}
+
+.margin-top-10 {
+    margin-top: 10vh;
+}
+
+
+
+.margin-bottom-5 {
+    margin-bottom: 5vh;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10vh;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20vh;
+}
+
+.margin-bottom-40 {
+    margin-bottom: 40vh;
+}
+
+.margin-left-5 {
+    margin-left: 5vw;
+}
+
+.margin-left-10 {
+    margin-left: 10vw;
+}
+
+.margin-right-5 {
+    margin-right: 5vw;
+}
+
+.margin-right-10 {
+    margin-right: 10vw;
+}
+
+
+/*=======PREDEFINED TXT COLORS===================================================*/
+.orange {
+    color: orange;
+}
+
+.blue {
+    color: rgb(98, 213, 255);
+}
+
+.red {
+    color: red;
+}
+
+
+
+.green {
+    color: rgb(7, 165, 7);
+}
+
+/*=======PREDEFINED TXT SIZES====================================================*/
+.title-main {
+
+
+    font-size: 1.5rem;
+
+    margin-bottom: 0;
+}
+
+.title-secondary {
+    font-size: 1.4rem;
+}
+
+.title-thrid {
+    font-size: 1.2rem;
+}
+
+.txt-left {
+    text-align: left;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+
+.txt {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-indent: 2%;
+    font-size: 0.9rem;
+    word-spacing: 1%;
+}
+
+
+
+.ul-decimal {
+    list-style-type: decimal;
+    margin-left: 20px;
+}
+
+.ul-arrow {
+    list-style-type: "➤";
+    margin-left: 20px;
+}
+
+.ul-arrow li {
+    margin-bottom: 10px;
+}
+
+
+
+
+
+/*=======IMAGES==================================================================*/
+.img-container {
+    text-align: center;
+}
+
+.img-description {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: gray;
+}
+
+
+
+
+.img-100 {
+    width: 100%;
+}
+
+.img-50 {
+    width: 100%;
+}
+
+.img-25 {
+    width: 100%;
+}
+
+.img-right,
+.img-left,
+.img-center,
+.img-wrap {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
+
+.img-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+
+.img-left,
+.img-right,
+.img-center {
+    width: 100%;
+    margin: 0 auto;
+    float: none;
+}
+
+
+
+
+
+
+/*=======SITE LIST==============================================================*/
+.site-list {
+    font-size: 1rem;
+}
+
+.site-list li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
+
+/*================================================================================*/
+/*===========================DESKTOP OVERRIDES====================================*/
+@media(min-width: 801px) {
+
+    .article-content-container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .width-50 {
+        width: 50%;
+    }
+
+    .width-25 {
+        width: 25%;
+    }
+
+    .title-main {
+        font-size: 4rem;
+    }
+
+    .title-main-bottom {
+        font-size: 3.5rem;
+    }
+
+    .title-secondary {
+        font-size: 2.5rem;
+    }
+
+    .txt,
+    .siteTxt {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+
+
+
+    .img-50 {
+        width: 50%;
+    }
+
+    .img-25 {
+        width: 25%;
+    }
+}
