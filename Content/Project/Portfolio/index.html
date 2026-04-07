@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Template</title>
+  <title>Portfolio</title>
   <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
+  <link href="../../../Assets/Css/templateV3.css" rel="stylesheet">
+  <link href="./assets/css.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,46 +21,66 @@
 
 
 
-  <div class="content-page-container">
-    <h1 class="content-page-title-center"> My own Porfolio !</h1>
-    <p class="siteTxt">In this project goal was to make an static site with dynamic js content loading.
-      The site consists of few main sites which then use scripts to acces content loading script,
-      an content loading script has internal functions to acces the ConfigJson. ConfigJson contains many
-      settings including data about max indexes for content folders as well as the metadata json atributes
+  <div class="tpl-content-container">
+    <h1 class="tpl-txt-orange tpl-title-main tpl-txt-center"> Portfolio</h1>
 
-  
+        <h1 class="tpl-title-secondary tpl-txt-blue">Project goals</h1>
 
-    <p class="siteTxt">
-      The content is located in contentGroup folders and uses indexed folders.
-      It is also used for dynamic loading of navbar and filters, since they too require configJson. They have
-      their events setup in same module. Alongside the content loader the component builder module has job of making
-      components that will be included to the webpage . Each page has its own group or induvidual script that acces the
-      content loader
+    <p class="tpl-txt">
+
+       Goal of this project was to make my own site where ill post stuff i do.
+       Site was aimed to be static for security reasons .
+
+    </p>
+   <p class="tpl-txt">
+    Js would be used to dynamically load content from content folders.
+    It would also make optional link to the content folder if there is more detailed page about project
+   </p>
+
+   <p class="tpl-txt">
+    While content is loaded it would pass trough filters for an easier shearch.
+   </p>
+
+    <h1 class="tpl-title-secondary tpl-txt-blue">Implementation details</h1>
 
 
-
-    and provide necesary data such as relative position to src folder or folder category index. The config json
-    has also data abaout classes or ids of components to insert or use .
+    <p class="tpl-txt">
+      Site consists of main sites that act as an frame for data.
+     
     </p>
 
+<p class="tpl-txt">
+  JS loads content using adressMaps "registers". Each content site has its own set of registers.
+  Register holds list of folders and corresponding filters. 
+</p>
+<p class="tpl-txt">
+  JS fetches register and goes trough list .If item passes filters its folder is used along aditional data from  configJson
+  to fetch its metadata.
+</p>
+
+<p class="tpl-txt">
+  Metadata contains: Title, summary (which can optionally be in txt file), date, hasSite flag, optional thumbnail.
+  This data is used for building article card and if hassite is true it will add link to folder. Since folder is expected to have
+  index.html card is connected to page.
+</p>
+
+<p class="tpl-txt">
+  Reason for registers is to reduce number of fetching if filters dont match.
+</p>
+<p class="tpl-txt">
+  Other stuff handeled by JS are filters and navbar which are also generated.
+  ConfigJson is used to  define them.
+</p>
 
 
-    <p class="siteTxt">
-      There is also slight optimization to only fetch json once and store it for later use though its only done in js
-      variable
-      not local storage. In the future there is plan to improve this website by making configJson more organized and
-      also store fetched
 
-      data on local storage for performance optimization by removing need for fetching same data.
-    </p>
-
-
-
-
- 
 
   </div>
 
 </body>
+
+
+
+
 
 </html>

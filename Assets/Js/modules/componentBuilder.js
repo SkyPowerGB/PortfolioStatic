@@ -115,7 +115,8 @@ function createSummaryItem(metadata, configJson, compFolderRelPth, summaryTxt) {
 
 
 
-
+/**FILTERS V1 SETUP-------------------------------------------------------- */
+//** THIS WILL BE DEPRECATED */
 
 
 // create full filter list 
@@ -208,6 +209,22 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
 
     return containerDiv;
 }
+
+/**FILTERS V2 SETUP-------------------------------------------------------- */
+//** TODO: MAKE THEM */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**

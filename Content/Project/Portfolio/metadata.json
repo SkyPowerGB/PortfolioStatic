@@ -1,15 +1,6 @@
 {
-
-
-    "title":"Portfolio",
-   
-    "dateUpload":"30.11.2025",
-
-     "hasSite":false,
-  
-
-    
-
-  "summaryFile":"summary.txt"
-
+  "title": "Portfolio",
+  "dateUpload": "30.11.2025",
+  "hasSite": true,
+  "summaryFile": "summary.txt"
 }

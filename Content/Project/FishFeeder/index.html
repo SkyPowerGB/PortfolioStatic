@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fish feeder </title>
+  <title>Fish Feeder</title>
   <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
-  <link href="../../../Assets/Css/template.css" rel="stylesheet">
-  
+  <link href="../../../Assets/Css/templateV3.css" rel="stylesheet">
+  <link href="./assets/css.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,53 +21,79 @@
 
 
 
-  <div class="content-page-container">
-       <h1 class="content-page-title-center"> Fish feeder </h1>
-    <p class="siteTxt">Its just simple contraption i put i made in limited time of 3 days to feed
-      fishes while we re gone for 5 days ,
-   </p>
-      
-  
+  <div class="tpl-content-container">
+    <h1 class="tpl-txt-orange tpl-title-main tpl-txt-center  tpl-margin-t5  "> Fish feeding contraption</h1>
+
+    <h1 class="tpl-txt-blue tpl-title-secondary  tpl-margin-t5 "> Project overview</h1>
+    <p class="tpl-txt">
+
+      This is tiny project i volontary built to solve problem of needing to feed fishes while on vacation.
+      It consist of 5 slot revolving platform filled with food. Its driven by stepper motor using belt drive while
+      LDR + LED checks position. Arduino controls stepper once 24h till next slot is aligned with output hole .
+
+
+    </p>
+
+    <div class="tpl-txt-right-p tpl-float-right-p tpl-w50-p">
+
+      <img class="tpl-w100 " src="./thumbnail.jpg">
+    </div>
    
 
+    <h1 class="tpl-txt-blue tpl-title-secondary tpl-txt-left tpl-margin-t10"> Implementation timeline</h1>
 
-    <p class="siteTxt">
-     Initial idea was to do it arduinoless. It simply makes no sense to use microcontroller for such simple task.
-     Idea was to have DC motor drive the wheel while the LDR + LED will detect position . Motor would been driven by
-     transistor which gets controlled trough LDR  and resistor voltage divider and should trun off when the hole is  detected.
-     Next thing would be  to generate 24H pulse or use smart home wifi controlled relay. 
+
+    <p class="tpl-txt">
+    Project idea was suggested by father. My intial idea was to go arduinoless where DC motor would drive the belt.
+    Dc motor would be driven by BJT transistor while BJT base would take input from voltage divider. Voltage divider
+    would consist of LDR and resistor which thanks to led would detect position. This circuit  would be run by 24H pulse
+    which overrides it and motor stops once hole is reached. 
+    </p>
+        <p class="tpl-txt">
+         There was one big issue : deadline of few days and lack of materials.  I only had DC motors from DVD burners but thoose run at high RPM,
+      which would probably cause the circuit to miss the detection as momentum would carry the revolver beyond stopping position. With no time to try
+      desiging gearbox i decided to try and use large belt drive approach with aditonaly using flat base to introduce friction. Due to not knowing 
+      ammount of food i oversized cups.
+        </p>
+
+    <p class="tpl-txt">
+      After first prototype model was done , testing revealed the contraption span way too fast and that there was 0 
+      friction as plates didnt even touch. 
+      This meant designing new base and going to an stepper drive with arduino.
+    </p>
+
+    <p class="tpl-txt">
+    After few failed designs (while reusing top revolver) i got to first working version. The stepper did skip steps so
+    circuit still needed to rely on feedback. Finaly it was only matter of writing code that will run stepper every 24h to next
+    slot.  
+    </p>
+
+    <p class="tpl-txt">
+      The contraption proved itself to work quite well and we swiftly made crude enclosure. In end
+      device failed at its task , USB plug in adapter had play in it and arduino ended up being without supply. 
+      We couldnt knew it due to fixed enclosure .
+    </p>
+
+    
+    <h1 class="tpl-txt-blue tpl-title-secondary tpl-margin-t10">Future</h1>
+
+    <p class="tpl-txt">
+      Since this project ended up being total waste of material and only partial succes.
+      There are plans to make V2 of this project with more efficent design .
     </p>
 
 
 
-    <p class="siteTxt">
-      Design was made in an oversized manner  , i didnt had low rpm dc motor. Issue is if motor has too much momentum detection probably 
-      wont work or motor might just skip hole. Without time to desing proper gearbox and lack of percision on 3d printer, i went for belt
-      drive plus aditionally hoped to use some friction to slow it down. End result was that wheel still span way too quick and it had 0 
-      friction so idea was srachted and imidetly went to reuse parts of desing while this time have stepper drive it. The rubber belt had 
-      issues of skiping steps so the LDR LED circuit part proved to be useful and working as itended. 
-    </p>
 
-
-<p class="siteTxt">
-   After writing arduino code that moves stepper every 24h to next hole, the contraption was fueled and left. In end after returning home, we
-   found out that USB plug into which it was plugged had play inside and device lost power.
-</p>
-
-<h1>
-  Conclusion
-</h1>
-
-<p class="siteTxt">
-In end project was boht succes and failure. Overall model desing is terrible and oversized so whole contraption was scrapped . 
-Some time in near future i might make redesign and this time with proper care and even including arduinoless circuit.
-Issue with old desing is bad interface as well as too big plus wasting ton of plastics for no reason.
-</p>
-
+  
 
 
   </div>
 
 </body>
+
+
+
+
 
 </html>

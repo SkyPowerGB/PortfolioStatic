@@ -13,35 +13,54 @@
 /*---------------- TEXT -----------------*/
 .tpl-title-main {
     font-size: 1.6rem;
-    margin: 1rem 0;
+
 }
 
 .tpl-title-secondary {
     font-size: 1.4rem;
-    margin: 0.8rem 0;
+
 }
 
 .tpl-title-tertiary {
     font-size: 1.2rem;
-    margin: 0.6rem 0;
+
 }
 
 .tpl-txt {
-    margin: 1rem 0;
+
     line-height: 1.5;
-    text-indent: 2ch;
+    text-indent: 1ch;
     font-size: 0.95rem;
     word-spacing: 0.1rem;
 }
 
-.tpl-txt-red { color: var(--color-red); }
-.tpl-txt-green { color: var(--color-green); }
-.tpl-txt-blue { color: var(--color-blue); }
-.tpl-txt-orange { color: var(--color-orange); }
+.tpl-txt-red {
+    color: var(--color-red);
+}
 
-.tpl-txt-left { text-align: left; }
-.tpl-txt-center { text-align: center; }
-.tpl-txt-right { text-align: right; }
+.tpl-txt-green {
+    color: var(--color-green);
+}
+
+.tpl-txt-blue {
+    color: var(--color-blue);
+}
+
+.tpl-txt-orange {
+    color: var(--color-orange);
+}
+
+.tpl-txt-left {
+    text-align: left;
+}
+
+.tpl-txt-center {
+    text-align: center;
+}
+
+.tpl-txt-right {
+    text-align: right;
+}
 
 /*---------------- CONTAINERS ----------------*/
 .tpl-content-container {
@@ -52,7 +71,7 @@
 
 /*---------------- IMAGES ----------------*/
 .tpl-img-container {
- 
+
     margin: 1rem 0;
 }
 
@@ -62,17 +81,17 @@
 .tpl-img-center {
     display: block;
     width: 100%;
-   
+
 }
 
 .tpl-img-shadow {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tpl-img-description {
     font-size: 0.8rem;
     color: var(--color-gray);
-   
+
     margin-top: 0.3rem;
 }
 
@@ -96,63 +115,248 @@
 }
 
 /* FLOATS*/
-.tpl-float-left{
-    float:left;
+.tpl-float-left {
+    float: left;
 }
-.tpl-float-right{
-    float:right;
+
+.tpl-float-right {
+    float: right;
 }
 
 /*---------------- MARGINS ----------------*/
-.tpl-margin-t0 { margin-top: 0; }
-.tpl-margin-t5 { margin-top: 2rem; }
-.tpl-margin-t10 { margin-top: 4rem; }
-.tpl-margin-t20{margin-top: rem;}
+.tpl-margin-t0 {
+    margin-top: 0;
+}
 
-.tpl-margin-b0 { margin-bottom: 0; }
-.tpl-margin-b5 { margin-bottom: 2rem; }
-.tpl-margin-b10 { margin-bottom: 4rem; }
-.tpl-margin-b20 { margin-bottom: 8rem; }
-.tpl-margin-b40 { margin-bottom: 16rem; }
+.tpl-margin-t5 {
+    margin-top: 2rem;
+}
 
-.tpl-margin-l5 { margin-left: 2rem; }
-.tpl-margin-l10 { margin-left: 4rem; }
-.tpl-margin-l20 {margin-left: 8rem;}
+.tpl-margin-t10 {
+    margin-top: 4rem;
+}
 
-.tpl-margin-r5 { margin-right: 1rem; }
-.tpl-margin-r10 { margin-right: 2rem; }
+.tpl-margin-t20 {
+    margin-top: rem;
+}
 
-.tpl-margin-0{margin:0;}
-.tpl-margin-5 { margin: 1rem; }
-.tpl-margin-10 { margin: 2rem; }
+.tpl-margin-b0 {
+    margin-bottom: 0;
+}
 
-/*---------------- WIDTHS ----------------*/
-.tpl-w25 { width: 25%; }
-.tpl-w50 { width: 50%; }
-.tpl-w80 { width: 80%; }
-.tpl-w100 { width: 100%; }
+.tpl-margin-b1 {
+    margin-bottom: 1rem;
+}
 
+.tpl-margin-b5 {
+    margin-bottom: 2rem;
+}
+
+.tpl-margin-b10 {
+    margin-bottom: 4rem;
+}
+
+.tpl-margin-b20 {
+    margin-bottom: 8rem;
+}
+
+.tpl-margin-b40 {
+    margin-bottom: 16rem;
+}
+
+.tpl-margin-l5 {
+    margin-left: 2rem;
+}
+
+.tpl-margin-l10 {
+    margin-left: 4rem;
+}
+
+.tpl-margin-l20 {
+    margin-left: 8rem;
+}
+
+.tpl-margin-r5 {
+    margin-right: 1rem;
+}
+
+.tpl-margin-r10 {
+    margin-right: 2rem;
+}
+
+.tpl-margin-0 {
+    margin: 0;
+}
+
+.tpl-margin-5 {
+    margin: 1rem;
+}
+
+.tpl-margin-10 {
+    margin: 2rem;
+}
+
+/*----------------universal WIDTHS ----------------*/
+.tpl-w25 {
+    width: 25%;
+}
+
+.tpl-w50 {
+    width: 50%;
+}
+
+.tpl-w80 {
+    width: 80%;
+}
+
+.tpl-w100 {
+    width: 100%;
+}
+
+
+/*=============================================================================================================================*/
+/*-==========SPECIAL  STUFF=  ================================================================================================*/
+
+/*---------width Smatphone only----------------------------------------------*/
+.tpl-w25-s {
+    width: 25%;
+}
+
+.tpl-w50-s {
+    width: 50%;
+}
+
+.tpl-w80-s {
+    width: 80%;
+}
+
+.tpl-w100-s {
+    width: 100%;
+}
+
+/*---------txt align smartphone only----------------------------------------------*/
+
+.tpl-txt-left-s {
+    text-align: left;
+}
+.tpl-txt-center-s {
+    text-align: center;
+}
+.tpl-txt-right-s {
+    text-align: right;
+}
+
+/*--------GALLERY----------------------------------------------*/
+.tpl-gallery-full-w{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/*=============================================================================================================================*/
+/*=============================================================================================================================*/
 /*---------------- RESPONSIVE DESIGN ----------------*/
 @media (min-width: 800px) {
 
-       .tpl-img-left {
+
+    /*-------------IMAGE-----------------------------*/
+    .tpl-img-left {
         float: left;
-   
+
         width: 50%;
     }
 
     .tpl-img-right {
         float: right;
-         width: 50%;
-       
+        width: 50%;
+
     }
 
     .tpl-img-center {
-       
-        margin:auto;
+
+        margin: auto;
         float: none;
-         width: 50%;
+        width: 50%;
     }
+
+
+    /*---------------- TEXT -----------------*/
+    .tpl-title-main {
+        font-size: 2.4rem;
+
+    }
+
+    .tpl-title-secondary {
+        font-size: 1.9rem;
+
+    }
+
+    .tpl-title-tertiary {
+        font-size: 1.6rem;
+
+    }
+
+    .tpl-txt {
+
+        line-height: 1.5;
+        text-indent: 1ch;
+        font-size: 1.2rem;
+        word-spacing: 0.1rem;
+    }
+
+
+/*=============================================================================================================================*/
+/*=============================================================================================================================*/
+
+    /*-==========SPECIAL  STUFF=============================*/
+
+    /* pc widths */
+    .tpl-w25-p {
+        width: 25%;
+    }
+
+    .tpl-w50-p {
+        width: 50%;
+    }
+
+    .tpl-w80-p {
+        width: 80%;
+    }
+
+    .tpl-w100-p {
+        width: 100%;
+    }
+
+
+    /*---------txt align pc only----------------------------------------------*/
+
+
+    .tpl-txt-left-p {
+        text-align: left;
+    }
+
+    .tpl-txt-center-p {
+        text-align: center;
+    }
+
+    .tpl-txt-right-p {
+        text-align: right;
+    }
+
+
+    /* FLOATS*/
+    .tpl-float-left-p {
+        float: left;
+    }
+
+    .tpl-float-right-p {
+        float: right;
+    }
+
+
+
+
+
+
 
 
 }

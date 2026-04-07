@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Template</title>
+  <title>Digital CircuitSim</title>
   <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
-  <link href="../../../Assets/Css/template.css" rel="stylesheet">
+  <link href="../../../Assets/Css/templateV3.css" rel="stylesheet">
+  <link href="./assets/css.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,45 +21,63 @@
 
 
 
-  <div class="content-page-container">
-    <h1 class="content-page-title-center"> Java Digital simulator</h1>
-    <p class="siteTxt">This is a litle project i decided to build while in university. I already was comftorable with
-      Swing and Digital
-      electronics are just logic so why not.
+  <div class="tpl-content-container">
+    <h1 class="tpl-txt-orange tpl-title-main tpl-txt-center tpl-margin-t10"> Digital circuit sim</h1>
 
+
+    <h1 class="tpl-txt-blue tpl-title-secondary tpl-txt-left tpl-margin-t10 "> Project overwiev</h1>
+
+    <p class="tpl-txt ">This is an small project idea i built during university.
+      Goal was to make digital electronics simulator.The project manages to simulate logic gates accuratly. Only
+      limitations
+      are lack of editing tools,wires are just drawn and limited workspace.
 
     </p>
 
-    <p class="siteTxt">
-    Originaly it was motivated by idea that i might do some digital electronics with redstone in minecraft in hope of building
-    8 bit computer .But designing scheme is hard and not interactive so i kinda got idea to build a simulator in java.
+
+
+         <h1 class="tpl-txt-blue tpl-title-secondary  tpl-margin-t5 tpl-txt-center"> DEMO</h1>
+        <div class="tpl-img-container  tpl-img-center   ">
+
+          <video class="tpl-w100" controls src="./assets/video/SimulatorDemo.mp4"></vido>
+
+        </div>
+
+
+
+
+    <h1 class="tpl-txt-blue tpl-title-secondary tpl-txt-left tpl-margin-t10 "> How simulation works</h1>
+
+    <p class="tpl-txt "> Once user has placed components it hits Run button. During run swing worker runs infinite loop
+      which calls wire updates. All components are child of digitalComponentClass which has update method.
+      Update method takes input values and sets output value and each component has its own ovrrride.
+       On other hand wires take output values and put them on
+      input. Aditonally
+      wires call component update esentaily propagating states trough circuit.
+    </p>
+
+<h1 class="tpl-txt-blue tpl-title-secondary tpl-txt-left tpl-margin-t10 ">More implementation details</h1>
+    <p class="tpl-txt ">
+      Componets consist of visual and simulator part. In reality its just JPanel with texture while pins are Jbuttons.
+      Pins use txt file to setup pin positions within component. Components are made on click of component button using
+      component factory (generics and reflection applied) . Code is even designed for quick adition of new components
+      trough use of texture file + component class name enum + dig component inheritance.
+
     </p>
 
 
-    <p class="siteTxt">
-    The project works on realtivly simple logic, all components use same class digital component which contains method update . 
-    Update method updates output pins based on input ones while wires transfer state from input to output. Project
-    builds the buttons for components dinamycally. It also creates components dinamycally as whole app was designed to feature easy addition of new
-    components. Component in reality is just an JPanel with texture while pins are buttons, to offset btns and match texture tehre is text file which stores
-    pins offsets.
-    </p>
-    
-<p class="siteTxt">
-  Overall while the project manages to correctly simulate the circuits in swing worker ,
-   the movement and wires proved to be difficult to implement
-  so in end project was abandoned. The movement is only most limiting factor in this 
-  program as it limits workspace and no abiltiy to move compoents.
-Later as i attemped to develop CNC CAM CAD ,i kinda wanted to implement same UI in simulator. .or possibly start from begging since 
-code structure could use improvements but so far it didnt happen.
-</p>
 
 
 
 
-    
+
 
   </div>
 
 </body>
+
+
+
+
 
 </html>

@@ -13,20 +13,7 @@
             ]
         }
     },
-    "PowerLevelTracker": {
-        "folderName": "PowerLevelTracker",
-        "filters": {
-            "Category": [
-                "Coding"
-            ],
-            "Lang": [
-                "Java"
-            ],
-            "Type": [
-                "Personal"
-            ]
-        }
-    },
+    
     "FishFeeder": {
         "folderName": "FishFeeder",
         "filters": {

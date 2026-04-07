@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Template</title>
   <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
-    <link href="../../../Assets/Css/template.css" rel="stylesheet">
+    <link href="../../../Assets/Css/templateV3.css" rel="stylesheet">
+    <link href="./assets/css.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,39 +21,47 @@
 
 
 
-  <div class="content-page-container">
-    <h1 class="content-page-title-center"> MC world manager V1</h1>
-    <p class="siteTxt">An comprehensive minecraft world manager and backuper program made in win forms.
-      It allows for quick and easy world managment and backuping all while having aditonal features like
-      NBT editing.   
+  <div class="tpl-content-container">
+    <h1 class="tpl-txt-orange tpl-title-main tpl-txt-center tpl-margin-t10"> Minecraft world manager</h1>
+
+        <h1 class="tpl-title-secondary tpl-txt-blue tpl-margin-t5">Project motivation</h1>
+    <p class="tpl-txt">
+      Minecraft Saves folder is located inside appData roaming folder. Issue is that its vournable to
+      main drive failure while manual backuping is a bit annyoing and can be easily forgotten.
+</p>
+
+    <p class="tpl-txt">
+      For that reason i decided to make this program that will do just that ,make backuping quick but i also included some other features.
     </p>
 
-    <h1 class="content-page-title-center"> Features </h1>
-    <p class="siteTxt">
-      The user can move worlds between backup folder and saves folder within appdata/roaming/.minecraft/saves. 
-      In order for user to move worlds to backup they must be market which is just json metadata file to contain data about world.
-      Metadata stores world and minecraft version ,description and copy date.
-      Another option app adds is QBackup which is one click backup of saves folder. 
-      And finnally user can edit world name, edit some NBT file points like game mode and difficuluty, add "branch" which is just folder and 
-      meant for grouping same name worlds with different versions . 
+    <h1 class="tpl-title-secondary tpl-txt-blue">Project Overview</h1>
+ 
+
+    <p class="tpl-txt">
+       mcWorldManager is program that allows user to manage his minecraft worlds.
+       It allows for storage of worlds on other drive , the backups must include metadata file for aditional info.
+       It also has QuickBackup option for one click backup of saves folder,stored seperatly using datestamp.
+      Quick backup has automatic interval run mode.
     </p>
 
-      <h1 class="content-page-title-center"> Problems it aimed to solve </h1>
-    <p class="siteTxt">
-      Problem it was meant to solve is to make making backups quicker and easier. Minecraft worlds are located in appdata roaming 
-      so just locating folder is slow, plus its located on C drive which poses risk if main drive gives up and you can loose your
-      worlds.Making this one click makes it simpler.
-      Aditonal features needed were cases of same name world : 
-      which is the latest?, which world (in older versions) is what mc version?
-      Aditonal notes ? . Another potential feature was conflicting worlds with uncertain date or bracnhed out ones .
-       And finnaly as nice add on
-      editing NBT in case of failed HC worlds to turn them into creative/survival, missed allow cheats  and similar problems.
-    </p>
-          <h1 class="content-page-title-center">Conclusion</h1>
-    <p class="siteText">
-       Program does the job reasonably well albeit UI is not fully polished and some features werent fully built like shearching. 
-       It can be used to manage worlds . It can change some world data as needed. It can make backups quick or loading stuff from backups.
-       
+        <p class="tpl-txt">
+          Aditional features include grouping (branching), for same named worlds.
+          Another great feature is ability to edit NBT data so you can change world name within game as well
+          as edit game mode and cheats. This is quite useful for editing worlds stuck in survival or hardcore. (Example:
+          i had old world i made in survival but plaied in creative, this constatnly caused issue of needing run lan mode to allow cheats).
+          And lastly app has ability to minimise into tray.
+        </p>
+
+  <h1 class="tpl-title-secondary tpl-txt-blue">Libraries</h1>
+    
+  
+    <p class="tpl-txt">
+     Program uses .NetFramework for file/folder operations.
+</p>
+    <p class="tpl-txt">
+     The newtonsoftJson is used for persistent storage and metadatafiles.
+         <p class="tpl-txt">
+     Fnbt is used for NBT files. NBT stands for "Named Binary Tag" which is binary file tree structured format used by minecraft.
     </p>
 
   </div>

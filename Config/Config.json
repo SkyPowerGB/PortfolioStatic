@@ -130,6 +130,7 @@
             }
         }
     },
+    
     "filtersSetup": {
         "filtersDataSetup": {
             "FilterGroups": {
@@ -156,6 +157,8 @@
         }
 
     },
+   
+
     "navbarSetup": {
         "navBarDivContElementID": "navbarContainer",
         "NavBarItems__Reference": [
