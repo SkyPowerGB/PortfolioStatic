@@ -38,10 +38,10 @@ async function getFolderCatIndex(srcFolderRel) {
 */
 
 //  *ConfigJson- > SitePosIndex:  ["src: 0","pages: 1", "contentSub: 2"....], 
-async function loadNavbar(srcFolderRel, sitePosIndex,currsiteName) {
-    
+async function loadNavbar(srcFolderRel, sitePosIndex, currsiteName) {
+
     let configJson = await loaderHelper.getConfigJsonV2(srcFolderRel);
-    navbarHelper.loadNavbar(configJson, sitePosIndex,currsiteName);
+    navbarHelper.loadNavbar(configJson, sitePosIndex, currsiteName);
 
 }
 
@@ -85,9 +85,9 @@ async function loadMetadataInto(srcFoldRel, folderCat, folderNm, targetId) {
 
     let targetComponent = document.getElementById(targetId);
 
-    
+
     targetComponent.appendChild(component);
- 
+
 
 }
 
@@ -132,7 +132,7 @@ async function loadXlatestSummariesIntoV2(summaryNum, folderCat, targetId, srcFo
 
 
 
-                await  loadMetadataInto(srcFoldRel, folderCat, folderName, targetId);
+                await loadMetadataInto(srcFoldRel, folderCat, folderName, targetId);
                 loadedSummaries++;
 
 
@@ -187,7 +187,7 @@ async function loadPaginatedSummaries(srcFoldRel, pageNum, folderCat, targetId) 
 
 
             for (let key of adressMapKeys) {
-                
+
                 let adress = adressMap[key];
                 if (loadedItems.has(adress.folderName)) continue;
 
@@ -209,12 +209,9 @@ async function loadPaginatedSummaries(srcFoldRel, pageNum, folderCat, targetId) 
 }
 
 
-
-
-
 export {
 
-
+    loadMetadataInto,
     loadPageFilters,
     getFolderCatIndex,
     loadNavbar,

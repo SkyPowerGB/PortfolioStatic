@@ -1,7 +1,7 @@
 import * as contentLoader from "./modules/contentLoader.js";
 
 
-
+let featuredList=["ArduinoCNC","SPDay","Portfolio"]
 
 document.addEventListener("DOMContentLoaded",
 main
@@ -229,6 +229,12 @@ if(!skipIntro){
   await contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");
   blogLoaded=true;
   }
+
+ async function loadFeatured(projectNameList,containerId){
+  for(let i=0;i<projectNameList.length;i++){
+    await contentLoader.loadMetadataInto("",projectNameList[i],"Project",containerId);
+  }
+ } 
 
 function load(){
   if(!projectsLoaded){

@@ -52,6 +52,8 @@
     "filtersOpenBtnTxt": "Show Filters",
     "filtersCloseBtnTxt": "Hide Filters",
     "_Comment: ": "this will be used later for  improved filters / content setup to be just like navbar",
+
+    
     "contentSetup": {
         "adressMapSetup": {
             "noDataIndex": 0,
