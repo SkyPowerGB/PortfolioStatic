@@ -253,6 +253,7 @@ async function cmdWrite(targetElement, txt) {
 }
 
 function terminate(terminalEle) {
+
   terminalEle.classList.add('terminating');
   setTimeout(() => {
     // 3. Tek sada fizički uklanjamo element iz DOM-a
