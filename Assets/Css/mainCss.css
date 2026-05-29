@@ -4,7 +4,11 @@ body {
    color: rgb(226, 226, 226);
 }
 
-#TriBarBtn {
+
+
+/*===============================================================================================================================*/
+ /*==================NAVBAR ========================*/
+  #TriBarBtn {
    display: flex;
    flex-direction: column;
    font-size: xx-large;
@@ -13,14 +17,11 @@ body {
    margin-left: 10px;
    margin-right: 10px;
    display: none;
-}
-
-#TriBarBtn:hover {
+  }
+  #TriBarBtn:hover {
    cursor: pointer;
-}
-
-
-.navbar-container {
+  }
+  .navbar-container {
    max-height: 70px;
    display: flex;
    flex-direction: row;
@@ -31,9 +32,8 @@ body {
    justify-content: center;
    background-image: linear-gradient(to right, rgb(29, 33, 43), rgb(21, 26, 39));
    border-bottom: 5px solid rgb(24, 43, 62);
-}
-
-.navbar {
+  }
+  .navbar {
    width: 80%;
    list-style-type: none;
    display: flex;
@@ -42,10 +42,8 @@ body {
    margin: 0;
 transition: 100ms;
    justify-content: center;
-}
-
-
-.nav-item a {
+  }
+  .nav-item a {
    display: flex;
    align-items: center;
       padding: 10px;
@@ -61,79 +59,194 @@ transition: 100ms;
 
 
 
-}
+  }
   .nav-item-current a{
       color: rgb(162, 91, 255);
-   }
-.nav-item a:hover{
+  }
+  .nav-item a:hover{
    color: rgb(4, 255, 0);
    
-}
-
-
-.nav-item:first-child {
+  }
+  .nav-item:first-child {
    margin-right: auto;
 
+  }
+
+/*===============================================================================================================================*/
+
+
+ /*==================CONTENT ========================*/
+
+
+.container {
+   
+   width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.homepage-more-link{
+   width: 100%;
+}
+.homepage-more-link a{
+   display: block;
+   text-align: center;
+   color: rgb(49, 144, 12);
+   width: 35%;
+   text-decoration: none;
+   font-size: 1rem;
+   background-color: #0a1421;
+
+
+   padding: 15px;
+   border-top-right-radius: 30px;
+   border-bottom-right-radius: 30px;
+  
+ 
+
+   
+
+box-shadow:   0 4px 12px rgba(0, 0, 0, 0.7);
+}
+.homepage-more-link a:hover{
+   color:rgb(43, 255, 0);
+      background-color: #030c25;
+      box-shadow:   0 4px 12px rgba(81, 81, 81, 0.7);
+}
+.spg-updates-title{
+   width: 100%;
+   margin-top: 50px;
+  padding-left: 50px;
+   color:rgb(250, 152, 40);
+      font-size: large;
+ 
+        border-top:2px solid rgb(80, 80, 80);
+}
+.spg-updates-title h1{
+   padding-left: 50px;
 }
 
+
+
+/*===============================================================================================================================*/
+ /*=================    INTRO  ========================*/
 
 
 .home-main-header {
-   display: grid;
-   grid-template-columns: 2;
-   grid-template-rows: 1;
-   margin: 20px;
+   width: 100%;
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: center;
+  align-items: center;
 }
 
+.terminal-window{
+  
+
+   max-width: 70%;
+     aspect-ratio: 2/1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+    border: 2px solid rgb(50, 55, 68);
+     margin-top:50px;
+    
+}
+.treminal-window-header {
+    min-height: 30px;
+    background-color: rgb(220, 220, 220); /* Svjetlija siva za header */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px; /* Umjesto margine na svakom elementu */
+    gap: 8px;        /* Ovo ti automatski ravna razmak između gumba */
+}
+.terminal-head-txt{
+   margin-left: 1px;
+   font-weight: bolder;
+   margin-right: 10px;
+   color: rgb(61, 61, 61);
+}
+
+.btn-window-control {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: sans-serif;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+#cmdTerminalPowerBtn { background-color: #ff5f56; } /* Crveni X */
+.terminal-minimise { background-color: #969696; }    /* Žuti - */
+.terminal-maximise { background-color: #919191; }
+
+
 .home-personal-intro {
-   margin-top: 40px;
-   border: 2px solid rgb(50, 55, 68);
-   max-width: 40%;
-   border-radius: 15px;
+   
+  
+   
+   
    padding-left: 5%;
    padding-right: 5%;
    padding-top: 40px;
    padding-bottom: 40px;
    aspect-ratio: 2/1;
-   background-color:#0a1421;
-  box-shadow:   0 4px 12px rgba(234, 234, 234, 0.7);
+   background-color:#170a21;
+   min-height: 400px; /* Dovoljno da vidiš cijeli boot */
+    max-height: 70vh;  /* Da ne "pojede" cijeli ekran na mobitelu */
+    overflow-y: auto;  /* Ovo dodaje scroll samo kad sadržaj premaši prozor */
+    padding: 20px;
 
     
     
 font-family: 'Fira Code', 'Source Code Pro', monospace;
 }
 
+
+
 #cmdTerminalPowerBtn{
-      width: 35px;
+   
       position: relative;
       font-weight:bolder;
-      font-size: x-large;
-      left: 45%;
-      bottom:50px;
-        min-height: 20px;
-        border-radius: 10px;
-        padding: 2px;
+      font-size: medium;
+ 
+      
+        
+       
+    
    display: flex;
    flex-direction: row;
-align-items: center;
-justify-content: center;
+ align-items: center;
+ justify-content: center;
 
 
-   color: rgb(176, 14, 14);
+  color: rgb(255, 255, 255);
    font-weight: bolder;
    text-align: center;
   
-background-color:  rgb(38, 124, 30);
 
    
 
 }
 #cmdTerminalPowerBtn:hover{
-   background-color: rgb(0, 255, 60);
+  
    cursor: pointer;
 }
 
+.terminating {
+    opacity: 0;
+    transform: scale(0.95); /* Opcionalno: malo ga smanji dok nestaje */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
+/*===============================================================================================================================*/
+ /*================== CMD TXT ========================*/
 /**-----------------------------------*/
 .intro-cmd{
   color:rgb(77, 255, 0);
@@ -162,21 +275,24 @@ color:rgb(255, 216, 41);
    color: rgb(109, 255, 238) ;
 }
 
+.cmd-cursor {
+    border-right: 10px solid rgb(0, 255, 0);
+    max-width: 4px;
+    margin-left: 5px;
+    animation-name: cursor;                
+    animation-duration: 1.3s;                
+    animation-iteration-count: infinite;   
+}
 
-/**-----------------------------------*/
-
-.container {
-   
-   width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
+@keyframes cursor {
+    0%, 100% { opacity: 1; }            
+    50% { opacity: 0; }                    
 }
 
 
-
-
-
+/*===============================================================================================================================*/
+/**-----------------------------------*/
+/*===============================================================================================================================*/
 
 footer {
    margin-top: 50px;
@@ -184,6 +300,8 @@ footer {
    background-color: rgb(37, 37, 37);
 }
 
+/*===============================================================================================================================*/
+/*===============================================================================================================================*/
 
 /*/----------------THE LIST SITES-------------------------------------------------------------------*/
 
@@ -223,10 +341,11 @@ text-align: center;
 
 
 /*--FILTERING SIDEBAR--*/
+
+
 #filtersCloseBtnId{
    display: none;
 }
-
 .filter-container {
    min-width: 200px;
   max-width: 350px;
@@ -240,11 +359,9 @@ text-align: center;
    background-color: #1f242a;
  
 }
-
 .filter-header {
    margin-right: auto;
 }
-
 .filter-item {
    width: 100%;
    margin: 10px;
@@ -267,9 +384,6 @@ text-align: center;
   cursor: pointer;
   position: relative;
 }
-
-
-
 .filters-list {
    width: 100%;
    padding-top: 190px;
@@ -292,12 +406,10 @@ font-size: large;
 text-transform: uppercase;
 
 }
-
 .filters-group label{
 
    cursor: pointer;
 }
-
 .filter-unchecked{
      color: rgb(52, 120, 5);
 }
@@ -349,178 +461,26 @@ color: white;
 }
 
 
-.homepage-more-link{
-   width: 100%;
-}
-.homepage-more-link a{
-   display: block;
-   text-align: center;
-   color: rgb(49, 144, 12);
-   width: 35%;
-   text-decoration: none;
-   font-size: 1rem;
-   background-color: #0a1421;
+/*===============================================================================================================================*/
+/*===============================================================================================================================*/
 
-
-   padding: 15px;
-   border-top-right-radius: 30px;
-   border-bottom-right-radius: 30px;
-  
- 
-
-   
-
-box-shadow:   0 4px 12px rgba(0, 0, 0, 0.7);
-  }
-.homepage-more-link a:hover{
-   color:rgb(43, 255, 0);
-      background-color: #030c25;
-      box-shadow:   0 4px 12px rgba(81, 81, 81, 0.7);
-}
-
-
-
-
-.spg-updates-title{
-   width: 100%;
-   margin-top: 50px;
-   
-   color:rgb(250, 152, 40);
-      font-size: xx-large;
-        border-top:2px solid rgb(80, 80, 80);
-}
-.spg-updates-title h1{
-   padding-left: 50px;
-}
-
-
-
-.cmd-cursor {
-    border-right: 10px solid rgb(0, 255, 0);
-    max-width: 4px;
-    margin-left: 5px;
-    animation-name: cursor;                
-    animation-duration: 1.3s;                
-    animation-iteration-count: infinite;   
-}
-
-@keyframes cursor {
-    0%, 100% { opacity: 1; }            
-    50% { opacity: 0; }                    
-}
 
 @media (max-width: 800px) {
+
+
+
    body{
       overflow-x: hidden;
    }
 
-   /**-CONTENT PRESETS-------------------------------*/
-   .content-page-container{
-   padding-left: 10%;
-   padding-right: 10%;
-   }
-   .content-img-left{
-      margin: 0;
-      float:none;
-      width: 100%;
-        flex-direction: column;
-      align-items: center;
-   }
-   .content-img-right{
-      margin: 0;
-      float: none;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-   }
-   /*---CMD----------------------*/
-  
-   .intro-cmd{
-  
-   font-size: 12px;
-   line-height: 2.5;
-   
-}
-.intro-res-h1-blue{
-   font-size: large;
-  
-}
-
-.intro-res-h2-orange{
-      font-size: 15px;
-
-}
-.intro-res{
-        font-size: 12px;
-
-}
-.intro-txt-red{
-     font-size: 12px;
-}
-
-.intro-res-blue{
-   
-   color: rgb(109, 255, 238) ;
-}
-
-.spg-updates-title{
-padding: 0;
-   display: flex;
-   flex-direction: column;
-  align-items: center;
-  font-size: large;
 
 
-  
-}
+
+/*================================================================================================================================*/
 
 
-   /* NAVBAR --------------------------------------------------*/
 
-   
-.navbar-container {
-   max-height: unset;
-}
-   #TriBarBtn {
-
-      height:70px;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: auto;
- 
-    
-      
-   }
-
-   .navbar {
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-   }
-
-   .nav-item {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      display: none;
-   }
-
-   .nav-item a {
-      width: 100%;
-      text-align: center;
-   }
-
-   .navbar :first-child {
-      width: auto;
-      display: flex;
-   }
- 
-   /*-*------------------------------------*/
-   .home-main-header {
+  .home-main-header {
         margin: 0;
       width: 100%;
       display: flex;
@@ -531,39 +491,178 @@ padding: 0;
       margin-top: 50px;
     
     
+  }
+  .home-main-header {
+   width: 100%;
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: center;
+  align-items: center;
+  }
+  .terminal-window{
+  
+
+   max-width: 80%;
+     aspect-ratio: 2/1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+    border: 2px solid rgb(50, 55, 68);
+     margin-top:50px;
+    
+  }
+  .treminal-window-header {
+    min-height: 30px;
+    background-color: rgb(220, 220, 220); /* Svjetlija siva za header */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px; /* Umjesto margine na svakom elementu */
+    gap: 8px;        /* Ovo ti automatski ravna razmak između gumba */
+  }
+  .terminal-head-txt{
+   margin-left: 1px;
+   font-weight: bolder;
+   margin-right: 10px;
+   color: rgb(61, 61, 61);
+  }
+  .btn-window-control {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: sans-serif;
+    border: 1px solid rgba(0,0,0,0.2);
+  }
+  .home-personal-intro {
+   
+  
+   
+   
+   padding-left: 5%;
+   padding-right: 5%;
+   padding-top: 40px;
+   padding-bottom: 40px;
+   aspect-ratio: 2/1;
+   background-color:#170a21;
+   min-height: 400px; /* Dovoljno da vidiš cijeli boot */
+    max-height: 70vh;  /* Da ne "pojede" cijeli ekran na mobitelu */
+    overflow-y: auto;  /* Ovo dodaje scroll samo kad sadržaj premaši prozor */
+    padding: 20px;
+
+    
+    
+font-family: 'Fira Code', 'Source Code Pro', monospace;
+  }
+
+
+ /*================================================================================================================================*/
+
+
+
+
+ /*===============================================================================================================================*/
+   /* NAVBAR --------------------------------------------------*/
+
+   
+   .navbar-container {
+   max-height: unset;
+   }
+   #TriBarBtn {
+
+      height:70px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: auto;
+ 
+    
+      
+   }
+   .navbar {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+   }
+   .nav-item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      display: none;
+   }
+   .nav-item a {
+      width: 100%;
+      text-align: center;
+   }
+   .navbar :first-child {
+      width: auto;
+      display: flex;
    }
 
-   .home-personal-intro {
-      width: 80%;
-      border: 2px solid rgb(50, 55, 68);
-      max-width: 100%;
-      border-radius: 15px;
-      padding-left: 5%;
-      padding-right: 5%;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      aspect-ratio: unset;
-      font-size: small;
-    min-height: 30vh;
+
+/*===============================================================================================================================*/
+ /*================== CMD TXT ========================*/
+
+   /*---CMD----------------------*/
+  
+    .intro-cmd{
+  
+   font-size: 12px;
+   line-height: 2.5;
+   
+    }
+    .intro-res-h1-blue{
+   font-size: large;
+  
+    }
+    .intro-res-h2-orange{
+      font-size: 15px;
+
+    }
+    .intro-res{
+        font-size: 12px;
+
+    }
+    .intro-txt-red{
+     font-size: 12px;
+    }
+    .intro-res-blue{
+   
+   color: rgb(109, 255, 238) ;
+    }
+   .spg-updates-title{
+padding: 0;
+   display: flex;
+   flex-direction: column;
+  align-items: center;
+  font-size: large;
 
 
-   }
+  
+    }
 
-#cmdTerminalPowerBtn{
-  left:35%;
-   bottom: 50px;
-}
+/*===============================================================================================================================*/
 
 
 
 
 
-   /*-------   FILTERS AND CONTENT ON CONTENT SITE----------------------------------------*/
+/*-------   FILTERS AND CONTENT ON CONTENT SITE----------------------------------------*/
+
+
+
+
    .filters-list{
       display: none;
       
    }
-
    .containter-row-sidebar {
       
       width: 100%;
@@ -573,7 +672,6 @@ padding: 0;
    margin: 0;
    padding: 0;
    }
-
    .filter-container{
       width: 100%;
       max-width: none;
@@ -585,9 +683,7 @@ padding: 0;
       border:none;
      
    }
-
-  
-#filtersCloseBtnId{
+   #filtersCloseBtnId{
    width: 100%;
   display: block;
   text-align: center;
@@ -596,29 +692,30 @@ padding: 0;
   padding-bottom: 5px;
 
 
-}
-
-.filters-list-shown{
+   }
+   .filters-list-shown{
    width: 100%;
    display: flex;
    flex-wrap: wrap;
   
-}
-
-
-.site-header{
+   }
+   .site-header{
 width: 100%;
    margin: 0;
      margin-top: 20px; 
 
-}
-
-.filters-group{
+   }
+   .filters-group{
    margin: 10px;
-}
-
-.filter-item{
+   }
+   .filter-item{
    margin: 0;
    padding: 0;
-}
+   }
+
+
+
+
+
+
 }

@@ -1,15 +1,15 @@
 import * as contentLoader from "./modules/contentLoader.js";
 
 
-let featuredList=["ArduinoCNC","SPDay","Portfolio"]
+let featuredList = ["ArduinoCNC", "SPDay", "Portfolio"]
 
 document.addEventListener("DOMContentLoaded",
-main
+  main
 );
 
-let skipIntro=false;
-let projectsLoaded=false;
-let blogLoaded=false;
+let skipIntro = false;
+let projectsLoaded = false;
+let blogLoaded = false;
 
 
 
@@ -20,7 +20,7 @@ let introTxt = {
   },
   line1: {
     1: ["bruno ", "intro-res-h1-blue", false],
-    2:["--bachelor-cs-eng","intro-res-h2-orange",false]
+    2: ["--bachelor-cs-eng", "intro-res-h2-orange", false]
   },
   line2: {
     1: ["> grep -r 'about_me' ./identity", "intro-cmd", true]
@@ -35,114 +35,160 @@ let introTxt = {
     1: ["Logic: 50% | Programming:40% | Electronics: 10%  ", "intro-res", false],
   },
   line6: {
-    1: ["> ls ./Content/Project | head -n 2", "intro-cmd", true,loadSummariesProject]
+    1: ["> ls ./Content/Project | head -n 2", "intro-cmd", true, loadSummariesProject]
   },
   line7: {
     1: ["loading_cards... [OK]", "intro-res-blue", false]
   },
-  line8:{
-    1:[">ls ./Content/Blog | head -n 3","intro-cmd",true,loadSummariesBlog]
+  line8: {
+    1: [">ls ./Content/Blog | head -n 3", "intro-cmd", true, loadSummariesBlog]
   },
-    line9: {
-    1: ["loading_cards... [OK]", "intro-res-blue", false,undefined]
+  line9: {
+    1: ["loading_cards... [OK]", "intro-res-blue", false, undefined]
   },
 
-     line10: {
-    1: [">_", "intro-cmd", false,undefined],
-    2:["","intro-cmd",true,undefined,true]
+  line10: {
+    1: ["> application will terminate in ... ", "intro-cmd", false, undefined],
+    2: ["4s", "intro-cmd", false, terminate, true, 3]
   },
+
 
 };
-function skipIntroProcedure(){
-  
-  cmdPowerBtn.style.backgroundColor ="#490704";
-  cmdPowerBtn.style.color="gray";
-  
-if(!skipIntro){
-  load();
+function skipIntroProcedure() {
+
+
+
+  if (!skipIntro) {
+    load();
+  }
+  skipIntro = true;
+
 }
-  skipIntro=true;
-  
-}
+
+
+
+
 
 let cmdPowerBtn;
-function main(){
- cmdPowerBtn=document.getElementById("cmdTerminalPowerBtn");
-
- cmdPowerBtn.addEventListener("click",()=>{
-  skipIntroProcedure();
- });
-
- 
-document.addEventListener("keydown",()=>{
+function main() {
 
 
-skipIntroProcedure();
-})
+
+  cmdPowerBtn = document.getElementById("cmdTerminalPowerBtn");
+
+  cmdPowerBtn.addEventListener("click", () => {
+    skipIntroProcedure();
+  });
 
 
-loadLatestNewsB();
+  document.addEventListener("keydown", () => {
 
 
+    skipIntroProcedure();
+  })
+
+
+  loadLatestNewsB();
+
+}
+function loadLatestNewsB() {
+
+  contentLoader.loadNavbar("", 0, "Home");
+
+  if (!skipIntro) {
+    cmdActive("cmdTerminal");
+  }
 
 
 
 }
 
-async function cmdActive(elementId){
+async function cmdActive(elementId) {
 
- 
 
-  let terminal=document.getElementById(elementId);
-  let introKeys=Object.keys(introTxt);
 
-  for(let i=0;i<introKeys.length;i++){
- 
-    let line=document.createElement("div");
+  let terminal = document.getElementById(elementId);
+  let introKeys = Object.keys(introTxt);
+
+  for (let i = 0; i < introKeys.length; i++) {
+
+    let line = document.createElement("div");
     line.classList.add("terminal-line");
     terminal.append(line);
-    let lineKey=introKeys[i];
-    let lineData=introTxt[lineKey];
-    await readLineData(lineData,terminal);
+    let lineKey = introKeys[i];
+    let lineData = introTxt[lineKey];
+    await readLineData(lineData, terminal);
 
-    
+
 
   }
-  skipIntro=true;
+  skipIntro = true;
 
 }
 
-async function readLineData(lineData,terminalEle){
 
-  let lineKeys=Object.keys(lineData);
-  for(let i=0;i<lineKeys.length;i++){
-    let lineSegKey=lineKeys[i];
-    let lineSegment=lineData[lineSegKey];
 
-    let userInput=lineSegment[2]
-    let cssClass=lineSegment[1];
-    let txt=lineSegment[0];
-    let lnFunction=lineSegment[3];
-    let empty=lineSegment[4];
+async function readLineData(lineData, terminalEle) {
 
-    let segment=document.createElement("span");
+  let lineKeys = Object.keys(lineData);
+  for (let i = 0; i < lineKeys.length; i++) {
+    let lineSegKey = lineKeys[i];
+    let lineSegment = lineData[lineSegKey];
+
+
+
+    let txt = lineSegment[0];
+    let cssClass = lineSegment[1];
+    let userInput = lineSegment[2]
+    let lnFunction = lineSegment[3];
+    let empty = lineSegment[4];
+    let count = lineSegment[5];
+
+    let segment = document.createElement("span");
     segment.classList.add(cssClass);
     terminalEle.append(segment);
 
-    
-    if(userInput){
+    if (count != null) {
+      let i = count;
 
-      await  userWrite(segment,txt,empty);
-      if(lnFunction!=undefined && !skipIntro){
-       await lnFunction();
-      }
 
-    } else{
-      
-    await  cmdWrite(segment,txt);
+       if(skipIntro){
+          lnFunction(document.getElementById("terminalWindow"));
+        }
+
+      const interval = setInterval(() => {
+        segment.innerHTML = i + 's';
+
+
+        terminalEle.removeChild(segment);
+        terminalEle.append(segment);
+
+        if (i <= 0) {
+          clearInterval(interval);
+          lnFunction(document.getElementById("terminalWindow"));
+        }
+       
+        i--;
+      }, 1000);
     }
 
 
+
+    if (userInput) {
+
+      await userWrite(segment, txt, empty);
+
+
+    } else {
+
+      await cmdWrite(segment, txt);
+    }
+
+    if (lnFunction != undefined && !skipIntro) {
+      if (count == undefined) {
+        await lnFunction();
+      }
+    }
 
   }
 
@@ -150,100 +196,100 @@ async function readLineData(lineData,terminalEle){
 
 }
 
-async function userWrite(targetElement, txt,empty) {
- 
-    const cursor = document.createElement("span");
-    cursor.classList.add("cmd-cursor");
-    cursor.innerText = "  ";
-    
-  
-    targetElement.textContent = ""; 
-    targetElement.appendChild(cursor); 
-    
-    // Start typing the text
+async function userWrite(targetElement, txt, empty) {
 
-    if(skipIntro){
-   
-      writeAll(targetElement,txt,empty,cursor);
-    }else{
+  const cursor = document.createElement("span");
+  cursor.classList.add("cmd-cursor");
+  cursor.innerText = "  ";
+
+
+  targetElement.textContent = "";
+  targetElement.appendChild(cursor);
+
+  // Start typing the text
+
+  if (skipIntro) {
+
+    writeAll(targetElement, txt, empty, cursor);
+  } else {
     for (let char of txt) {
-  
-        targetElement.removeChild(cursor);
-        targetElement.textContent += char;
 
-        targetElement.appendChild(cursor); 
-        
-        if(!skipIntro){
-        
-        await  new Promise(r => setTimeout(r, 40 + Math.random() * 140));
-        }
+      targetElement.removeChild(cursor);
+      targetElement.textContent += char;
+
+      targetElement.appendChild(cursor);
+
+      if (!skipIntro) {
+
+        await new Promise(r => setTimeout(r, 40 + Math.random() * 140));
+      }
     }
-  
 
-    if(empty==undefined||empty==false){
- cursor.remove(); }
 
-}
-}
+    if (empty == undefined || empty == false) {
+      cursor.remove();
+    }
 
-function writeAll(targetElement,txt,empty,cursor){
-
-targetElement.textContent = txt;
-
-    targetElement.appendChild(cursor); 
- if(empty==undefined||empty==false){
-
- cursor.remove(); }
+  }
 }
 
-async function cmdWrite(targetElement,txt){
+function writeAll(targetElement, txt, empty, cursor) {
+
   targetElement.textContent = txt;
 
-if(!skipIntro){
-  await   new Promise(r => setTimeout(r, 50+ Math.random() * 40)) ; 
+  targetElement.appendChild(cursor);
+  if (empty == undefined || empty == false) {
+
+    cursor.remove();
+  }
 }
+
+async function cmdWrite(targetElement, txt) {
+  targetElement.textContent = txt;
+
+  if (!skipIntro) {
+    await new Promise(r => setTimeout(r, 50 + Math.random() * 40));
+  }
 }
 
-
-  
-  function loadLatestNewsB(){
-
-    contentLoader.loadNavbar("",0,"Home");
-    
-    if(!skipIntro){
-    cmdActive("cmdTerminal");
+function terminate(terminalEle) {
+  terminalEle.classList.add('terminating');
+  setTimeout(() => {
+    // 3. Tek sada fizički uklanjamo element iz DOM-a
+    if (terminalEle.parentNode) {
+      terminalEle.parentNode.removeChild(terminalEle);
     }
+    console.log("Terminal je ugašen.");
+  }, 500);
+}
+
+async function loadSummariesProject() {
+  if (projectsLoaded) { return; }
+  await contentLoader.loadXlatestSummariesIntoV2(2, "Project", "LatestProjectsFeedHolder", "");
+  projectsLoaded = true;
+}
+async function loadSummariesBlog() {
+  if (blogLoaded) { return; }
+  await contentLoader.loadXlatestSummariesIntoV2(3, "Blog", "LatestUpdatesFeedHolder", "");
+  blogLoaded = true;
+}
+
+async function loadFeatured(projectNameList, containerId) {
+  for (let i = 0; i < projectNameList.length; i++) {
+    await contentLoader.loadMetadataInto("", projectNameList[i], "Project", containerId);
+  }
+}
 
 
- 
-      
-  }
 
-  async function loadSummariesProject(){
-    if(projectsLoaded){return;}
- await contentLoader.loadXlatestSummariesIntoV2(2,"Project","LatestProjectsFeedHolder","");
- projectsLoaded=true;
+function load() {
+  if (!projectsLoaded) {
+    contentLoader.loadXlatestSummariesIntoV2(2, "Project", "LatestProjectsFeedHolder", "");
   }
-  async function loadSummariesBlog(){
-    if(blogLoaded){return;}
-  await contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");
-  blogLoaded=true;
+  if (!blogLoaded) {
+    contentLoader.loadXlatestSummariesIntoV2(3, "Blog", "LatestUpdatesFeedHolder", "");
   }
-
- async function loadFeatured(projectNameList,containerId){
-  for(let i=0;i<projectNameList.length;i++){
-    await contentLoader.loadMetadataInto("",projectNameList[i],"Project",containerId);
-  }
- } 
-
-function load(){
-  if(!projectsLoaded){
-   contentLoader.loadXlatestSummariesIntoV2(2,"Project","LatestProjectsFeedHolder","");
-  }
-   if(!blogLoaded){
-  contentLoader.loadXlatestSummariesIntoV2(3,"Blog","LatestUpdatesFeedHolder","");
-   }
-}  
+}
 
 
 
