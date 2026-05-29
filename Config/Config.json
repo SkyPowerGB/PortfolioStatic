@@ -178,6 +178,11 @@
                 "src",
                 ""
             ],
+              "About_me":[
+                "About me",
+                "pages",
+                "About_me.html"
+            ],
             "Projects": [
                 "Projects",
                 "pages",
@@ -193,6 +198,7 @@
                 "pages",
                 "Blog.html"
             ]
+          
         },
         "NavBarCurrFolder__Reference": [
             "FOLDER N: src-0",

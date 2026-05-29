@@ -11,7 +11,10 @@
     align-items: center;
 }
 
-
+.latest-projects-feed{
+margin-left: auto;
+margin-right: auto;
+}
 
 
 /* --- Glavni kontejner kartice (Grid) --- */

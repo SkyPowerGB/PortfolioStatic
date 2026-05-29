@@ -94,44 +94,44 @@ body {
 }
 
 .homepage-more-link {
+   
    width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   background-color:#242129;
 }
 
 .homepage-more-link a {
    display: block;
    text-align: center;
    color: rgb(49, 144, 12);
-   width: 35%;
+   width: 50%;
    text-decoration: none;
-   font-size: 1rem;
-   background-color: #0a1421;
+   font-size: 1.2rem;
+  
 
 
    padding: 15px;
-   border-top-right-radius: 30px;
-   border-bottom-right-radius: 30px;
+ 
 
-
-
-
-
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+   
 }
 
 .homepage-more-link a:hover {
    color: rgb(43, 255, 0);
-   background-color: #030c25;
-   box-shadow: 0 4px 12px rgba(81, 81, 81, 0.7);
+   background-color: #1b0325;
+  
 }
+
 
 .spg-updates-title {
    width: 100%;
    margin-top: 50px;
-   padding-left: 50px;
+background-color:#242129;
    color: rgb(250, 152, 40);
-   font-size: large;
+text-align: center;
 
-   border-top: 2px solid rgb(80, 80, 80);
 }
 
 .spg-updates-title h1 {
@@ -174,8 +174,8 @@ body {
 
 .treminal-window-header {
    width: 100%;
-
-   max-height: 30px;
+    padding: 0;
+   max-height: 35px;
    background-color: rgb(220, 220, 220);
    display: flex;
    flex-direction: column;
@@ -185,13 +185,19 @@ body {
 }
 
 .terminal-header-content {
+   width: 100%;;
+   height: 35px;
    display: flex;
+   padding: 0;
+   
    flex-direction: row;
    align-items: center;
+   justify-content: end;
    margin-left: 10px;
    
 
 }
+
 
 
 .terminal-content {
@@ -230,32 +236,35 @@ body {
    margin-right: 10px;
    color: rgb(61, 61, 61);
 }
-
+.terminal-user{
+   margin-right: auto;
+   margin-left:auto ;
+}
 .btn-window-control {
-   width: 20px;
-   height: 20px;
-   border-radius: 50%;
+   width: 40px;
+   height:35px;
+   color: rgb(49, 49, 49);
+   font-weight: bolder;
    display: flex;
    align-items: center;
    justify-content: center;
-   font-size: 12px;
+   font-size: 16px;
    cursor: pointer;
    font-family: sans-serif;
-   border: 1px solid rgba(0, 0, 0, 0.2);
+
 }
 
 #cmdTerminalPowerBtn {
-   background-color: #ff5f56;
+   background-color: rgb(220, 220, 220);
 }
 
-/* Crveni X */
 .terminal-minimise {
-   background-color: #969696;
+background-color: rgb(220, 220, 220);
 }
 
-/* Žuti - */
+
 .terminal-maximise {
-   background-color: #919191;
+background-color: rgb(220, 220, 220);
 }
 
 
@@ -265,28 +274,24 @@ body {
    font-weight: bolder;
    font-size: medium;
 
-
-
-
-
    display: flex;
    flex-direction: row;
    align-items: center;
    justify-content: center;
 
 
-   color: rgb(255, 255, 255);
+
    font-weight: bolder;
    text-align: center;
-
-
 
 
 }
 
 #cmdTerminalPowerBtn:hover {
+  
 
    cursor: pointer;
+   background-color: red
 }
 
 .terminating {
@@ -537,7 +542,7 @@ footer {
 /*===============================================================================================================================*/
 
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
 
 
 
@@ -585,18 +590,7 @@ footer {
       color: rgb(61, 61, 61);
    }
 
-   .btn-window-control {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      cursor: pointer;
-      font-family: sans-serif;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-   }
+
    .terminal-head-txt{
       font-size: small;
    }
