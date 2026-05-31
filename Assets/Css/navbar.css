@@ -1,0 +1,185 @@
+body {
+   margin: 0;
+   background-color: rgb(38, 40, 46);
+   color: rgb(226, 226, 226);
+}
+
+
+
+/*===============================================================================================================================*/
+/*==================NAVBAR ========================*/
+#TriBarBtn {
+   display: flex;
+   flex-direction: column;
+   font-size: xx-large;
+   text-align: center;
+   justify-content: center;
+   margin-left: 10px;
+   margin-right: 10px;
+   display: none;
+}
+
+#TriBarBtn:hover {
+   cursor: pointer;
+}
+
+.navbar-container {
+   max-height: 70px;
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   margin-top: 50px;
+
+   align-items: center;
+   justify-content: center;
+   background-image: linear-gradient(to right, rgb(29, 33, 43), rgb(21, 26, 39));
+   border-bottom: 5px solid rgb(24, 43, 62);
+}
+
+.navbar {
+   width: 80%;
+   list-style-type: none;
+   display: flex;
+   flex-direction: row;
+   padding: 0;
+   margin: 0;
+   transition: 100ms;
+   justify-content: center;
+}
+
+.nav-item a {
+   display: flex;
+   align-items: center;
+   padding: 10px;
+   margin-left: 5px;
+   margin-right: 5px;
+   height: 50px;
+
+   text-decoration: none;
+   color: rgb(100, 173, 79);
+   font-size: 1rem;
+   font-weight: bolder;
+
+
+
+
+}
+
+.nav-item-current a {
+   color: rgb(162, 91, 255);
+}
+
+.nav-item a:hover {
+   color: rgb(4, 255, 0);
+
+}
+
+.nav-item:first-child {
+   margin-right: auto;
+
+}
+
+/*===============================================================================================================================*/
+/*==================Footer ========================*/
+.container-row-ft{
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+  justify-content: center;
+
+   
+}
+.container-column-ft
+{
+   
+   min-height: 50px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+}
+.action-link{
+      display: flex;
+      flex-direction: column;
+   
+   align-items: center;
+   padding: 10px;
+   margin-left: 5px;
+   margin-right: 5px;
+   height: 50px;
+
+   text-decoration: none;
+   color: rgb(100, 173, 79);
+   font-size: 1.5rem;
+   font-weight: bolder;
+}
+
+.action-link:hover{
+color: rgb(55, 255, 0);
+}
+
+footer {
+   margin-top: 50px;
+   min-height: 150px;
+   background-color: rgb(37, 37, 37);
+}
+
+/*===============================================================================================================================*/
+@media (max-width: 1100px) {
+
+
+
+   body {
+      overflow-x: hidden;
+   }
+
+
+
+   /*===============================================================================================================================*/
+   /* NAVBAR --------------------------------------------------*/
+
+
+   .navbar-container {
+      max-height: unset;
+   }
+
+   #TriBarBtn {
+
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: auto;
+
+
+
+   }
+
+   .navbar {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+   }
+
+   .nav-item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      display: none;
+   }
+
+   .nav-item a {
+      width: 100%;
+      text-align: center;
+   }
+
+   .navbar :first-child {
+      width: auto;
+      display: flex;
+   }
+
+}
+

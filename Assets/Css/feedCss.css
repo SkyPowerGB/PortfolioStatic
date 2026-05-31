@@ -128,6 +128,40 @@ margin-right: auto;
     margin: 0;
 }
 
+
+/*---------LOAD MORE-------------------------------------*/
+#loadMoreBtn {
+
+   width: 100%;
+   height: 50px;
+   border: none;
+   background-color: #30333a;
+   color: white;
+   font-size: 1rem;
+
+}
+
+.load-more-cont {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+
+
+
+}
+
+#loadMoreBtn:hover {
+   cursor: pointer;
+   background-color: #444954;
+   color: white;
+}
+
+
+/*===============================================================================================================================*/
+
+
 /* --- Animacija --- */
 @keyframes slideUp {
     0% {
