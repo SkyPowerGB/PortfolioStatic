@@ -20,7 +20,7 @@ let introTxt = {
   },
   line1: {
     1: ["bruno ", "intro-res-h1-blue", false],
-    2: ["--bachelor-cs-eng", "intro-res-h2-orange", false]
+    2: ["--bacc-rac-ing", "intro-res-h2-orange", false]
   },
   line2: {
     1: ["> grep -r 'about_me' ./identity", "intro-cmd", true]
