@@ -186,7 +186,7 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
 
     inputHidden.type = "hidden";
     inputCheckBx.type = "checkbox";
-    label.innerHTML = filterItemName;
+    label.innerText = filterItemName;
     inputCheckBx.value = filterItemName;
     inputHidden.value = filterGroupName;
 
