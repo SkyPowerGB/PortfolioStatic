@@ -4,7 +4,7 @@
     "title":"Astro logger",
     "summary":"Arduino based device to log datetime,temp and humidity on SD card",
     "thumbnail":"thumbnail.jpg",
-    "dateUpload":"20.6.2026",
+    "dateUpload":"18.6.2026",
 
      "hasSite":true
   
