@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astro Logger</title>
+  <link href="../../../Assets/Css/mainCss.css" rel="stylesheet">
+  <link href="../../../Assets/Css/templateV3.css" rel="stylesheet">
+  <link href="../../../Assets/Css/navbar.css" rel="stylesheet">
+  <link href="./assets/css.css" rel="stylesheet">
+</head>
+
+<body>
+  <script type="module" src="../../../Assets/Js/PageJs/Content.js"> </script>
+
+
+
+  <div id="navbarContainer" class="navbar-container">
+
+  </div>
+
+
+
+  <div class="tpl-content-container">
+    <h1 class="tpl-txt-orange tpl-title-main tpl-txt-center"> Astro Logger</h1>
+
+    <h1 class="tpl-txt-orange tpl-title-secondary"> Problem</h1>
+    <p class="tpl-txt">
+      Astrophotography is done by taking several images of object to reduce noise also
+      calibration frames are used to further reduce artifacts and noise.
+      One such calibration is called "darks". They are fully black images taken with same settings
+      in order to eliminate thermal noise . The uncooled cameras like DSRL this becomes
+      a big issue cuz they need to be taken in same conditions usually same night.
+      But timeframe at night is limited which can end up loosing valuable time for collecting light data.
+      Cooled astrocameras can easly recreate conditions so they dont have that issue.
+    </p>
+
+    <p class="tpl-txt">Another problem is with entry level model DSLRs and lenses they dont come with
+      weather sealing making them vournabile to high humidity and dew . They also dont messure sensor temperature.
+    </p>
+
+    <h1 class="tpl-txt-orange tpl-title-secondary"> Idea</h1>
+
+    <p class="tpl-txt">
+      I got idea to monitor enviromental conditions . Arduino could messure temp and humidtiy plus output them onto
+      SDcard
+      data could later be associated with images trough EXIF date time . If camera was outside for while the internal
+      temperature
+      should be similar . While the internal temp might not is always same and is affected by things like taking images.
+      Hopefully it should be close enough to perform calibration.
+    </p>
+
+    <p class="tpl-txt">
+      Ideally this would enable me to take calibration frames on "bad nights" while maximising time for taking lights
+      (images of object)
+    </p>
+
+    <p class="tpl-txt">
+      This is super critical for multinight sessions , as object travels on sky the window could be as short as 1-3h .
+    </p>
+
+
+    <h1 class="tpl-txt-orange tpl-title-secondary"> Implementation</h1>
+
+    <p class="tpl-txt">
+      Device is made of:
+    </p>
+    <ul>
+      <li>
+        <p class="tpl-txt">Arduino nano</p>
+      </li>
+      <li>
+        <p class="tpl-txt">LCD 1602 module</p>
+      </li>
+      <li>
+        <p class="tpl-txt">SHT31 module</p>
+      </li>
+      <li>
+        <p class="tpl-txt">SD card module</p>
+      </li>
+      <li>
+        <p class="tpl-txt">RTC module</p>
+      </li>
+      <li>
+        <p class="tpl-txt"> 3 pushbuttons</p>
+      </li>
+    </ul>
+
+    <p class="tpl-txt">
+      The code was made using AI to speed up development .
+      After confirming code works the design was moved to pernament perfboard build.
+      Finnally case was made using 3d printing.
+    </p>
+
+     <h1 class="tpl-txt-orange tpl-title-secondary"> Issues</h1>
+
+       <p class="tpl-txt">
+        After soldering boards arduino nano proved to not work for unknown reason. leading to its removal and placement of female header pins to make it replacable.
+        Old arduino nano was placed in its place . In end it turned out to be issue due to old bootloader however both brand new arduinos work.
+       </p>
+       <p class="tpl-txt">
+        Due to uneven boards it prvoed difficult to design case so only first prototype was made.
+       </p>
+
+            <h1 class="tpl-txt-orange tpl-title-secondary"> Conclusion</h1>
+
+            <p class="tpl-txt">While full review is still awaiting , it was great project that put use of existing parts</p>
+                   <p class="tpl-txt">Also first time crimping xh2.54 made it  a bit more serious than just soldering wires to board<,
+                   this did prove good cuz if repairs are neccesarry device can be split plus allowing flexibility with case</p>
+
+  </div>
+
+</body>
+
+
+
+
+
+</html>

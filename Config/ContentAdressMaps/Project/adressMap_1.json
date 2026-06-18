@@ -1,4 +1,20 @@
 {
+    "AstroLogger": {
+        "folderName": "AstroLogger",
+        "filters": {
+            "Category": [
+                
+                "3Dprinting",
+                "Electronics"
+            ],
+            "Lang": [
+                "C++"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+    },
     "Portfolio": {
         "folderName": "Portfolio",
         "filters": {
@@ -13,7 +29,6 @@
             ]
         }
     },
-    
     "FishFeeder": {
         "folderName": "FishFeeder",
         "filters": {
@@ -117,7 +132,7 @@
             ]
         }
     },
-   "2DCAD": {
+    "2DCAD": {
         "folderName": "2DCAD",
         "filters": {
             "Category": [
@@ -131,8 +146,6 @@
             ]
         }
     },
-
-
     "ServisVozila": {
         "folderName": "ServisVozila",
         "filters": {
