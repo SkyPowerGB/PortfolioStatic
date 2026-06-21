@@ -23,7 +23,7 @@ let introTxt = {
     2: ["--bachelor-computer-science-engineering", "intro-res-h2-orange", false]
   },
   line2: {
-    1: ["> grep -r 'about_me' ./identity", "intro-cmd", true]
+    1: ["> cat ./identity/about_me.txt", "intro-cmd", true]
   },
   line3: {
     1: ["Applied knowledge . Focused on building stuff", "intro-res", false]
