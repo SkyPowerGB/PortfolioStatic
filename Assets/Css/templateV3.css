@@ -11,6 +11,10 @@
 }
 
 /*---------------- TEXT -----------------*/
+.tpl-txt-box{
+    background-color: rgb(32, 36, 42);
+}
+
 .tpl-title-main {
     font-size: 1.6rem;
 
@@ -195,6 +199,11 @@
 .tpl-margin-10 {
     margin: 2rem;
 }
+/*------------*PADDINGS-*/
+.tpl-padd-10{
+    padding: 5rem;
+}
+
 
 /*----------------universal WIDTHS ----------------*/
 .tpl-w25 {
