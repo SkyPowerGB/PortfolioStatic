@@ -215,7 +215,20 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
 
 
 
+/**
+ * Creates and returns element cointaining all filters
+ * Filter setup is in configJson->filtersSetup
+ * 
+ * 
+ * 
+ * 
+ */
+function createFiltersElement(configJson){
+  let filtersSetup=configJson.filtersSetup;
 
+
+
+}
 
 
 

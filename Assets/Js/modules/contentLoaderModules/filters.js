@@ -10,6 +10,8 @@ let filterObj = {};
 
 
 // filters improved--------------------------------------------------------------
+
+
 function checkFiltersV2(adressMapFilters) {
     let filterGroups = Object.keys(filterObj);
 
@@ -24,14 +26,14 @@ function checkFiltersV2(adressMapFilters) {
         if (filterList.length > 0) {
             allFilterGroupsEmpty = false;
             if (adressmapFilterGroup) {
-            
+
                 let match = filterList.some(filterItem => adressmapFilterGroup.includes(filterItem));
                 if (!match) {
-                
+
                     return false;
                 }
             } else {
-            
+
                 return false;
             }
         }
@@ -40,8 +42,8 @@ function checkFiltersV2(adressMapFilters) {
     return true;
 }
 
-function setupFilerObj(filterGroup){
-    filterObj[filterGroup]=[];
+function setupFilerObj(filterGroup) {
+    filterObj[filterGroup] = [];
 }
 
 function addFilter(filterGroup, filter) {
@@ -62,13 +64,19 @@ function removeFilter(filterGroup, filter) {
 
 }
 
+// ****************************************************************************************************************************************
+
+
+
 
 // checkbox container event function abstraction
-function filterEvent(e, filterItem, configJson, callback) {
+
+// old function to be DEPRECATED  
+function filterEvent(event, filterItem, configJson, callback) {
 
     let checkboxElement = filterItem.querySelector("." + configJson.filterCheckbxClassMarker);
     let groupValueElement = filterItem.querySelector("." + configJson.filterGroupValueClassMarker);
-
+    
     let filtersSetup=configJson.filtersSetup;
     let FiltersElementsSetup=filtersSetup.FiltersElementsSetup;
     
@@ -77,7 +85,7 @@ function filterEvent(e, filterItem, configJson, callback) {
     let filterValue = checkboxElement.value;
 
 
-    if (e.target !== checkboxElement) {
+    if (event.target !== checkboxElement) {
         if (!checkboxElement.checked) {
 
 
@@ -91,7 +99,7 @@ function filterEvent(e, filterItem, configJson, callback) {
 
 
 
-         filterItem.classList.remove(FiltersElementsSetup.filterItemEle.checked);
+            filterItem.classList.remove(FiltersElementsSetup.filterItemEle.checked);
             filterItem.classList.add(FiltersElementsSetup.filterItemEle.unchecked);
             checkboxElement.checked = false;
 
@@ -102,25 +110,101 @@ function filterEvent(e, filterItem, configJson, callback) {
 
         if (checkboxElement.checked) {
             addFilter(groupValue, filterValue);
-              filterItem.classList.add(FiltersElementsSetup.filterItemEle.checked);
-               filterItem.classList.remove(FiltersElementsSetup.filterItemEle.unchecked);
+            filterItem.classList.add(FiltersElementsSetup.filterItemEle.checked);
+            filterItem.classList.remove(FiltersElementsSetup.filterItemEle.unchecked);
         } else {
             removeFilter(groupValue, filterValue);
-                    filterItem.classList.remove(FiltersElementsSetup.filterItemEle.checked);
-                            filterItem.classList.add(FiltersElementsSetup.filterItemEle.unchecked);
+            filterItem.classList.remove(FiltersElementsSetup.filterItemEle.checked);
+            filterItem.classList.add(FiltersElementsSetup.filterItemEle.unchecked);
         }
 
     }
 
     if (callback === undefined) { return; }
 
-    callback(e);
+    callback(event);
 }
 
 
 
+
+/**
+ * New filters event
+ * filterSetup_ui refers to ui within filters setup  that cointains  all releated ui element classes
+ * callback sends event object back for fruther processing
+ * 
+ * whole function primary purpouse is to check checkbox on event+ add css classes for UI display
+ * 
+ * 
+ */
+
+// temp storage for css class to not reread them.
+
+let checkedClass = null;
+let uncheckedClass = null;
+
+function filterEventV2(event, filterItem, filtersSetup_Ui, callback) {
+
+    let checkboxElement = filterItem.querySelector("." + filtersSetup_Ui.checkboxMarkerClass);
+    let groupValueElement = filterItem.querySelector("." + filtersSetup_Ui.groupValueMarkerClass);
+
+
+    if (checkedClass == null) {
+        checkedClass = filtersSetup_Ui.checkedClass;
+        uncheckedClass = filtersSetup_Ui.uncheckedClass;
+    }
+
+    let groupValue = groupValueElement.value;
+    let filterValue = checkboxElement.value;
+
+
+    if (event.target !== checkboxElement) {
+
+        if (!checkboxElement.checked) {
+
+
+            checkboxElement.checked = true;
+            filterItem.classList.add(checkedClass);
+            filterItem.classList.remove(uncheckedClass);
+
+            addFilter(groupValue, filterValue);
+
+        } else {
+
+
+
+            filterItem.classList.remove(checkedClass);
+            filterItem.classList.add(uncheckedClass);
+            checkboxElement.checked = false;
+
+
+            removeFilter(groupValue, filterValue);
+        }
+    } else {
+
+        if (checkboxElement.checked) {
+            addFilter(groupValue, filterValue);
+            filterItem.classList.add(checkedClass);
+            filterItem.classList.remove(uncheckedClass);
+        } else {
+            removeFilter(groupValue, filterValue);
+            filterItem.classList.remove(checkedClass);
+            filterItem.classList.add(uncheckedClass);
+        }
+
+    }
+
+    if (callback === undefined) { return; }
+
+    callback(event);
+
+}
+
+
+
+// old  TODO: remake
 async function handleFiltersToggleClick(configJson, eventTarget) {
- 
+
     let targetComponent = document.getElementById(configJson.filtersContainerCssId);
 
 
@@ -142,7 +226,7 @@ async function handleFiltersToggleClick(configJson, eventTarget) {
 }
 
 
-
+// old TODO: remake
 async function loadPageFilters(configJson, targetComponentId, filterEventCallback) {
 
 
@@ -167,6 +251,35 @@ async function loadPageFilters(configJson, targetComponentId, filterEventCallbac
 
 }
 
+
+
+/**
+ *  unfinished
+ *  TODO:. remove old configJson approach use filtersSetup part of configJson.
+ *  TODO:: MAKE UPGRADED COMP BUILDER FUNCTIONS 
+ */
+async function loadPageFiltersV2(filtersSetup,targetComponentId,filterEventCallback){
+    
+    const targetComponent = document.getElementById(targetComponentId)
+    const output = compBuilder.createFilterListElement(configJson);
+    targetComponent.appendChild(output);
+
+    let filtersToggleBtn = compBuilder.createFiltersHideShowBtn(configJson);
+
+    targetComponent.appendChild(filtersToggleBtn);
+
+    let filters = output.getElementsByClassName(configJson.filterActionMarkerClass);
+
+    for (let i = 0; i < filters.length; i++) {
+
+        filters[i].addEventListener("click", (e) => { filterEventV2(e, filters[i], filtersSetup.ui, filterEventCallback) })
+    }
+
+    filtersToggleBtn.addEventListener("click", (e) => { handleFiltersToggleClick(configJson, filtersToggleBtn); })
+
+
+
+}
 
 
 export {

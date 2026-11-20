@@ -28,18 +28,22 @@
             "Electronics",
             "3Dprinting"
         ],
+        "Type": [
+            "Personal",
+            "University",
+            "Profesional"
+        ],
         "Lang": [
+            "Angular",
+            "ASP.NET_CORE",
+            "ASP.NET_MVC",
+            "Express.js",
             "Java",
             "PHP",
             "NodeJs",
             "JavaScript",
             "C#",
             "C++"
-        ],
-        "Type": [
-            "Personal",
-            "University",
-            "Profesional"
         ]
     },
     "filterCheckbxClassMarker": "filterCheckbox",
@@ -51,9 +55,14 @@
     "filtresContainerCssClassShown": "filters-list-shown",
     "filtersOpenBtnTxt": "Show Filters",
     "filtersCloseBtnTxt": "Hide Filters",
+
+
+
     "_Comment: ": "this will be used later for  improved filters / content setup to be just like navbar",
 
-    
+
+
+
     "contentSetup": {
         "adressMapSetup": {
             "noDataIndex": 0,
@@ -132,35 +141,71 @@
             }
         }
     },
-    
     "filtersSetup": {
-        "filtersDataSetup": {
-            "FilterGroups": {
-                "Category": {
-                    "keyName": "Category",
-                    "DisplayName": "Category"
+
+
+        "groups": {
+            "type": {
+                "label": "Type",
+                "options": {
+                    "personal": {
+                        "label": "Personal"
+                    },
+                    "professional": {
+                        "label": "Professional"
+                    },
+                    "university": {
+                        "label": "University"
+                    }
                 }
             },
-            "FilterGroupLists": {
-                "Category": {
-                    "Values": [],
-                    "DisplayName": []
+            "category": {
+                "label": "Category",
+                "options": {
+                    "coding": {
+                        "label": "Coding"
+                    },
+                    "electronics": {
+                        "label": "Electronics"
+                    },
+                    "3dprinting": {
+                        "lablel": "3dprinting"
+                    }
                 }
             }
         },
+
+
         "FiltersElementsSetup": {
-
-            "filterItemEle":{
-                "checked":"filter-checked",
-                "unchecked":"filter-unchecked",
-                "class":"filter-item"
+            "filterItemEle": {
+                "checked": "filter-checked",
+                "unchecked": "filter-unchecked",
+                "class": "filter-item"
             }
+        },
 
+
+        "ui": {
+            
+            "listClass": "filters-list",
+            "listId": "filtersList",
+            "shownClass": "filters-list-shown",
+            "groupClass": "filters-group",
+
+            "itemClass": "filter-item",
+            "checkedClass": "filter-checked",
+            "uncheckedClass": "filter-unchecked",
+
+            "actionMarkerClass": "FilterBtnMarker",
+            "checkboxMarkerClass": "filterCheckbox",
+            "groupValueMarkerClass": "filterGroupValue",
+            "toggleBtnId": "filtersCloseBtnId",
+            "openText": "Show Filters",
+            "closeText": "Hide Filters"
         }
 
-    },
-   
 
+    },
     "navbarSetup": {
         "navBarDivContElementID": "navbarContainer",
         "NavBarItems__Reference": [
@@ -178,7 +223,6 @@
                 "src",
                 ""
             ],
-             
             "Projects": [
                 "Projects",
                 "pages",
@@ -194,7 +238,6 @@
                 "pages",
                 "Blog.html"
             ]
-          
         },
         "NavBarCurrFolder__Reference": [
             "FOLDER N: src-0",
@@ -217,6 +260,6 @@
         "navCurrSiteIndexId": "navCurrSiteIndex",
         "navBarLiElementClass": "nav-item",
         "navBarUlElementClass": "navbar",
-        "navBarCurrSiteClass":"nav-item-current"
+        "navBarCurrSiteClass": "nav-item-current"
     }
 }

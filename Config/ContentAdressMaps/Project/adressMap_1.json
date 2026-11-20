@@ -1,4 +1,19 @@
 {
+    "SPDAY_REM":{
+             "folderName": "SPDAyRemaster",
+        "filters": {
+            "Category": [            
+                "Coding"        
+            ],
+            "Lang": [
+                "Angular","ASP.NET_CORE"
+            ],
+            "Type": [
+                "Personal"
+            ]
+        }
+
+    },
     "AstroLogger": {
         "folderName": "AstroLogger",
         "filters": {
@@ -188,4 +203,5 @@
             ]
         }
     }
+    
 }
