@@ -9,7 +9,7 @@ async function getContentMetadata(configJson, folderPath) {
 
     let metadataPath = folderPath + "/" + configJson.contentSetup.contentDataSetup.metadataSetup.metadataFileName + ".json";
 
-
+   console.log(metadataPath)
 
     try {
         let response = await fetch(metadataPath);
