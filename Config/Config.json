@@ -17,6 +17,7 @@
     "filterActionMarkerClass": "FilterBtnMarker",
     "filterItemDivCssClass": "filter-item",
     "filterHeaderCssClass": "filter-header",
+
     "filterGroupListName": [
         "Category",
         "Lang",
@@ -199,6 +200,7 @@
             "actionMarkerClass": "FilterBtnMarker",
             "checkboxMarkerClass": "filterCheckbox",
             "groupValueMarkerClass": "filterGroupValue",
+            
             "toggleBtnId": "filtersCloseBtnId",
             "openText": "Show Filters",
             "closeText": "Hide Filters"
@@ -210,12 +212,12 @@
         "navBarDivContElementID": "navbarContainer",
         "NavBarItems__Reference": [
             "SITE_NAME",
-            "SITE_PATHS_ATTRIBUTE",
+            "NAVBAR_PATHS_ARRAY-key in navbarPaths ",
             "SITE",
-            "HAS IMG",
-            "IMG FOLDER",
-            "IMG SIDE LEFT",
-            "IMG CLASS"
+            "HAS IMG-optional",
+            "IMG FOLDER-optional",
+            "IMG SIDE LEFT-optional",
+            "IMG CLASS-optional"
         ],
         "navbarItems": {
             "Home": [
@@ -245,16 +247,9 @@
             "contentSub-2"
         ],
         "navbarPaths": {
-            "src": [
-                "",
-                "../",
-                "../../../"
-            ],
-            "pages": [
-                "Pages/",
-                "",
-                "../../../Pages/"
-            ]
+
+            "src": [        "",  "../",  "../../../"       ],
+            "pages": [    "Pages/",     "",  "../../../Pages/" ]
         },
         "tribarElementID": "TriBarBtn",
         "navCurrSiteIndexId": "navCurrSiteIndex",

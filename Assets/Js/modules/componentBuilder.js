@@ -177,7 +177,8 @@ function createFilterGroup(configJson, filterGroupName) {
 function createFilterItem(filterItemName, configJson, filterGroupName) {
  
     let filtersSetup=configJson.filtersSetup;
-    let FiltersElementsSetup=filtersSetup.FiltersElementsSetup;
+
+    let filtersUi=filtersSetup.ui;
 
     let containerDiv = document.createElement("div");
     let inputCheckBx = document.createElement("input");
@@ -192,15 +193,15 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
 
 
 
-    containerDiv.classList.add(FiltersElementsSetup.filterItemEle.class);
-    containerDiv.classList.add(FiltersElementsSetup.filterItemEle.unchecked);
+    containerDiv.classList.add(filtersUi.itemClass);
+    containerDiv.classList.add(filtersUi.uncheckedClass);
 
     //add classes for script events 
-    containerDiv.classList.add(configJson.filterActionMarkerClass);
+    containerDiv.classList.add(filtersUi.actionMarkerClass);
 
     // add classes for script to extract values
-    inputHidden.classList.add(configJson.filterGroupValueClassMarker);
-    inputCheckBx.classList.add(configJson.filterCheckbxClassMarker);
+    inputHidden.classList.add(filtersUi.groupValueMarkerClass);
+    inputCheckBx.classList.add(filtersUi.checkboxMarkerClass);
 
 
     containerDiv.appendChild(inputCheckBx);
@@ -231,6 +232,44 @@ function createFiltersElement(configJson){
 }
 
 
+// TODO make reviison of new filters. watchour for the fitlerGroupName new structure sperates the keys from 
+// display label
+function createFilterItemV2(filterItemName, filtersUi, filterGroupName){
+        
+    
+
+    let containerDiv = document.createElement("div");
+    let inputCheckBx = document.createElement("input");
+    let inputHidden = document.createElement("input");
+    let label = document.createElement("label");
+
+    inputHidden.type = "hidden";
+    inputCheckBx.type = "checkbox";
+    label.innerText = filterItemName;
+    inputCheckBx.value = filterItemName;
+    inputHidden.value = filterGroupName;
+
+
+
+    containerDiv.classList.add(filtersUi.itemClass);
+    containerDiv.classList.add(filtersUi.uncheckedClass);
+
+    //add classes for script events 
+    containerDiv.classList.add(filtersUi.actionMarkerClass);
+
+    // add classes for script to extract values
+    inputHidden.classList.add(filtersUi.groupValueMarkerClass);
+    inputCheckBx.classList.add(filtersUi.checkboxMarkerClass);
+
+
+    containerDiv.appendChild(inputCheckBx);
+    containerDiv.appendChild(label);
+    containerDiv.appendChild(inputHidden);
+
+    return containerDiv;
+
+}
+
 
 
 
@@ -244,7 +283,7 @@ function createFiltersElement(configJson){
  * 
  *
  * Setup in configJson uses the arrays below with index pointing path to use
- *ConfigJson- > SitePosIndex:  ["src-0","pages-1", "contentSub-2"....], 
+ *ConfigJson- > SitePosIndex:  ["src- 0","pages- 1", "contentSub-> 2"....], 
  arrays are in ConfigJson.navbarPaths
 
  * navbarPaths has arrays with paths , key for array is told by "ConfigJson.navbarItems SITE FOLDER":
@@ -252,6 +291,23 @@ function createFiltersElement(configJson){
 
   to get href use SITE_FOLDER[current site pos index] + SITE
  * 
+
+  it is made to work like  matrix /graph  exmaple
+site location:     src    pages     content folder  = site index
+    site index:     0      1          2   ( currSitePosIndex)
+
+
+    src            "",    "../"    "../../../"   
+    pages          /"      ""     "../../../Pages/
+
+lets say you wanna go from pages to src  , we are in pages .index=1
+loading navbar items takes home (navbarItems) which is in src folder 
+so we take src[1] which takes "../"  and in home nabvar item site is "" cuz its index.html
+turning link into ../
+
+if site is in pages folder takes pages[1]  = "" which is in same one
+
+
 */
 
 //currsitename optional for curr site css must match navbar items name
@@ -274,11 +330,11 @@ function navbarUlBuilder(configJson, currSitePosIndex,currsiteName) {
         a_Element.innerText = navbarItem[0];
 
 
-        let aHref=configJson.navbarSetup.navbarPaths[navbarItem[1]][currSitePosIndex] + navbarItem[2];
+        let aHref=navbarSetup.navbarPaths[navbarItem[1]][currSitePosIndex] + navbarItem[2];
         a_Element.href = aHref;
 
     
-console.log(currsiteName)
+
         if(navItemNm==currsiteName){
 
          
@@ -299,7 +355,7 @@ console.log(currsiteName)
          li_Element_hamb.id="TriBarBtn";
      
         ul_Element.appendChild(li_Element_hamb);*/
-    ul_Element.classList.add(configJson.navbarSetup.navBarUlElementClass);
+    ul_Element.classList.add(navbarSetup.navBarUlElementClass);
 
 
     return ul_Element;
