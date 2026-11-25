@@ -1,6 +1,6 @@
 {
-    "SPDAY_REM":{
-             "folderName": "SPDAyRemaster",
+    "SPDayRem":{
+       "folderName": "SPDayRem",
         "filters": {
             "Category": [            
                 "Coding"        
