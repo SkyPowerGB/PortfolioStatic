@@ -1,5 +1,7 @@
 let localConfigJson 
 let configJsonTemp;
+
+// stores adress maps temprarily  folderCat refers to relatedContentFolder example:   { folderCat:{1:adressMap1 },folderCat2:{1:adressMap1 ,2:adressMap2}}
 let adressMapTemp={};
 
 
@@ -60,8 +62,14 @@ function getContentItemFolderPth(srcFoldRel, configJson, folderCat, folderName) 
 
 
 
-// folderCat this time is related to configJsonContentData not adress map (though they should always match) this is helper to build Href and SRC towards content folder
-function contentFolderLink(configJson,folderCat,folderNm,srcFolderRel){
+/*
+ folderCat this time is related to
+  configJsonContentData not adress map
+   (though they should always match) this is helper to build Href and SRC towards content folder
+
+   
+*/
+ function contentFolderLink(configJson,folderCat,folderNm,srcFolderRel){
 
     let contentDataSetup=configJson.contentSetup.contentDataSetup;
  let folderPath = "";
@@ -84,9 +92,12 @@ function contentFolderLink(configJson,folderCat,folderNm,srcFolderRel){
 async function getContentAdressMap(srcFolderRel, folderCat, index) {
 
     let configJson= await getConfigJsonV2(srcFolderRel);
+
     let adressMapSetup=configJson.contentSetup.adressMapSetup;
-   let folderPath=getContentAdressMapCommonPath(adressMapSetup.adressMapPaths,folderCat,srcFolderRel);
-    let fullPath = folderPath + "/" + adressMapSetup.adressMapPaths.fileName + index + ".json";
+
+   let adressMapCommonPath=getContentAdressMapCommonPath(adressMapSetup.adressMapPaths,folderCat,srcFolderRel);
+
+    let targetAdressMapPath = adressMapCommonPath + "/" + adressMapSetup.adressMapPaths.fileName + index + ".json";
 
     let maxIndex=adressMapSetup.adressMapsIndexing[folderCat].count;
     let noDataIndex=adressMapSetup.noDataIndex;
@@ -115,7 +126,7 @@ async function getContentAdressMap(srcFolderRel, folderCat, index) {
    }
     
 
-    let result = await fetch(fullPath);
+    let result = await fetch(targetAdressMapPath);
 
     if (result.ok) {
         let resultDATA = result.json();
@@ -135,6 +146,7 @@ async function getContentMetadataV2(srcFoldRel,folderCat,folderName){
 return await getContentMetadata(configJson,getContentItemFolderPth(srcFoldRel,configJson,folderCat,folderName));
 }
 
+/**get optional txt file for description */
 async function getMetadataTxt(folderPth,fileName){
 let filePth=folderPth+"/"+fileName;
 let response=await fetch(filePth);

@@ -214,19 +214,18 @@ function createFilterItem(filterItemName, configJson, filterGroupName) {
 /**FILTERS V2 SETUP-------------------------------------------------------- */
 //** TODO: MAKE THEM */
 
+function createFilterListElementV2(FiltersSetup){
+ let filterContainer = document.createElement("div");
+      filterContainer.classList.add(FiltersSetup.ui.listClass);
+       filterContainer.id=FiltersSetup.ui.listId;
+       FiltersSetup.groups.forEach((group)=>{
 
+         filterContainer.append( createFilterGroupV2(group));
 
-/**
- * Creates and returns element cointaining all filters
- * Filter setup is in configJson->filtersSetup
- * 
- * 
- * 
- * 
- */
-function createFiltersElement(configJson){
-  let filtersSetup=configJson.filtersSetup;
+       })
+}
 
+function createFilterGroupV2(groupObj){
 
 
 }

@@ -1,9 +1,7 @@
 {
-
-    "October":
-{
-    "folderName":"October"
-    , "filters": {
+    "November": {
+        "folderName": "November",
+        "filters": {
             "Category": [
                 ""
             ],
@@ -14,11 +12,22 @@
                 ""
             ]
         }
-}
-   ,
-
-
-"March": {
+    },
+    "October": {
+        "folderName": "October",
+        "filters": {
+            "Category": [
+                ""
+            ],
+            "Lang": [
+                ""
+            ],
+            "Type": [
+                ""
+            ]
+        }
+    },
+    "March": {
         "folderName": "June",
         "filters": {
             "Category": [
@@ -32,8 +41,4 @@
             ]
         }
     }
-
-
-
-
 }
